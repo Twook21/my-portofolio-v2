@@ -55,9 +55,12 @@ export default function Experience() {
         borderTop: "1px solid var(--border)",
         borderBottom: "1px solid var(--border)",
         transition: "background 0.35s ease",
+        position: "relative",
+        overflow: "hidden",
       }}
       className="experience-section"
     >
+      <div className="grid-pattern" />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div style={{ marginBottom: "60px" }}>
           <span className="section-label">{t.ui.experience}</span>

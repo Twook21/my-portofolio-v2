@@ -33,9 +33,12 @@ export default function Certifications() {
         padding: "80px 20px",
         background: "var(--bg-primary)",
         borderTop: "1px solid var(--border)",
+        position: "relative",
+        overflow: "hidden",
       }}
       className="certifications-section"
     >
+      <div className="grid-pattern" />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div style={{ marginBottom: "40px" }}>
           <p

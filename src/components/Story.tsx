@@ -40,9 +40,12 @@ export default function Story() {
         padding: "100px 20px",
         background: "var(--bg-primary)",
         transition: "background 0.35s ease",
+        position: "relative",
+        overflow: "hidden",
       }}
       className="story-section"
     >
+      <div className="grid-pattern" />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         {/* Header */}
         <div style={{ maxWidth: "680px", marginBottom: "60px" }}>

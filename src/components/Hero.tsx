@@ -7,9 +7,17 @@ export default function Hero() {
   const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
   const [displayText, setDisplayText] = useState("");
-  const tagline = t.personal.tagline;
   const [mousePos, setMousePos]   = useState({ x: 50, y: 40 });
   const heroRef = useRef<HTMLDivElement>(null);
+
+  const roles = [
+    t.personal.tagline, // Software Engineer (translated)
+    "Fullstack Developer",
+    "Frontend Developer",
+    "Backend Developer",
+  ];
+  const [roleIndex, setRoleIndex] = useState(0);
+  const currentRole = roles[roleIndex];
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 80);
@@ -19,12 +27,12 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(100);
 
-  // Reset when language changes
+  // Reset when language changes or role changes
   useEffect(() => {
     setDisplayText("");
     setIsDeleting(false);
     setTypingSpeed(100);
-  }, [tagline]);
+  }, [roleIndex, t.personal.tagline]);
 
   useEffect(() => {
     if (!visible) return;
@@ -32,8 +40,8 @@ export default function Hero() {
     const handleTyping = () => {
       setDisplayText(prev => {
         if (!isDeleting) {
-          if (prev.length < tagline.length) {
-            return tagline.slice(0, prev.length + 1);
+          if (prev.length < currentRole.length) {
+            return currentRole.slice(0, prev.length + 1);
           } else {
             setTypingSpeed(2000); // Wait at end
             setIsDeleting(true);
@@ -42,9 +50,10 @@ export default function Hero() {
         } else {
           if (prev.length > 0) {
             setTypingSpeed(50); // Faster delete
-            return tagline.slice(0, prev.length - 1);
+            return currentRole.slice(0, prev.length - 1);
           } else {
             setIsDeleting(false);
+            setRoleIndex((prevIdx) => (prevIdx + 1) % roles.length);
             setTypingSpeed(500); // Wait before restart
             return "";
           }
@@ -54,7 +63,7 @@ export default function Hero() {
 
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [visible, displayText, isDeleting, typingSpeed, tagline]);
+  }, [visible, displayText, isDeleting, typingSpeed, currentRole, roles.length]);
 
   useEffect(() => {
     const move = (e: MouseEvent) => {
@@ -125,19 +134,7 @@ export default function Hero() {
       />
 
       {/* ── Grid pattern overlay ── */}
-      <div
-        style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
-          backgroundImage: `
-            linear-gradient(var(--border) 1px, transparent 1px),
-            linear-gradient(90deg, var(--border) 1px, transparent 1px)
-          `,
-          backgroundSize: "60px 60px",
-          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%)",
-          opacity: 0.5,
-        }}
-      />
+      <div className="grid-pattern" />
 
       {/* ── Content ── */}
       <div

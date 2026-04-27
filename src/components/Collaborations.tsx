@@ -30,9 +30,12 @@ export default function Collaborations() {
         background: "var(--bg-secondary)",
         borderTop: "1px solid var(--border)",
         transition: "background 0.35s ease",
+        position: "relative",
+        overflow: "hidden",
       }}
       className="collaborations-section"
     >
+      <div className="grid-pattern" />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div style={{ marginBottom: "60px" }}>
           <span className="section-label">{t.ui.collaborations}</span>

@@ -53,6 +53,21 @@ export default function FloatingCTA() {
         </svg>
       ),
     },
+    {
+      id: "another",
+      name: "Another Me",
+      url: "/another",
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 3l1.912 5.813a2 2 0 001.275 1.275L21 12l-5.813 1.912a2 2 0 00-1.275 1.275L12 21l-1.912-5.813a2 2 0 00-1.275-1.275L3 12l5.813-1.912a2 2 0 001.275-1.275L12 3z" />
+          <path d="M5 3l1.4 1.4" />
+          <path d="M19 3l-1.4 1.4" />
+          <path d="M5 21l1.4-1.4" />
+          <path d="M19 21l-1.4-1.4" />
+        </svg>
+      ),
+      isInternal: true,
+    },
   ];
 
   return (
@@ -60,7 +75,7 @@ export default function FloatingCTA() {
       style={{
         position: "fixed",
         right: "24px",
-        bottom: "100px", // Higher than footer
+        bottom: "40px",
         display: "flex",
         flexDirection: "column",
         gap: "12px",
@@ -76,8 +91,8 @@ export default function FloatingCTA() {
         <a
           key={social.id}
           href={social.url}
-          target="_blank"
-          rel="noopener noreferrer"
+          target={social.isInternal ? "_self" : "_blank"}
+          rel={social.isInternal ? "" : "noopener noreferrer"}
           style={{
             width: "48px",
             height: "48px",
@@ -87,11 +102,13 @@ export default function FloatingCTA() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "var(--text-secondary)",
+            color: social.id === "another" ? "var(--accent)" : "var(--text-secondary)",
             boxShadow: "var(--shadow-md)",
             transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
             position: "relative",
           }}
+          className="cta-button"
+          data-tooltip={social.name}
           onMouseEnter={(e) => {
             const el = e.currentTarget;
             el.style.transform = "scale(1.1) translateY(-4px)";
@@ -102,24 +119,53 @@ export default function FloatingCTA() {
           onMouseLeave={(e) => {
             const el = e.currentTarget;
             el.style.transform = "scale(1) translateY(0)";
-            el.style.color = "var(--text-secondary)";
+            el.style.color = social.id === "another" ? "var(--accent)" : "var(--text-secondary)";
             el.style.borderColor = "var(--border)";
             el.style.boxShadow = "var(--shadow-md)";
           }}
           aria-label={social.name}
         >
           {social.icon}
+          <span className="tooltip">{social.name}</span>
         </a>
       ))}
       <style jsx>{`
+        .cta-button {
+          position: relative;
+        }
+        .tooltip {
+          position: absolute;
+          right: 60px;
+          top: 50%;
+          transform: translateY(-50%) translateX(10px);
+          background: var(--bg-card);
+          border: 1px solid var(--border);
+          padding: 6px 12px;
+          border-radius: 8px;
+          font-size: 12px;
+          font-weight: 700;
+          color: var(--text-primary);
+          white-space: nowrap;
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.2s ease;
+          box-shadow: var(--shadow-md);
+        }
+        .cta-button:hover .tooltip {
+          opacity: 1;
+          transform: translateY(-50%) translateX(0);
+        }
         @media (max-width: 640px) {
           .floating-cta {
             right: 16px;
-            bottom: 32px;
+            bottom: 24px;
           }
           .floating-cta a {
             width: 42px;
             height: 42px;
+          }
+          .tooltip {
+            display: none;
           }
         }
       `}</style>

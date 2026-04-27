@@ -264,9 +264,12 @@ export default function Projects() {
         padding: "100px 20px",
         background: "var(--bg-primary)",
         transition: "background 0.35s ease",
+        position: "relative",
+        overflow: "hidden",
       }}
       className="projects-section"
     >
+      <div className="grid-pattern" />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div style={{ marginBottom: "60px" }}>
           <span className="section-label">{t.ui.projects}</span>

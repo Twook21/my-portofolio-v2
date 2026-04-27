@@ -119,9 +119,12 @@ export default function Skills() {
         background: "var(--bg-secondary)",
         borderTop: "1px solid var(--border)",
         transition: "background 0.35s ease",
+        position: "relative",
+        overflow: "hidden",
       }}
       className="skills-section"
     >
+      <div className="grid-pattern" />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div style={{ marginBottom: "60px", animation: "fadeInUp 0.7s ease both" }}>
           <span className="section-label">{t.ui.skills}</span>
