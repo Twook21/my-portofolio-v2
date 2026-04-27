@@ -167,39 +167,59 @@ export default function Hero() {
         </div>
 
         {/* Name — staggered word reveal */}
-        <h1
+        <div
           style={{
-            fontFamily: '"Stack Sans Notch", sans-serif',
-            fontSize: "clamp(36px, 10vw, 80px)",
-            fontWeight: 700,
-            lineHeight: 1.0,
-            letterSpacing: "-0.04em",
-            color: "var(--text-primary)",
-            marginBottom: "4px",
-            opacity: visible ? 1 : 0,
-            animation: visible ? "fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s both" : "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "clamp(8px, 2.5vw, 20px)",
+            flexWrap: "wrap",
+            marginBottom: "36px",
           }}
         >
-          {t.personal.name.split(" ")[0]}
-        </h1>
-        <h1
-          style={{
-            fontFamily: '"Stack Sans Notch", sans-serif',
-            fontSize: "clamp(36px, 10vw, 80px)",
-            fontWeight: 700,
-            lineHeight: 1.2,
-            letterSpacing: "-0.04em",
-            marginBottom: "28px",
-            background: "linear-gradient(135deg, var(--text-secondary) 0%, var(--text-tertiary) 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            opacity: visible ? 1 : 0,
-            animation: visible ? "fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.32s both" : "none",
-          }}
-        >
-          {t.personal.name.split(" ").slice(1).join(" ")}
-        </h1>
+          <h1
+            style={{
+              fontFamily: '"Stack Sans Notch", sans-serif',
+              fontSize: "clamp(32px, 8vw, 72px)",
+              fontWeight: 800,
+              letterSpacing: "-0.04em",
+              color: "var(--text-primary)",
+              opacity: visible ? 1 : 0,
+              animation: visible ? "fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s both" : "none",
+            }}
+          >
+            {t.ui.heroGreeting1}
+          </h1>
+          <h1
+            style={{
+              fontFamily: '"Stack Sans Notch", sans-serif',
+              fontSize: "clamp(32px, 8vw, 72px)",
+              fontWeight: 800,
+              letterSpacing: "-0.04em",
+              color: "var(--text-secondary)",
+              opacity: visible ? 1 : 0,
+              animation: visible ? "fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s both" : "none",
+            }}
+          >
+            {t.ui.heroGreeting2}
+          </h1>
+          <h1
+            style={{
+              fontFamily: '"Stack Sans Notch", sans-serif',
+              fontSize: "clamp(32px, 8vw, 72px)",
+              fontWeight: 800,
+              letterSpacing: "-0.04em",
+              background: "linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              opacity: visible ? 1 : 0,
+              animation: visible ? "fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.4s both" : "none",
+            }}
+          >
+            {t.ui.heroGreeting3}
+          </h1>
+        </div>
 
         {/* Shimmer role badge */}
         <p

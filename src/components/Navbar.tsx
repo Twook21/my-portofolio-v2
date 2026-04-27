@@ -300,25 +300,24 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <div
+        className="mobile-menu-container"
         style={{
-          maxHeight: menuOpen ? "100vh" : "0",
-          opacity: menuOpen ? 1 : 0,
-          overflow: "hidden",
-          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          background: isDark ? "rgba(0,0,0,0.95)" : "rgba(250,250,250,0.97)",
-          backdropFilter: "blur(24px)",
-          WebkitBackdropFilter: "blur(24px)",
-          borderBottom: menuOpen ? `1px solid var(--border)` : "none",
-          position: "fixed",
-          top: "80px",
+          display: menuOpen ? "block" : "none",
+          position: "absolute",
+          top: "100%", // Exactly below the 80px nav
           left: 0,
           right: 0,
-          zIndex: 99,
+          height: "calc(100vh - 80px)",
+          background: isDark ? "#0a0a0a" : "#ffffff",
+          zIndex: 200,
+          borderTop: `1px solid var(--border)`,
+          opacity: menuOpen ? 1 : 0,
+          transition: "opacity 0.3s ease",
         }}
       >
-        <div style={{ padding: "10px 0" }}>
+        <div style={{ padding: "10px 0", height: "100%", overflowY: "auto" }}>
           {navLinks.map((link, i) => (
             <button
               key={link.key}
@@ -326,30 +325,30 @@ export default function Navbar() {
               style={{
                 display: "block", width: "100%", textAlign: "left",
                 background: "none", border: "none", cursor: "pointer",
-                padding: "16px 24px",
-                fontSize: "17px", fontWeight: 600,
+                padding: "20px 24px",
+                fontSize: "19px", fontWeight: 600,
                 color: activeSection === link.href.replace("#", "") ? "var(--accent)" : "var(--text-secondary)",
-                borderBottom: i === navLinks.length - 1 ? "none" : `1px solid var(--border)`,
-                animation: menuOpen ? `slideInLeft 0.4s ease ${i * 0.05}s both` : "none",
-                transition: "all 0.2s ease",
+                borderBottom: `1px solid var(--border)`,
+                animation: menuOpen ? `slideInLeft 0.5s ease ${i * 0.08}s both` : "none",
               }}
             >
               {t.ui.nav[link.key]}
             </button>
           ))}
-          <div style={{ padding: "20px 24px", borderTop: `1px solid var(--border)` }}>
+          <div style={{ padding: "40px 24px" }}>
             <a
               href={`mailto:${t.personal.email}`}
               style={{
                 display: "block",
                 textAlign: "center",
-                padding: "14px",
+                padding: "18px",
                 background: "var(--accent)",
-                borderRadius: "14px",
+                borderRadius: "16px",
                 color: "#fff",
                 fontWeight: 700,
-                fontSize: "15px",
+                fontSize: "17px",
                 boxShadow: "var(--shadow-accent)",
+                animation: menuOpen ? `slideInLeft 0.5s ease ${navLinks.length * 0.08}s both` : "none",
               }}
             >
               Say Hello ✦
@@ -359,9 +358,18 @@ export default function Navbar() {
       </div>
 
       <style jsx>{`
+        @keyframes slideInLeft {
+          from { opacity: 0; transform: translateX(-20px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .mobile-controls { display: flex !important; }
+          nav { 
+            display: flex !important; 
+            justify-content: space-between !important;
+            grid-template-columns: none !important;
+          }
         }
         @media (max-width: 480px) {
           nav { padding: 0 16px !important; }

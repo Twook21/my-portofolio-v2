@@ -111,6 +111,21 @@ export default function Skills() {
     { label: t.ui.skillsCat4, data: t.skills.testing,  color: "var(--purple)" },
   ];
 
+  const techLogos = [
+    { name: "Next.js", url: "https://cdn.simpleicons.org/nextdotjs/white" },
+    { name: "React", url: "https://cdn.simpleicons.org/react/61DAFB" },
+    { name: "TypeScript", url: "https://cdn.simpleicons.org/typescript/3178C6" },
+    { name: "Tailwind CSS", url: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
+    { name: ".NET Core", url: "https://cdn.simpleicons.org/dotnet/512BD4" },
+    { name: "C#", url: "https://cdn.simpleicons.org/csharp/239120" },
+    { name: "PostgreSQL", url: "https://cdn.simpleicons.org/postgresql/4169E1" },
+    { name: "Docker", url: "https://cdn.simpleicons.org/docker/2496ED" },
+    { name: "Jest", url: "https://cdn.simpleicons.org/jest/C21325" },
+    { name: "GitHub", url: "https://cdn.simpleicons.org/github/white" },
+    { name: "FastAPI", url: "https://cdn.simpleicons.org/fastapi/05998B" },
+    { name: "Oracle", url: "https://cdn.simpleicons.org/oracle/F80000" },
+  ];
+
   return (
     <section
       id="skills"
@@ -126,7 +141,7 @@ export default function Skills() {
     >
       <div className="grid-pattern" />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "60px", animation: "fadeInUp 0.7s ease both" }}>
+        <div style={{ marginBottom: "50px", animation: "fadeInUp 0.7s ease both" }}>
           <span className="section-label">{t.ui.skills}</span>
           <h2
             style={{
@@ -145,6 +160,49 @@ export default function Skills() {
               {t.ui.skillsTitle2}
             </span>
           </h2>
+        </div>
+
+        {/* Infinite Tech Marquee */}
+        <div 
+          className="marquee-container" 
+          style={{ 
+            marginBottom: "80px", 
+            opacity: inView ? 1 : 0, 
+            transition: "opacity 1s ease",
+            background: "rgba(128, 128, 128, 0.03)",
+            border: "1px solid rgba(128, 128, 128, 0.08)",
+            borderRadius: "100px",
+            padding: "16px 0",
+          }}
+        >
+          <div className="marquee-content">
+            {[...techLogos, ...techLogos].map((logo, i) => (
+              <div key={i} className="marquee-item">
+                <img 
+                  src={logo.url} 
+                  alt={logo.name} 
+                  style={{ 
+                    height: "28px", 
+                    width: "auto", 
+                    filter: "grayscale(0.4) brightness(1.2)",
+                    opacity: 1,
+                    transition: "all 0.3s ease"
+                  }} 
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.filter = "grayscale(0) brightness(1)";
+                    e.currentTarget.style.opacity = "1";
+                    e.currentTarget.style.transform = "scale(1.15)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.filter = "grayscale(0.4) brightness(1.2)";
+                    e.currentTarget.style.opacity = "1";
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                />
+                <span style={{ fontSize: "12px", fontWeight: 700, color: "var(--text-tertiary)", letterSpacing: "0.05em" }}>{logo.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Technical skill cards */}
@@ -290,8 +348,32 @@ export default function Skills() {
       </div>
 
       <style jsx>{`
+        .marquee-container {
+          overflow: hidden;
+          user-select: none;
+          display: flex;
+          mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+          -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+        .marquee-content {
+          display: flex;
+          gap: 60px;
+          animation: scroll 40s linear infinite;
+          padding: 10px 0;
+        }
+        .marquee-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex-shrink: 0;
+        }
+        @keyframes scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
         @media (max-width: 768px) {
           .skills-section { padding: 80px 16px !important; }
+          .marquee-content { gap: 40px; animation-duration: 30s; }
         }
         @media (max-width: 640px) {
           .skills-grid, .soft-skills-grid {

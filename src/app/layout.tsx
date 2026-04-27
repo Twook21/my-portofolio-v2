@@ -5,7 +5,7 @@ import ThemeProvider from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageContext";
 
 export const metadata: Metadata = {
-  title: "Akmal Bintang Budiawan — Software Engineer",
+  title: "Akmal's Thing",
   description:
     "Final-year Informatics Engineering student at PENS. Frontend-focused Software Engineer with enterprise internship experience at Kalbe Farma. Building toward world-class engineering.",
   keywords: [
@@ -25,6 +25,8 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+import CustomCursor from "@/components/CustomCursor";
 
 export default function RootLayout({
   children,
@@ -58,7 +60,10 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider>
-          <LanguageProvider>{children}</LanguageProvider>
+          <LanguageProvider>
+            <CustomCursor />
+            {children}
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
