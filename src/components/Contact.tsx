@@ -232,10 +232,10 @@ export default function Contact() {
         }}
       >
         <p style={{ fontSize: "13px", color: "var(--text-tertiary)", fontWeight: 500 }}>
-          © 2026 Akmal Bintang Budiawan — Built with Next.js & ♥
+          © 2026 Akmal Bintang Budiawan
         </p>
         <p style={{ fontSize: "13px", color: "var(--text-tertiary)", fontWeight: 500 }}>
-          {t.personal.location} · Singapore 2031
+          {t.personal.location}
         </p>
       </div>
 

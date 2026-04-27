@@ -4,7 +4,7 @@ export const personal = {
   subtitle: "Building clean, purposeful software — from Jakarta to the world.",
   description:
     "Final-year Informatics Engineering student at PENS. I architect enterprise-grade frontends and chase meaningful problems — currently contributing to healthcare tech at Kalbe Farma, and aiming for the global tech stage.",
-  location: "Jakarta / Tangerang, Indonesia",
+  location: "Jakarta, Indonesia",
   email: "akmal@example.com",
   github: "https://github.com/akmal-bintang",
   linkedin: "https://linkedin.com/in/akmal-bintang",

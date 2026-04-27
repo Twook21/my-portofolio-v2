@@ -6,7 +6,7 @@ export const dictionary = {
       subtitle: "Building clean, purposeful software — from Jakarta to the world.",
       description:
         "Final-year Informatics Engineering student at PENS. I architect enterprise-grade frontends and chase meaningful problems — currently contributing to healthcare tech at Kalbe Farma, and aiming for the global tech stage.",
-      location: "Jakarta / Tangerang, Indonesia",
+      location: "Jakarta, Indonesia",
       email: "akmal@example.com",
       github: "https://github.com/akmal-bintang",
       linkedin: "https://linkedin.com/in/akmal-bintang",
@@ -360,7 +360,7 @@ export const dictionary = {
       subtitle: "Membangun perangkat lunak yang bersih dan bermakna — dari Jakarta untuk dunia.",
       description:
         "Mahasiswa tingkat akhir Teknik Informatika di PENS. Saya merancang frontend tingkat perusahaan dan memecahkan masalah yang berarti — saat ini berkontribusi di bidang teknologi kesehatan di Kalbe Farma, dan menargetkan panggung teknologi global.",
-      location: "Jakarta / Tangerang, Indonesia",
+      location: "Jakarta, Indonesia",
       email: "akmal@example.com",
       github: "https://github.com/akmal-bintang",
       linkedin: "https://linkedin.com/in/akmal-bintang",

@@ -204,14 +204,18 @@ export default function Hero() {
         {/* Shimmer role badge */}
         <p
           style={{
-            fontSize: "clamp(12px, 2.5vw, 16px)",
-            fontWeight: 700,
-            letterSpacing: "0.14em",
+            fontSize: "clamp(14px, 3vw, 20px)",
+            fontWeight: 800,
+            letterSpacing: "0.08em",
             textTransform: "uppercase",
-            marginBottom: "20px",
+            marginBottom: "24px",
             opacity: visible ? 1 : 0,
-            animation: visible ? "fadeIn 0.6s ease 0.45s both" : "none",
-            minHeight: "24px",
+            animation: visible ? "fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both" : "none",
+            minHeight: "30px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "2px",
           }}
           className="shimmer-text"
         >
