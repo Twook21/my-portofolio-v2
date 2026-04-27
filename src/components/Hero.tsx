@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import FloatingSymbols from "./FloatingSymbols";
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -219,6 +220,24 @@ export default function Hero() {
           >
             {t.ui.heroGreeting3}
           </h1>
+          <img
+            src="/mals.png"
+            alt="Akmal Emoji"
+            style={{
+              width: "clamp(50px, 12vw, 100px)",
+              height: "clamp(50px, 12vw, 100px)",
+              objectFit: "contain",
+              opacity: visible ? 1 : 0,
+              animation: visible ? "fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.5s both, float 6s ease-in-out infinite" : "none",
+              filter: "drop-shadow(0 15px 30px var(--accent-glow))",
+              marginLeft: "-10px",
+              cursor: "pointer",
+              transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+              userSelect: "none",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.15) rotate(12deg)")}
+            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1) rotate(0deg)")}
+          />
         </div>
 
         {/* Shimmer role badge */}
@@ -345,30 +364,7 @@ export default function Hero() {
       </div>
 
       {/* Floating decorative elements */}
-      <div
-        style={{
-          position: "absolute", top: "18%", left: "8%", zIndex: 0,
-          fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em",
-          color: "var(--text-tertiary)", opacity: 0.5,
-          animation: "float 8s ease-in-out infinite",
-          userSelect: "none",
-        }}
-        className="decorative-element"
-      >
-        {"</>"}
-      </div>
-      <div
-        style={{
-          position: "absolute", top: "35%", right: "6%", zIndex: 0,
-          fontSize: "10px", fontWeight: 700, letterSpacing: "0.1em",
-          color: "var(--text-tertiary)", opacity: 0.4,
-          animation: "floatSlow 11s ease-in-out infinite 2s",
-          userSelect: "none",
-        }}
-        className="decorative-element"
-      >
-        {"{ }"}
-      </div>
+      <FloatingSymbols density={12} />
 
       {/* Scroll indicator */}
       <div

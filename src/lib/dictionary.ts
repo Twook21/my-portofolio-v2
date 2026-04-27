@@ -16,57 +16,168 @@ export const dictionary = {
     },
     experiences: [
       {
-        id: "sci",
-        role: "Frontend Developer Intern",
-        company: "SCI (Stem Cell and Cancer Institute)",
-        parent: "PT Bifarma Adiluhung · Kalbe Farma Tbk",
-        period: "2025 — Present",
-        location: "Jakarta, Indonesia",
+        id: "bifarma",
+        role: "Full-Stack Developer",
+        company: "PT Bifarma Adiluhung",
+        parent: "Kalbe Farma Tbk",
+        period: "Mar 2026 — Present",
+        location: "Pulogadung, East Jakarta",
         type: "Internship",
         highlight: true,
+        logo: "/logo-experience/bfa.png",
         description:
-          "Operating inside one of Indonesia's largest pharmaceutical conglomerates, I manage a complex multi-project ecosystem — simultaneously shipping features across four enterprise products in healthcare and biotech.",
+          "Developed scalable backend services and modernized internal dashboards within an enterprise financial management ecosystem at one of Indonesia's largest pharma conglomerates.",
         projects: [
           {
-            name: "Bifarma",
-            tech: ".NET / Oracle API",
+            name: "Fullstack Development",
+            tech: ".NET / Oracle SQL",
             impact:
-              "Architected .NET-based financial modules with automated Oracle API reporting pipelines.",
+              "Developed and optimized scalable backend services and APIs to support enterprise-level financial management systems.",
           },
           {
-            name: "KDNA — KlikGen",
-            tech: "Next.js / Tailwind CSS",
+            name: "UI/UX Modernization",
+            tech: "Next.js / Blazor",
             impact:
-              "Led full UI/UX revamp. Rebuilt enterprise dashboards with a focus on clarity, speed, and developer experience.",
+              "Led the redesign and modernization of internal dashboards, significantly improving user navigation and mobile responsiveness.",
           },
           {
-            name: "PML — Tracklab",
+            name: "Quality-Driven Delivery",
+            tech: "Clean Code / Jest",
+            impact:
+              "Consistently delivered high-quality features by implementing Clean Code principles and ensuring reliability through Unit Testing.",
+          },
+          {
+            name: "System Optimization",
             tech: "Auth & Session",
             impact:
-              "Resolved critical authentication and session-refresh vulnerabilities in laboratory tracking systems.",
-          },
-          {
-            name: "SCI — Strand",
-            tech: "Jest / Performance",
-            impact:
-              "Implemented unit testing (Jest) from scratch and elevated home page performance score.",
+              "Identified and resolved critical technical issues, including authentication and session management, to ensure system stability.",
           },
         ],
-        tags: ["Next.js", "TypeScript", ".NET", "Oracle SQL", "Jest", "CI/CD"],
+        tags: [".NET Core", "Oracle SQL", "Next.js", "Blazor", "Jest", "Clean Code"],
+      },
+      {
+        id: "sci",
+        role: "Front-End Developer",
+        company: "Stem Cell and Cancer Institute (SCI)",
+        parent: "Kalbe Farma Tbk",
+        period: "Sep 2025 — Mar 2026",
+        location: "Pulomas, East Jakarta",
+        type: "Internship",
+        highlight: false,
+        logo: "/logo-experience/sci.png",
+        description:
+          "Built robust R&D-focused web applications with modular architecture and interactive analytical dashboards for healthcare research.",
+        projects: [
+          {
+            name: "R&D Web Application",
+            tech: "Next.js 15 / Redux",
+            impact:
+              "Developed a robust R&D-focused application using Tailwind CSS and Shadcn UI to support integrated data management.",
+          },
+          {
+            name: "Modular Architecture",
+            tech: "Scalability",
+            impact:
+              "Implemented a feature-based, modular architecture to ensure scalability and long-term maintainability.",
+          },
+          {
+            name: "Analytical Dashboards",
+            tech: "TanStack Table",
+            impact:
+              "Built interactive and efficient data tables to support analytical dashboards and operational insights.",
+          },
+          {
+            name: "Cross-Functional Collab",
+            tech: "SCI & Kalgen DNA",
+            impact:
+              "Collaborated with teams to deliver an integrated system supporting research, quality analysis, and operations.",
+          },
+        ],
+        tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "Redux", "TanStack Table"],
+      },
+      {
+        id: "dicoding",
+        role: "Full‑Stack Web Developer Trainee",
+        company: "Asah led by Dicoding",
+        parent: "Accenture Collaboration",
+        period: "Aug 2025 — Jan 2026",
+        location: "Remote",
+        type: "Trainee",
+        highlight: false,
+        logo: "/logo-experience/asah.png",
+        description:
+          "Intensive industry-aligned training focused on Front-End, Back-End with AI, and Cloud fundamentals in collaboration with Accenture.",
+        projects: [
+          {
+            name: "AI Learning Path",
+            tech: "Front-End & Back-End",
+            impact:
+              "Completed the Front‑End Web & Back‑End with AI learning path mentored by Accenture.",
+          },
+          {
+            name: "Modern JS Stack",
+            tech: "Node.js / AI",
+            impact:
+              "Built web and back-end components using modern JavaScript tools and integrated AI/Cloud fundamentals.",
+          },
+        ],
+        tags: ["Node.js", "Git", "JavaScript", "AI", "Cloud"],
+      },
+      {
+        id: "jabar-digital",
+        role: "Full‑Stack Web Developer Trainee",
+        company: "Jabar Istimewa Digital Academy",
+        parent: "BNSP Certification",
+        period: "Mar 2025 — Aug 2025",
+        location: "Remote",
+        type: "Trainee",
+        highlight: false,
+        logo: "/logo-experience/jida.png",
+        description:
+          "Completed a structured full-stack program with industry-oriented learning and earned BNSP competency recognition.",
+        projects: [
+          {
+            name: "Full-Stack Program",
+            tech: "Project-Based",
+            impact:
+              "Completed a structured full‑stack web development program with industry‑oriented learning.",
+          },
+          {
+            name: "Competency Recognition",
+            tech: "BNSP Certification",
+            impact:
+              "Earned formal competency recognition as a BNSP Web Junior Programmer.",
+          },
+        ],
+        tags: ["JavaScript", "TypeScript", "BNSP", "Fullstack"],
       },
       {
         id: "pgri",
-        role: "Fullstack Developer Intern",
-        company: "PGRI Office",
-        parent: "Government / Education Sector",
-        period: "2023 — 2024",
-        location: "Indonesia",
-        type: "Internship · 11 months",
+        role: "Full-Stack Web Developer",
+        company: "PGRI",
+        parent: "Education Sector",
+        period: "Oct 2024 — Aug 2025",
+        location: "Bandung, West Java",
+        type: "Internship",
         highlight: false,
+        logo: "/logo-experience/pgri.png",
         description:
-          "An 11-month deep dive into full-stack development. Built internal tools and web applications end-to-end — from database schema to deployed UI — establishing a rigorous engineering foundation.",
-        projects: [],
-        tags: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Git"],
+          "Developed and maintained the main organization website and built internal efficiency tools using the Laravel framework.",
+        projects: [
+          {
+            name: "Website Maintenance",
+            tech: "Performance",
+            impact:
+              "Developed and maintained the main website, ensuring optimal performance and user experience.",
+          },
+          {
+            name: "Internal Applications",
+            tech: "Laravel",
+            impact:
+              "Built systems like attendance and document management using Laravel, enhancing work efficiency.",
+          },
+        ],
+        tags: ["Laravel", "PHP", "MySQL", "Git"],
       },
     ],
     projects: [
@@ -385,57 +496,168 @@ export const dictionary = {
     },
     experiences: [
       {
-        id: "sci",
-        role: "Frontend Developer Intern",
-        company: "SCI (Stem Cell and Cancer Institute)",
-        parent: "PT Bifarma Adiluhung · Kalbe Farma Tbk",
-        period: "2025 — Sekarang",
-        location: "Jakarta, Indonesia",
+        id: "bifarma",
+        role: "Full-Stack Developer",
+        company: "PT Bifarma Adiluhung",
+        parent: "Kalbe Farma Tbk",
+        period: "Mar 2026 — Sekarang",
+        location: "Pulogadung, Jakarta Timur",
         type: "Magang",
         highlight: true,
+        logo: "/logo-experience/bfa.png",
         description:
-          "Beroperasi di dalam salah satu konglomerat farmasi terbesar di Indonesia, saya mengelola ekosistem multi-proyek yang kompleks — secara bersamaan merilis fitur di empat produk perusahaan di bidang kesehatan dan bioteknologi.",
+          "Mengembangkan layanan backend yang skalabel dan memodernisasi dasbor internal dalam ekosistem manajemen keuangan perusahaan di salah satu konglomerat farmasi terbesar di Indonesia.",
         projects: [
           {
-            name: "Bifarma",
-            tech: ".NET / Oracle API",
+            name: "Fullstack Development",
+            tech: ".NET / Oracle SQL",
             impact:
-              "Merancang modul keuangan berbasis .NET dengan jalur pelaporan Oracle API otomatis.",
+              "Mengembangkan dan mengoptimalkan layanan backend dan API yang skalabel untuk mendukung sistem manajemen keuangan perusahaan.",
           },
           {
-            name: "KDNA — KlikGen",
-            tech: "Next.js / Tailwind CSS",
+            name: "Modernisasi UI/UX",
+            tech: "Next.js / Blazor",
             impact:
-              "Memimpin perombakan UI/UX penuh. Membangun ulang dasbor perusahaan dengan fokus pada kejelasan, kecepatan, dan pengalaman pengembang.",
+              "Memimpin desain ulang dan modernisasi dasbor internal, secara signifikan meningkatkan navigasi pengguna dan responsivitas seluler.",
           },
           {
-            name: "PML — Tracklab",
-            tech: "Auth & Session",
+            name: "Pengiriman Berorientasi Kualitas",
+            tech: "Clean Code / Jest",
             impact:
-              "Menyelesaikan kerentanan autentikasi dan penyegaran sesi kritis pada sistem pelacakan laboratorium.",
+              "Konsisten mengirimkan fitur berkualitas tinggi dengan menerapkan prinsip Clean Code dan memastikan keandalan melalui Unit Testing.",
           },
           {
-            name: "SCI — Strand",
-            tech: "Jest / Performance",
+            name: "Optimalisasi Sistem",
+            tech: "Autentikasi & Sesi",
             impact:
-              "Mengimplementasikan pengujian unit (Jest) dari awal dan meningkatkan skor performa beranda.",
+              "Mengidentifikasi dan menyelesaikan masalah teknis kritis, termasuk manajemen autentikasi dan sesi, untuk memastikan stabilitas sistem.",
           },
         ],
-        tags: ["Next.js", "TypeScript", ".NET", "Oracle SQL", "Jest", "CI/CD"],
+        tags: [".NET Core", "Oracle SQL", "Next.js", "Blazor", "Jest", "Clean Code"],
+      },
+      {
+        id: "sci",
+        role: "Front-End Developer",
+        company: "Stem Cell and Cancer Institute (SCI)",
+        parent: "Kalbe Farma Tbk",
+        period: "Sep 2025 — Mar 2026",
+        location: "Pulomas, Jakarta Timur",
+        type: "Magang",
+        highlight: false,
+        logo: "/logo-experience/sci.png",
+        description:
+          "Membangun aplikasi web yang berfokus pada Litbang (R&D) dengan arsitektur modular dan dasbor analitik interaktif untuk penelitian kesehatan.",
+        projects: [
+          {
+            name: "Aplikasi Web R&D",
+            tech: "Next.js 15 / Redux",
+            impact:
+              "Mengembangkan aplikasi berfokus R&D yang tangguh menggunakan Tailwind CSS dan Shadcn UI untuk mendukung manajemen data terintegrasi.",
+          },
+          {
+            name: "Arsitektur Modular",
+            tech: "Skalabilitas",
+            impact:
+              "Mengimplementasikan arsitektur modular berbasis fitur untuk memastikan skalabilitas dan kemudahan pemeliharaan jangka panjang.",
+          },
+          {
+            name: "Dasbor Analitik",
+            tech: "TanStack Table",
+            impact:
+              "Membangun tabel data yang interaktif dan efisien untuk mendukung dasbor analitik dan wawasan operasional.",
+          },
+          {
+            name: "Kolaborasi Lintas Fungsi",
+            tech: "SCI & Kalgen DNA",
+            impact:
+              "Berkolaborasi dengan tim untuk menghadirkan sistem terintegrasi yang mendukung penelitian, analisis kualitas, dan operasi.",
+          },
+        ],
+        tags: ["Next.js 15", "TypeScript", "Tailwind CSS", "Redux", "TanStack Table"],
+      },
+      {
+        id: "dicoding",
+        role: "Full‑Stack Web Developer Trainee",
+        company: "Asah led by Dicoding",
+        parent: "Kolaborasi Accenture",
+        period: "Agu 2025 — Jan 2026",
+        location: "Daring (Remote)",
+        type: "Trainee",
+        highlight: false,
+        logo: "/logo-experience/asah.png",
+        description:
+          "Pelatihan intensif yang selaras dengan industri yang berfokus pada Front-End, Back-End dengan AI, dan dasar-dasar Cloud bekerja sama dengan Accenture.",
+        projects: [
+          {
+            name: "Jalur Belajar AI",
+            tech: "Front-End & Back-End",
+            impact:
+              "Menyelesaikan jalur belajar Front‑End Web & Back‑End dengan AI yang dimentori oleh Accenture.",
+          },
+          {
+            name: "Stack JS Modern",
+            tech: "Node.js / AI",
+            impact:
+              "Membangun komponen web dan backend menggunakan alat JavaScript modern dan mengintegrasikan dasar-dasar AI/Cloud.",
+          },
+        ],
+        tags: ["Node.js", "Git", "JavaScript", "AI", "Cloud"],
+      },
+      {
+        id: "jabar-digital",
+        role: "Full‑Stack Web Developer Trainee",
+        company: "Jabar Istimewa Digital Academy",
+        parent: "Sertifikasi BNSP",
+        period: "Mar 2025 — Agu 2025",
+        location: "Daring (Remote)",
+        type: "Trainee",
+        highlight: false,
+        logo: "/logo-experience/jida.png",
+        description:
+          "Menyelesaikan program full-stack terstruktur dengan pembelajaran berorientasi industri dan mendapatkan pengakuan kompetensi BNSP.",
+        projects: [
+          {
+            name: "Program Full-Stack",
+            tech: "Berbasis Proyek",
+            impact:
+              "Menyelesaikan program pengembangan web full-stack terstruktur dengan pembelajaran berorientasi industri.",
+          },
+          {
+            name: "Pengakuan Kompetensi",
+            tech: "Sertifikasi BNSP",
+            impact:
+              "Mendapatkan pengakuan kompetensi formal sebagai BNSP Web Junior Programmer.",
+          },
+        ],
+        tags: ["JavaScript", "TypeScript", "BNSP", "Fullstack"],
       },
       {
         id: "pgri",
-        role: "Fullstack Developer Intern",
-        company: "Kantor PGRI",
-        parent: "Sektor Pemerintahan / Pendidikan",
-        period: "2023 — 2024",
-        location: "Indonesia",
-        type: "Magang · 11 bulan",
+        role: "Full-Stack Web Developer",
+        company: "PGRI",
+        parent: "Sektor Pendidikan",
+        period: "Okt 2024 — Agu 2025",
+        location: "Bandung, Jawa Barat",
+        type: "Magang",
         highlight: false,
+        logo: "/logo-experience/pgri.png",
         description:
-          "Terjun mendalam selama 11 bulan dalam pengembangan full-stack. Membangun alat internal dan aplikasi web dari awal hingga akhir — dari skema database hingga UI yang diterapkan — membangun fondasi rekayasa yang ketat.",
-        projects: [],
-        tags: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Git"],
+          "Mengembangkan dan mengelola situs web utama organisasi serta membangun alat efisiensi internal menggunakan framework Laravel.",
+        projects: [
+          {
+            name: "Pemeliharaan Situs Web",
+            tech: "Performa",
+            impact:
+              "Mengembangkan dan mengelola situs web utama, memastikan performa dan pengalaman pengguna yang optimal.",
+          },
+          {
+            name: "Aplikasi Internal",
+            tech: "Laravel",
+            impact:
+              "Membangun sistem seperti absensi dan manajemen dokumen menggunakan Laravel, meningkatkan efisiensi kerja.",
+          },
+        ],
+        tags: ["Laravel", "PHP", "MySQL", "Git"],
       },
     ],
     projects: [

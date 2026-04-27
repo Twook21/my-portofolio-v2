@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import FloatingSymbols from "./FloatingSymbols";
 
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -140,6 +141,7 @@ export default function Skills() {
       className="skills-section"
     >
       <div className="grid-pattern" />
+      <FloatingSymbols density={10} />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div style={{ marginBottom: "50px", animation: "fadeInUp 0.7s ease both" }}>
           <span className="section-label">{t.ui.skills}</span>

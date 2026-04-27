@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import FloatingSymbols from "./FloatingSymbols";
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -39,6 +40,7 @@ export default function Certifications() {
       className="certifications-section"
     >
       <div className="grid-pattern" />
+      <FloatingSymbols density={8} />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div style={{ marginBottom: "40px" }}>
           <p

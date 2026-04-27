@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useState } from "react";
+import FloatingSymbols from "./FloatingSymbols";
 
 export default function Contact() {
   const { t } = useLanguage();
@@ -53,6 +54,7 @@ export default function Contact() {
       className="contact-section"
     >
       <div className="grid-pattern" />
+      <FloatingSymbols density={12} />
       {/* Animated background orbs */}
       <div
         className="orb"

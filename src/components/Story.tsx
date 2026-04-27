@@ -3,6 +3,7 @@
 import { useLanguage } from "@/components/LanguageContext";
 import { personal, milestones } from "@/lib/data";
 import { useEffect, useRef, useState } from "react";
+import FloatingSymbols from "./FloatingSymbols";
 
 function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
@@ -46,6 +47,7 @@ export default function Story() {
       className="story-section"
     >
       <div className="grid-pattern" />
+      <FloatingSymbols density={8} />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         {/* Header */}
         <div style={{ maxWidth: "680px", marginBottom: "60px" }}>

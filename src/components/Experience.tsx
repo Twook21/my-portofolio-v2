@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import FloatingSymbols from "./FloatingSymbols";
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -61,6 +62,7 @@ export default function Experience() {
       className="experience-section"
     >
       <div className="grid-pattern" />
+      <FloatingSymbols density={10} />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div style={{ marginBottom: "60px" }}>
           <span className="section-label">{t.ui.experience}</span>
@@ -196,15 +198,20 @@ function ExpCard({
         {/* Icon */}
         <div
           style={{
-            width: "56px", height: "56px", borderRadius: "16px",
-            background: exp.highlight ? "var(--accent-soft)" : "var(--bg-tertiary)",
+            width: "72px", height: "72px", borderRadius: "20px",
+            background: "white",
             border: "1px solid var(--border)",
             display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: "24px", flexShrink: 0,
+            flexShrink: 0,
             animation: "float 8s ease-in-out infinite",
+            padding: "6px",
           }}
         >
-          {exp.highlight ? "🧬" : "🏛️"}
+          <img 
+            src={exp.logo} 
+            alt={exp.company} 
+            style={{ width: "100%", height: "100%", objectFit: "contain" }} 
+          />
         </div>
 
         <div style={{ flex: 1 }}>
