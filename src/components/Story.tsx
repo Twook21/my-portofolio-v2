@@ -30,7 +30,7 @@ const colorSoftMap: Record<string, string> = {
 
 export default function Story() {
   const { t } = useLanguage();
-  const { ref: leftRef,  inView: leftIn  } = useInView();
+  const { ref: leftRef, inView: leftIn } = useInView();
   const { ref: rightRef, inView: rightIn } = useInView();
 
   return (
@@ -218,7 +218,18 @@ export default function Story() {
               {t.ui.milestones}
             </p>
             <div style={{ position: "relative" }}>
-              <div style={{ position: "absolute", left: "13px", top: "8px", bottom: "8px", width: "1px", background: "var(--border)" }} />
+              {/* Timeline Line */}
+              <div
+                style={{
+                  position: "absolute",
+                  left: "12.5px",
+                  top: "10px",
+                  bottom: "10px",
+                  width: "3px",
+                  background: "rgba(144, 213, 255, 0.5)",
+                  borderRadius: "4px"
+                }}
+              />
 
               {t.milestones.map((m, i) => (
                 <div

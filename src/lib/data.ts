@@ -268,3 +268,46 @@ export const certifications = [
       "Currently pursuing relevant certifications to strengthen the engineering profile.",
   },
 ];
+
+export const moments = [
+  {
+    id: 1,
+    title: "Deep Focus Workspace",
+    description: "Where the magic happens. A minimal setup designed for long engineering sessions and deep focus.",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800",
+    size: "large",
+    category: "Productivity",
+  },
+  {
+    id: 2,
+    title: "Jakarta Golden Hour",
+    description: "The city that never sleeps. Capturing the vibrant energy of Jakarta during sunset.",
+    image: "https://images.unsplash.com/photo-1555899434-94d1368aa7af?auto=format&fit=crop&q=80&w=800",
+    size: "wide",
+    category: "Life",
+  },
+  {
+    id: 3,
+    title: "Clean Code Philosophy",
+    description: "Writing code for humans, not just machines. Constant refactoring and seeking elegance.",
+    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=600",
+    size: "small",
+    category: "Engineering",
+  },
+  {
+    id: 4,
+    title: "Late Night Debugging",
+    description: "Those quiet hours when the most complex bugs are finally solved.",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=600",
+    size: "small",
+    category: "Process",
+  },
+  {
+    id: 5,
+    title: "PENS Surabaya Campus",
+    description: "The place where my engineering foundation was built. Proud to be part of the PENS community.",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=600",
+    size: "tall",
+    category: "Education",
+  },
+];

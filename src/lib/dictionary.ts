@@ -263,6 +263,13 @@ export const dictionary = {
           "Currently pursuing relevant certifications to strengthen the engineering profile.",
       },
     ],
+    moments: [
+      { id: 1, title: "Deep Focus Workspace", category: "Productivity", description: "Minimal setup designed for long engineering sessions and deep focus." },
+      { id: 2, title: "Jakarta Golden Hour", category: "Life", description: "The vibrant energy of Jakarta during sunset." },
+      { id: 3, title: "Clean Code Philosophy", category: "Engineering", description: "Writing code for humans, not just machines. Constant refactoring." },
+      { id: 4, title: "Late Night Debugging", category: "Process", description: "Quiet hours when complex bugs are finally solved." },
+      { id: 5, title: "PENS Surabaya Campus", category: "Education", description: "Where my engineering foundation was built." },
+    ],
     teamProjects: [
       {
         id: "team-1",
@@ -299,6 +306,8 @@ export const dictionary = {
         projects: "Projects",
         collaborations: "Collaborations",
         skills: "Skills",
+        certifications: "Certifications",
+        moments: "Moments",
         contact: "Contact"
       },
       contactDesc: "Have a question or a project in mind? Feel free to reach out. I'm always open to discussing new opportunities and collaborations.",
@@ -351,6 +360,9 @@ export const dictionary = {
       roleLabel: "Role",
       teamLabel: "Team size",
       membersLabel: "Team Members",
+      moments: "Moments",
+      momentsTitle1: "Capturing life,",
+      momentsTitle2: "one frame at a time.",
     }
   },
   id: {
@@ -617,6 +629,13 @@ export const dictionary = {
           "Saat ini sedang mengejar sertifikasi relevan untuk memperkuat profil rekayasa.",
       },
     ],
+    moments: [
+      { id: 1, title: "Ruang Kerja Fokus", category: "Produktivitas", description: "Setup minimalis yang dirancang untuk sesi rekayasa panjang dan fokus mendalam." },
+      { id: 2, title: "Senja di Jakarta", category: "Kehidupan", description: "Energi Jakarta yang bersemangat saat matahari terbenam." },
+      { id: 3, title: "Filosofi Kode Bersih", category: "Rekayasa", description: "Menulis kode untuk manusia, bukan sekadar mesin. Refactoring konstan." },
+      { id: 4, title: "Debugging Larut Malam", category: "Proses", description: "Jam-jam tenang saat bug yang kompleks akhirnya terpecahkan." },
+      { id: 5, title: "Kampus PENS Surabaya", category: "Pendidikan", description: "Tempat di mana fondasi rekayasa saya dibangun." },
+    ],
     teamProjects: [
       {
         id: "team-1",
@@ -653,6 +672,8 @@ export const dictionary = {
         projects: "Proyek",
         collaborations: "Kolaborasi",
         skills: "Keahlian",
+        certifications: "Sertifikasi",
+        moments: "Momen",
         contact: "Kontak"
       },
       contactDesc: "Punya pertanyaan atau proyek dalam pikiran? Jangan ragu untuk menghubungi. Saya selalu terbuka untuk mendiskusikan peluang dan kolaborasi baru.",
@@ -705,6 +726,9 @@ export const dictionary = {
       roleLabel: "Peran",
       teamLabel: "Ukuran tim",
       membersLabel: "Anggota Tim",
+      moments: "Momen",
+      momentsTitle1: "Mengabadikan hidup,",
+      momentsTitle2: "frame demi frame.",
     }
   }
 };

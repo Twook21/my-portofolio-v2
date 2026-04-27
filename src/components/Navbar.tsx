@@ -8,7 +8,6 @@ const navLinks = [
   { key: "experience", href: "#experience" },
   { key: "projects", href: "#projects" },
   { key: "collaborations", href: "#collaborations" },
-  { key: "skills", href: "#skills" },
   { key: "contact", href: "#contact" },
 ] as const;
 
@@ -105,27 +104,29 @@ export default function Navbar() {
           maxWidth: "1100px",
           margin: "0 auto",
           padding: "0 24px",
-          height: "64px",
-          display: "flex",
+          height: "80px",
+          display: "grid",
+          gridTemplateColumns: "1fr auto 1fr",
           alignItems: "center",
-          justifyContent: "space-between",
         }}
       >
         {/* Logo */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
-        >
-          <span style={{ fontSize: "15px", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
-            Akmal{" "}
-            <span style={{ color: "var(--text-tertiary)", fontWeight: 500 }}>
-              Bintang
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
+          >
+            <span style={{ fontSize: "18px", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
+              Akmal{" "}
+              <span style={{ color: "var(--text-tertiary)", fontWeight: 500 }}>
+                Bintang
+              </span>
             </span>
-          </span>
-        </button>
+          </button>
+        </div>
 
-        {/* Desktop Nav */}
-        <ul className="desktop-nav" style={{ display: "flex", gap: "4px", listStyle: "none", alignItems: "center" }}>
+        {/* Desktop Nav - Center */}
+        <ul className="desktop-nav" style={{ display: "flex", gap: "4px", listStyle: "none", alignItems: "center", justifyContent: "center" }}>
           {navLinks.map((link) => {
             const sectionId = link.href.replace("#", "");
             const isActive = activeSection === sectionId;
@@ -138,9 +139,9 @@ export default function Navbar() {
                     background: isActive ? "var(--accent-soft)" : "none",
                     border: "none",
                     cursor: "pointer",
-                    padding: "6px 15px",
+                    padding: "8px 18px",
                     borderRadius: "20px",
-                    fontSize: "13px",
+                    fontSize: "15px",
                     fontWeight: isActive ? 700 : 500,
                     color: isActive ? "var(--accent)" : "var(--text-secondary)",
                     transition: "all 0.2s ease",
@@ -164,107 +165,104 @@ export default function Navbar() {
               </li>
             );
           })}
+        </ul>
 
+        {/* Desktop Controls - Right */}
+        <div className="desktop-nav" style={{ display: "flex", gap: "8px", listStyle: "none", alignItems: "center", justifyContent: "flex-end" }}>
           {/* Language Toggle */}
-          <li>
-            <button
-              onClick={toggleLanguage}
-              title={`Switch to ${lang === "en" ? "Indonesian" : "English"}`}
-              style={{
-                width: "36px",
-                height: "36px",
-                borderRadius: "50%",
-                background: "var(--bg-tertiary)",
-                border: "1px solid var(--border)",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--text-secondary)",
-                transition: "all 0.3s ease",
-                fontWeight: 700,
-                fontSize: "12px",
-                textTransform: "uppercase"
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget).style.color = "var(--accent)";
-                (e.currentTarget).style.borderColor = "var(--accent)";
-                (e.currentTarget).style.background = "var(--accent-soft)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget).style.color = "var(--text-secondary)";
-                (e.currentTarget).style.borderColor = "var(--border)";
-                (e.currentTarget).style.background = "var(--bg-tertiary)";
-              }}
-            >
-              {lang}
-            </button>
-          </li>
+          <button
+            onClick={toggleLanguage}
+            title={`Switch to ${lang === "en" ? "Indonesian" : "English"}`}
+            style={{
+              width: "42px",
+              height: "42px",
+              borderRadius: "50%",
+              background: "var(--bg-tertiary)",
+              border: "1px solid var(--border)",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "var(--text-secondary)",
+              transition: "all 0.3s ease",
+              fontWeight: 700,
+              fontSize: "13px",
+              textTransform: "uppercase"
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget).style.color = "var(--accent)";
+              (e.currentTarget).style.borderColor = "var(--accent)";
+              (e.currentTarget).style.background = "var(--accent-soft)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget).style.color = "var(--text-secondary)";
+              (e.currentTarget).style.borderColor = "var(--border)";
+              (e.currentTarget).style.background = "var(--bg-tertiary)";
+            }}
+          >
+            {lang}
+          </button>
 
           {/* Theme Toggle */}
-          <li>
-            <button
-              onClick={toggleTheme}
-              title={`Switch to ${isDark ? "light" : "dark"} mode`}
-              style={{
-                width: "36px",
-                height: "36px",
-                borderRadius: "50%",
-                background: "var(--bg-tertiary)",
-                border: "1px solid var(--border)",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--text-secondary)",
-                transition: "all 0.3s ease",
-                transform: themeAnimating ? "rotate(180deg) scale(0.85)" : "rotate(0deg) scale(1)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget).style.color = "var(--accent)";
-                (e.currentTarget).style.borderColor = "var(--accent)";
-                (e.currentTarget).style.background = "var(--accent-soft)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget).style.color = "var(--text-secondary)";
-                (e.currentTarget).style.borderColor = "var(--border)";
-                (e.currentTarget).style.background = "var(--bg-tertiary)";
-              }}
-            >
-              {isDark ? <SunIcon /> : <MoonIcon />}
-            </button>
-          </li>
+          <button
+            onClick={toggleTheme}
+            title={`Switch to ${isDark ? "light" : "dark"} mode`}
+            style={{
+              width: "42px",
+              height: "42px",
+              borderRadius: "50%",
+              background: "var(--bg-tertiary)",
+              border: "1px solid var(--border)",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "var(--text-secondary)",
+              transition: "all 0.3s ease",
+              transform: themeAnimating ? "rotate(180deg) scale(0.85)" : "rotate(0deg) scale(1)",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget).style.color = "var(--accent)";
+              (e.currentTarget).style.borderColor = "var(--accent)";
+              (e.currentTarget).style.background = "var(--accent-soft)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget).style.color = "var(--text-secondary)";
+              (e.currentTarget).style.borderColor = "var(--border)";
+              (e.currentTarget).style.background = "var(--bg-tertiary)";
+            }}
+          >
+            {isDark ? <SunIcon /> : <MoonIcon />}
+          </button>
 
           {/* CTA */}
-          <li>
-            <a
-              href={`mailto:${t.personal.email}`}
-              style={{
-                padding: "8px 18px",
-                background: "var(--accent)",
-                borderRadius: "20px",
-                fontSize: "13px",
-                fontWeight: 700,
-                color: "#fff",
-                transition: "all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)",
-                display: "inline-block",
-                boxShadow: "0 2px 8px var(--accent-glow)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget).style.background = "var(--accent-hover)";
-                (e.currentTarget).style.transform = "translateY(-2px) scale(1.04)";
-                (e.currentTarget).style.boxShadow = "var(--shadow-accent)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget).style.background = "var(--accent)";
-                (e.currentTarget).style.transform = "translateY(0) scale(1)";
-                (e.currentTarget).style.boxShadow = "0 2px 8px var(--accent-glow)";
-              }}
-            >
-              Say Hello ✦
-            </a>
-          </li>
-        </ul>
+          <a
+            href={`mailto:${t.personal.email}`}
+            style={{
+              padding: "10px 22px",
+              background: "var(--accent)",
+              borderRadius: "20px",
+              fontSize: "15px",
+              fontWeight: 700,
+              color: "#fff",
+              transition: "all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)",
+              display: "inline-block",
+              boxShadow: "0 2px 8px var(--accent-glow)",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget).style.background = "var(--accent-hover)";
+              (e.currentTarget).style.transform = "translateY(-2px) scale(1.04)";
+              (e.currentTarget).style.boxShadow = "var(--shadow-accent)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget).style.background = "var(--accent)";
+              (e.currentTarget).style.transform = "translateY(0) scale(1)";
+              (e.currentTarget).style.boxShadow = "0 2px 8px var(--accent-glow)";
+            }}
+          >
+            Say Hello ✦
+          </a>
+        </div>
 
         {/* Mobile right controls */}
         <div className="mobile-controls" style={{ display: "none", alignItems: "center", gap: "8px" }}>
@@ -314,7 +312,7 @@ export default function Navbar() {
           WebkitBackdropFilter: "blur(24px)",
           borderBottom: menuOpen ? `1px solid var(--border)` : "none",
           position: "fixed",
-          top: "64px",
+          top: "80px",
           left: 0,
           right: 0,
           zIndex: 99,

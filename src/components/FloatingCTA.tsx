@@ -5,6 +5,7 @@ import { personal } from "@/lib/data";
 
 export default function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,6 +13,7 @@ export default function FloatingCTA() {
         setIsVisible(true);
       } else {
         setIsVisible(false);
+        setIsExpanded(false);
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -77,7 +79,7 @@ export default function FloatingCTA() {
         right: "24px",
         bottom: "40px",
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "column-reverse",
         gap: "12px",
         zIndex: 100,
         opacity: isVisible ? 1 : 0,
@@ -87,7 +89,37 @@ export default function FloatingCTA() {
       }}
       className="floating-cta"
     >
-      {socials.map((social) => (
+      {/* Toggle Button (Mobile Only) */}
+      <button
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="cta-toggle"
+        style={{
+          width: "48px",
+          height: "48px",
+          borderRadius: "50%",
+          background: "rgba(255, 255, 255, 0.1)",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          display: "none",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "var(--accent)",
+          boxShadow: "0 8px 32px 0 rgba(95, 165, 249, 0.2)",
+          cursor: "pointer",
+          transition: "all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
+          zIndex: 10,
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          transform: isExpanded ? "rotate(135deg)" : "rotate(0deg)",
+        }}
+        aria-label="Toggle Menu"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </button>
+
+      {socials.map((social, i) => (
         <a
           key={social.id}
           href={social.url}
@@ -106,9 +138,9 @@ export default function FloatingCTA() {
             boxShadow: "var(--shadow-md)",
             transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
             position: "relative",
+            transitionDelay: `${i * 0.05}s`,
           }}
-          className="cta-button"
-          data-tooltip={social.name}
+          className={`cta-button ${isExpanded ? "expanded" : ""}`}
           onMouseEnter={(e) => {
             const el = e.currentTarget;
             el.style.transform = "scale(1.1) translateY(-4px)";
@@ -129,6 +161,7 @@ export default function FloatingCTA() {
           <span className="tooltip">{social.name}</span>
         </a>
       ))}
+
       <style jsx>{`
         .cta-button {
           position: relative;
@@ -160,9 +193,21 @@ export default function FloatingCTA() {
             right: 16px;
             bottom: 24px;
           }
-          .floating-cta a {
-            width: 42px;
-            height: 42px;
+          .cta-toggle {
+            display: flex !important;
+          }
+          .cta-button {
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            width: 42px !important;
+            height: 42px !important;
+          }
+          .cta-button.expanded {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
           }
           .tooltip {
             display: none;

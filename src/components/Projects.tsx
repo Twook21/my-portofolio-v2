@@ -153,7 +153,7 @@ function ProjectCard({ project, idx, inView }: {
       </ul>
 
       {/* Tags */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "7px", marginBottom: "28px", flex: 1 }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "7px", marginBottom: "28px", flex: 1, alignItems: "flex-start" }}>
         {project.tags.map((tag: string, ti: number) => (
           <span
             key={tag}
