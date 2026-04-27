@@ -1,0 +1,395 @@
+"use client";
+
+import { useLanguage } from "@/components/LanguageContext";
+import { useEffect, useRef, useState } from "react";
+
+export default function Hero() {
+  const { t } = useLanguage();
+  const [visible, setVisible] = useState(false);
+  const [displayText, setDisplayText] = useState("");
+  const tagline = t.personal.tagline;
+  const [mousePos, setMousePos]   = useState({ x: 50, y: 40 });
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), 80);
+    return () => clearTimeout(t);
+  }, []);
+
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(100);
+
+  // Reset when language changes
+  useEffect(() => {
+    setDisplayText("");
+    setIsDeleting(false);
+    setTypingSpeed(100);
+  }, [tagline]);
+
+  useEffect(() => {
+    if (!visible) return;
+    
+    const handleTyping = () => {
+      setDisplayText(prev => {
+        if (!isDeleting) {
+          if (prev.length < tagline.length) {
+            return tagline.slice(0, prev.length + 1);
+          } else {
+            setTypingSpeed(2000); // Wait at end
+            setIsDeleting(true);
+            return prev;
+          }
+        } else {
+          if (prev.length > 0) {
+            setTypingSpeed(50); // Faster delete
+            return tagline.slice(0, prev.length - 1);
+          } else {
+            setIsDeleting(false);
+            setTypingSpeed(500); // Wait before restart
+            return "";
+          }
+        }
+      });
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [visible, displayText, isDeleting, typingSpeed, tagline]);
+
+  useEffect(() => {
+    const move = (e: MouseEvent) => {
+      if (!heroRef.current) return;
+      const { left, top, width, height } = heroRef.current.getBoundingClientRect();
+      setMousePos({
+        x: ((e.clientX - left) / width) * 100,
+        y: ((e.clientY - top) / height) * 100,
+      });
+    };
+    window.addEventListener("mousemove", move);
+    return () => window.removeEventListener("mousemove", move);
+  }, []);
+
+  return (
+    <section
+      id="hero"
+      ref={heroRef}
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        padding: "100px 20px 120px",
+        overflow: "hidden",
+      }}
+      className="hero-section"
+    >
+      {/* ── Animated background orbs ── */}
+      <div
+        className="orb hero-orb-1"
+        style={{
+          width: "max(300px, 40vw)", height: "max(300px, 40vw)",
+          top: "5%", left: "-10%",
+          background: "radial-gradient(circle, var(--accent-soft) 0%, transparent 70%)",
+          animation: "orb1 18s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="orb hero-orb-2"
+        style={{
+          width: "max(260px, 35vw)", height: "max(260px, 35vw)",
+          top: "20%", right: "-8%",
+          background: "radial-gradient(circle, var(--purple-soft) 0%, transparent 70%)",
+          animation: "orb2 22s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="orb hero-orb-3"
+        style={{
+          width: "max(200px, 25vw)", height: "max(200px, 25vw)",
+          bottom: "10%", left: "30%",
+          background: "radial-gradient(circle, var(--green-soft) 0%, transparent 70%)",
+          animation: "orb3 15s ease-in-out infinite",
+        }}
+      />
+
+      {/* ── Mouse-tracking spotlight ── */}
+      <div
+        style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          background: `radial-gradient(ellipse 60% 50% at ${mousePos.x}% ${mousePos.y}%, var(--accent-soft) 0%, transparent 65%)`,
+          transition: "background 0.25s ease",
+        }}
+        className="mouse-spotlight"
+      />
+
+      {/* ── Grid pattern overlay ── */}
+      <div
+        style={{
+          position: "absolute", inset: 0, pointerEvents: "none",
+          backgroundImage: `
+            linear-gradient(var(--border) 1px, transparent 1px),
+            linear-gradient(90deg, var(--border) 1px, transparent 1px)
+          `,
+          backgroundSize: "60px 60px",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%)",
+          opacity: 0.5,
+        }}
+      />
+
+      {/* ── Content ── */}
+      <div
+        style={{
+          maxWidth: "800px", width: "100%",
+          textAlign: "center", position: "relative", zIndex: 1,
+        }}
+      >
+        {/* Status pill */}
+        <div
+          style={{
+            display: "inline-flex", alignItems: "center", gap: "8px",
+            background: "var(--bg-card)", border: "1px solid var(--border)",
+            borderRadius: "100px", padding: "6px 16px 6px 10px",
+            marginBottom: "32px", boxShadow: "var(--shadow-sm)",
+            opacity: visible ? 1 : 0,
+            animation: visible ? "badgePop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both" : "none",
+          }}
+        >
+          <span
+            style={{
+              width: "8px", height: "8px", borderRadius: "50%",
+              background: "var(--green)", display: "inline-block",
+              animation: "pulse 2s ease-in-out infinite",
+            }}
+          />
+          <span style={{ fontSize: "11px", fontWeight: 600, color: "var(--text-secondary)", letterSpacing: "0.03em" }}>
+            {t.personal.status}
+          </span>
+        </div>
+
+        {/* Name — staggered word reveal */}
+        <h1
+          style={{
+            fontFamily: '"Stack Sans Notch", sans-serif',
+            fontSize: "clamp(36px, 10vw, 80px)",
+            fontWeight: 700,
+            lineHeight: 1.0,
+            letterSpacing: "-0.04em",
+            color: "var(--text-primary)",
+            marginBottom: "4px",
+            opacity: visible ? 1 : 0,
+            animation: visible ? "fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s both" : "none",
+          }}
+        >
+          {t.personal.name.split(" ")[0]}
+        </h1>
+        <h1
+          style={{
+            fontFamily: '"Stack Sans Notch", sans-serif',
+            fontSize: "clamp(36px, 10vw, 80px)",
+            fontWeight: 700,
+            lineHeight: 1.2,
+            letterSpacing: "-0.04em",
+            marginBottom: "28px",
+            background: "linear-gradient(135deg, var(--text-secondary) 0%, var(--text-tertiary) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            opacity: visible ? 1 : 0,
+            animation: visible ? "fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.32s both" : "none",
+          }}
+        >
+          {t.personal.name.split(" ").slice(1).join(" ")}
+        </h1>
+
+        {/* Shimmer role badge */}
+        <p
+          style={{
+            fontSize: "clamp(12px, 2.5vw, 16px)",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            marginBottom: "20px",
+            opacity: visible ? 1 : 0,
+            animation: visible ? "fadeIn 0.6s ease 0.45s both" : "none",
+            minHeight: "24px",
+          }}
+          className="shimmer-text"
+        >
+          {displayText}
+          <span className="typewriter-cursor">|</span>
+        </p>
+
+        {/* Description */}
+        <p
+          style={{
+            fontSize: "clamp(15px, 3.5vw, 18px)",
+            color: "var(--text-secondary)",
+            lineHeight: 1.75,
+            maxWidth: "560px",
+            margin: "0 auto 44px",
+            fontWeight: 400,
+            padding: "0 10px",
+            opacity: visible ? 1 : 0,
+            animation: visible ? "fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.5s both" : "none",
+          }}
+        >
+          {t.personal.description}
+        </p>
+
+        {/* CTA buttons */}
+        <div
+          style={{
+            display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap",
+            opacity: visible ? 1 : 0,
+            animation: visible ? "fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.62s both" : "none",
+          }}
+          className="hero-ctas"
+        >
+          <a
+            href="#experience"
+            onClick={(e) => { e.preventDefault(); document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" }); }}
+            style={{
+              padding: "14px 30px",
+              background: "var(--accent)",
+              borderRadius: "100px",
+              fontSize: "15px", fontWeight: 700,
+              color: "#fff",
+              transition: "all 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+              display: "inline-block",
+              boxShadow: "var(--shadow-accent)",
+              minWidth: "160px",
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.transform = "translateY(-3px) scale(1.04)";
+              el.style.boxShadow = "0 12px 40px var(--accent-glow)";
+              el.style.background = "var(--accent-hover)";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.transform = "translateY(0) scale(1)";
+              el.style.boxShadow = "var(--shadow-accent)";
+              el.style.background = "var(--accent)";
+            }}
+          >
+            {t.ui.viewWork}
+          </a>
+          <a
+            href={`mailto:${t.personal.email}`}
+            style={{
+              padding: "14px 30px",
+              background: "var(--bg-card)",
+              borderRadius: "100px",
+              fontSize: "15px", fontWeight: 700,
+              color: "var(--text-primary)",
+              border: "1.5px solid var(--border)",
+              transition: "all 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+              display: "inline-block",
+              boxShadow: "var(--shadow-sm)",
+              minWidth: "160px",
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.transform = "translateY(-3px) scale(1.04)";
+              el.style.borderColor = "var(--accent)";
+              el.style.boxShadow = "var(--shadow-md)";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.transform = "translateY(0) scale(1)";
+              el.style.borderColor = "var(--border)";
+              el.style.boxShadow = "var(--shadow-sm)";
+            }}
+          >
+            {t.ui.getInTouch}
+          </a>
+        </div>
+
+        {/* Philosophy */}
+        <p
+          style={{
+            marginTop: "64px",
+            fontSize: "11px", color: "var(--text-tertiary)",
+            letterSpacing: "0.05em",
+            opacity: visible ? 0.7 : 0,
+            animation: visible ? "fadeIn 1.2s ease 1s both" : "none",
+            padding: "0 20px",
+          }}
+        >
+          ✦ {t.personal.philosophy}
+        </p>
+      </div>
+
+      {/* Floating decorative elements */}
+      <div
+        style={{
+          position: "absolute", top: "18%", left: "8%", zIndex: 0,
+          fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em",
+          color: "var(--text-tertiary)", opacity: 0.5,
+          animation: "float 8s ease-in-out infinite",
+          userSelect: "none",
+        }}
+        className="decorative-element"
+      >
+        {"</>"}
+      </div>
+      <div
+        style={{
+          position: "absolute", top: "35%", right: "6%", zIndex: 0,
+          fontSize: "10px", fontWeight: 700, letterSpacing: "0.1em",
+          color: "var(--text-tertiary)", opacity: 0.4,
+          animation: "floatSlow 11s ease-in-out infinite 2s",
+          userSelect: "none",
+        }}
+        className="decorative-element"
+      >
+        {"{ }"}
+      </div>
+
+      {/* Scroll indicator */}
+      <div
+        style={{
+          position: "absolute", bottom: "36px", left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex", flexDirection: "column", alignItems: "center", gap: "8px",
+          opacity: visible ? 0.5 : 0,
+          animation: visible ? "fadeIn 1s ease 1.4s both" : "none",
+        }}
+      >
+        <span style={{ fontSize: "9px", fontWeight: 700, color: "var(--text-tertiary)", letterSpacing: "0.15em" }}>
+          {t.ui.scroll}
+        </span>
+        <div
+          style={{
+            width: "1px", height: "30px",
+            background: "linear-gradient(to bottom, var(--accent), transparent)",
+            animation: "scrollLine 2s ease-in-out infinite",
+          }}
+        />
+      </div>
+
+      <style jsx>{`
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .typewriter-cursor {
+          display: inline-block;
+          margin-left: 2px;
+          animation: blink 1s step-end infinite;
+          color: var(--accent);
+        }
+        @media (max-width: 768px) {
+          .hero-section { padding: 80px 16px 100px !important; }
+          .hero-orb-1, .hero-orb-2, .hero-orb-3 { opacity: 0.6; }
+          .mouse-spotlight { display: none; }
+          .decorative-element { display: none; }
+        }
+        @media (max-width: 480px) {
+          .hero-ctas { flex-direction: column !important; align-items: stretch !important; width: 100% !important; max-width: 300px !important; margin: 0 auto !important; }
+          .hero-ctas a { width: 100% !important; text-align: center !important; }
+        }
+      `}</style>
+    </section>
+  );
+}
