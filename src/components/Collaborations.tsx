@@ -197,7 +197,7 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
             initial={isMobile ? { height: 0, opacity: 0 } : {}}
             animate={isMobile ? { height: "auto", opacity: 1 } : {}}
             exit={isMobile ? { height: 0, opacity: 0 } : {}}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as any }}
             style={{ flex: 1, overflow: "hidden" }}
           >
             <p style={{ fontSize: "14px", lineHeight: 1.5, color: "var(--text-secondary)", marginBottom: "16px", marginTop: "16px" }}>

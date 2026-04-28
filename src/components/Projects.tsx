@@ -273,7 +273,7 @@ function ProjectCard({ project, idx, inView }: {
               initial={isMobile ? { height: 0, opacity: 0 } : {}}
               animate={isMobile ? { height: "auto", opacity: 1 } : {}}
               exit={isMobile ? { height: 0, opacity: 0 } : {}}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as any }}
               style={{ overflow: "hidden" }}
             >
               <p style={{ 

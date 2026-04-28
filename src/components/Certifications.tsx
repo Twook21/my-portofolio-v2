@@ -166,7 +166,7 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.6, delay: idx * 0.05, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, delay: idx * 0.05, ease: [0.22, 1, 0.36, 1] as any }}
       onClick={() => {
         if (isMobile) setIsExpanded(!isExpanded);
       }}
@@ -240,7 +240,7 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
           <p style={{ fontSize: "14px", color: "var(--accent)", fontWeight: 700, marginTop: "2px" }} className="cert-issuer">
             {cert.issuer}
           </p>
-          <span className="cert-date-mobile" style={{ display: "none" }}>{t.ui.issued} {cert.issued}</span>
+          <span className="cert-date-mobile" style={{ display: "none" }}>{t.ui.issued} {cert.date}</span>
         </div>
         <div className="expand-icon" style={{ display: "none", color: "var(--text-tertiary)", transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)", transform: isExpanded ? "rotate(180deg)" : "rotate(0)" }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -256,7 +256,7 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
             initial={isMobile ? { height: 0, opacity: 0 } : {}}
             animate={isMobile ? { height: "auto", opacity: 1 } : {}}
             exit={isMobile ? { height: 0, opacity: 0 } : {}}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as any }}
             style={{ flex: 1, overflow: "hidden" }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "6px", marginBottom: "12px", marginTop: "16px" }}>
@@ -373,10 +373,7 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
           .cert-card-inner.is-expanded {
              background: var(--bg-card) !important;
           }
-          .cert-card-inner h3 {
-            font-size: 17px !important;
-            font-weight: 800 !important;
-          }
+          .cert-date-mobile {
             display: block !important;
             opacity: 0.6;
           }
