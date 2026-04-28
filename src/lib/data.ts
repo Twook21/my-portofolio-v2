@@ -541,12 +541,15 @@ export const moments = [
     size: "wide",
     category: "Achievement",
   },
-  {
-    id: 8,
-    title: "Dicoding Developer Conference",
-    description: "Exploring the future of technology, cloud architecture, and AI integration at Indonesia's largest developer event.",
-    image: "/moments/dicoding-conf.jpg",
     size: "large",
     category: "Event",
+  },
+  {
+    id: 9,
+    title: "Personal Milestone",
+    description: "Capturing a moment of growth at DDC 2026.",
+    image: "/moments/me.jpeg",
+    size: "small",
+    category: "Personal",
   },
 ];

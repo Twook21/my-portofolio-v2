@@ -556,6 +556,7 @@ export const dictionary = {
       { id: 6, title: "BDD Full-Stack Track", category: "Conference", description: "Exploring modern web development, Serverless on AWS, and Laravel in the AI era." },
       { id: 7, title: "JIDA Graduation", category: "Achievement", description: "Grateful to be among the final 50 participants and earning the BNSP Junior Web Programmer certification." },
       { id: 8, title: "Dicoding Developer Conference", category: "Event", description: "Exploring the future of technology, cloud architecture, and AI integration at Indonesia's largest developer event." },
+      { id: 9, title: "Me at DDC 2026", category: "Personal", description: "A personal milestone attending Indonesia's largest developer conference." },
     ],
     teamProjects: [
       {
@@ -1259,7 +1260,8 @@ export const dictionary = {
       { id: 5, title: "Microsoft METC Session", category: "Training", description: "Mendalami Microsoft Fabric dan Azure AI bersama para peserta terpilih." },
       { id: 6, title: "BDD Full-Stack Track", category: "Conference", description: "Eksplorasi web modern, Serverless di AWS, dan Laravel di era AI." },
       { id: 7, title: "Kelulusan JIDA", category: "Achievement", description: "Bersyukur menjadi bagian dari 50 peserta terbaik dan meraih sertifikasi BNSP Junior Web Programmer." },
-      { id: 8, title: "Dicoding Developer Conference", category: "Event", description: "Menelusuri masa depan teknologi, arsitektur cloud, dan integrasi AI di Indonesia." },
+      { id: 8, title: "Dicoding Developer Conference", category: "Event", description: "Menelusuri masa depan teknologi, arsitektur cloud, dan integrasi AI di konferensi developer terbesar di Indonesia." },
+      { id: 9, title: "Saya di DDC 2026", category: "Personal", description: "Momen berharga menghadiri konferensi pengembang terbesar di Indonesia." },
     ],
     teamProjects: [
       {
