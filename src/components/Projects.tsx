@@ -281,7 +281,7 @@ function ProjectCard({ project, idx, inView }: {
                 color: "var(--text-secondary)", 
                 lineHeight: 1.6, 
                 marginBottom: "24px",
-                marginTop: window.innerWidth <= 640 ? "20px" : "0"
+                marginTop: isMobile ? "20px" : "0"
               }}>
                 {project.description}
               </p>
