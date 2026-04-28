@@ -3,7 +3,7 @@ export const personal = {
   tagline: "Software Engineer",
   subtitle: "Building clean, purposeful software — from Jakarta to the world.",
   description:
-    "Software Developer bridging the gap between robust backend services and fluid, modern user interfaces. I specialize in the Next.js & .NET ecosystems, with a deep focus on quality-driven delivery and scalable architecture.",
+    "A Software Developer bridging the gap between robust backend services and fluid, modern user interfaces. I specialize in the Next.js & .NET ecosystems, with a deep focus on quality-driven delivery and scalable architecture.",
   location: "Jakarta, Indonesia",
   email: "akmalbintang33@gmail.com",
   github: "https://github.com/akmal-bintang",
@@ -386,7 +386,7 @@ export const softSkills = [
   {
     title: "Growth Mindset",
     description:
-      "Actively seeks challenges. Attended Dicoding Developer Conference 2026 and continuously upskills in Cloud and AI.",
+      "Focusing on impact, not just frameworks. My journey spans from Laravel to Next.js and .NET. Actively learning Cloud & AI to tackle future challenges.",
     icon: "🌱",
   },
   {

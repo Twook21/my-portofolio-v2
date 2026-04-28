@@ -5,7 +5,7 @@ export const dictionary = {
       tagline: "Software Engineer",
       subtitle: "Building clean, purposeful software — from Jakarta to the world.",
       description:
-        "Software Developer bridging the gap between robust backend services and fluid, modern user interfaces. I specialize in the Next.js & .NET ecosystems, with a deep focus on quality-driven delivery and scalable architecture.",
+        "A Software Developer bridging the gap between robust backend services and fluid, modern user interfaces. I specialize in the Next.js & .NET ecosystems, with a deep focus on quality-driven delivery and scalable architecture.",
       location: "Jakarta, Indonesia",
       email: "akmalbintang33@gmail.com",
       github: "https://github.com/akmal-bintang",
@@ -383,7 +383,7 @@ export const dictionary = {
       {
         title: "Growth Mindset",
         description:
-          "Actively seeks challenges. Attended Dicoding Developer Conference 2026 and continuously upskills in Cloud and AI.",
+          "Focusing on impact, not just frameworks. My journey spans from Laravel to Next.js and .NET. Actively learning Cloud & AI to tackle future challenges.",
         icon: "🌱",
       },
       {
@@ -473,7 +473,7 @@ export const dictionary = {
         name: "Industry Professional Credentials Track – IBM Front-End Developer",
         issuer: "Arizona State University",
         date: "Feb 2026",
-        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0a/Arizona_State_University_logo.svg/1200px-Arizona_State_University_logo.svg.png",
+        logo: "/certifications/asu.png",
         skills: ["Front-End Development"],
         link: "#"
       },
@@ -491,7 +491,7 @@ export const dictionary = {
         issuer: "IBM",
         date: "Jan 2026",
         id: "DTKKFQCJQIFI",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/1200px-IBM_logo.svg.png",
+        logo: "/certifications/ibm.png",
         skills: ["React.js", "Front-End Development"],
         link: "#"
       },
@@ -499,7 +499,7 @@ export const dictionary = {
         name: "Cloud Native, DevOps, Agile & NoSQL Essentials",
         issuer: "Coursera",
         date: "Jan 2026",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/1200px-Coursera-Logo_600x600.svg.png",
+        logo: "/certifications/coursera.png",
         skills: ["Cloud Native", "DevOps"],
         link: "#"
       },
@@ -517,7 +517,7 @@ export const dictionary = {
         issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
         date: "Nov 2024 — Nov 2027",
         id: "13231353",
-        logo: "https://upload.wikimedia.org/wikipedia/id/thumb/a/a2/Logo_BNSP.png/220px-Logo_BNSP.png",
+        logo: "/certifications/bnsp.png",
         skills: ["Tailwind CSS", "Debugging"],
         link: "#"
       },
@@ -526,7 +526,7 @@ export const dictionary = {
         issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
         date: "Sep 2025 — Sep 2028",
         id: "14357791",
-        logo: "https://upload.wikimedia.org/wikipedia/id/thumb/a/a2/Logo_BNSP.png/220px-Logo_BNSP.png",
+        logo: "/certifications/bnsp.png",
         skills: ["User Interface Design", "Structured Programming"],
         link: "#"
       },
@@ -542,7 +542,7 @@ export const dictionary = {
         name: "AWS Academy Graduate - AWS Academy Cloud Foundations",
         issuer: "Amazon Web Services (AWS)",
         date: "Jun 2025",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png",
+        logo: "/certifications/aws.png",
         skills: ["Cloud Computing"],
         link: "#"
       }
@@ -702,6 +702,9 @@ export const dictionary = {
       moments: "Moments",
       momentsTitle1: "Capturing life,",
       momentsTitle2: "one frame at a time.",
+      notFoundTitle: "Lost in Space?",
+      notFoundDesc: "The page you're looking for has drifted away or never existed in this universe.",
+      backHome: "Back to Base",
     }
   },
   id: {
@@ -1178,7 +1181,7 @@ export const dictionary = {
         name: "Industry Professional Credentials Track – IBM Front-End Developer",
         issuer: "Arizona State University",
         date: "Feb 2026",
-        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0a/Arizona_State_University_logo.svg/1200px-Arizona_State_University_logo.svg.png",
+        logo: "/certifications/asu.png",
         skills: ["Front-End Development"],
         link: "#"
       },
@@ -1196,7 +1199,7 @@ export const dictionary = {
         issuer: "IBM",
         date: "Jan 2026",
         id: "DTKKFQCJQIFI",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/1200px-IBM_logo.svg.png",
+        logo: "/certifications/ibm.png",
         skills: ["React.js", "Front-End Development"],
         link: "#"
       },
@@ -1204,7 +1207,7 @@ export const dictionary = {
         name: "Cloud Native, DevOps, Agile & NoSQL Essentials",
         issuer: "Coursera",
         date: "Jan 2026",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/1200px-Coursera-Logo_600x600.svg.png",
+        logo: "/certifications/coursera.png",
         skills: ["Cloud Native", "DevOps"],
         link: "#"
       },
@@ -1222,7 +1225,7 @@ export const dictionary = {
         issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
         date: "Nov 2024 — Nov 2027",
         id: "13231353",
-        logo: "https://upload.wikimedia.org/wikipedia/id/thumb/a/a2/Logo_BNSP.png/220px-Logo_BNSP.png",
+        logo: "/certifications/bnsp.png",
         skills: ["Tailwind CSS", "Debugging"],
         link: "#"
       },
@@ -1231,7 +1234,7 @@ export const dictionary = {
         issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
         date: "Sep 2025 — Sep 2028",
         id: "14357791",
-        logo: "https://upload.wikimedia.org/wikipedia/id/thumb/a/a2/Logo_BNSP.png/220px-Logo_BNSP.png",
+        logo: "/certifications/bnsp.png",
         skills: ["User Interface Design", "Structured Programming"],
         link: "#"
       },
@@ -1247,7 +1250,7 @@ export const dictionary = {
         name: "AWS Academy Graduate - AWS Academy Cloud Foundations",
         issuer: "Amazon Web Services (AWS)",
         date: "Jun 2025",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png",
+        logo: "/certifications/aws.png",
         skills: ["Cloud Computing"],
         link: "#"
       }
@@ -1407,6 +1410,9 @@ export const dictionary = {
       moments: "Momen",
       momentsTitle1: "Mengabadikan hidup,",
       momentsTitle2: "frame demi frame.",
+      notFoundTitle: "Tersesat di Luar Angkasa?",
+      notFoundDesc: "Halaman yang Anda cari telah hanyut atau tidak pernah ada di alam semesta ini.",
+      backHome: "Kembali ke Beranda",
     }
   }
 };
