@@ -117,7 +117,7 @@ export default function FloatingCTA() {
           display: "none",
           alignItems: "center",
           justifyContent: "center",
-          color: "white",
+          color: "var(--accent-contrast)",
           boxShadow: "0 10px 25px rgba(95, 165, 249, 0.4)",
           cursor: "pointer",
           transition: "all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",

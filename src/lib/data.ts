@@ -11,7 +11,7 @@ export const personal = {
   instagram: "https://www.instagram.com/tw0ok_/", // Placeholder
   status: "Open to opportunities",
   philosophy: "Driven by impact, defined by adaptability",
-  goal: "Expert Software Engineer · Singapore Tech Ecosystem 2031",
+  goal: "Expert Software Engineer · International Tech Ecosystem 2031",
 };
 
 export const experiences = [
@@ -90,7 +90,7 @@ export const experiences = [
     role: "Full‑Stack Web Developer Trainee",
     company: "Asah led by Dicoding",
     parent: "Accenture Collaboration",
-    period: "Aug 2025 — Jan 2026",
+    period: "Aug 2025 — 2026",
     location: "Remote",
     type: "Trainee",
     highlight: false,
@@ -423,14 +423,14 @@ export const softSkills = [
 
 export const milestones = [
   {
-    date: "Apr 2026",
+    date: "Present",
     title: "Dicoding Developer Conference",
     description: "Exploring modern Cloud architecture and emerging AI development patterns to stay ahead of the curve.",
     tag: "Continuous Learning",
     color: "accent",
   },
   {
-    date: "Jan 2026",
+    date: "2026",
     title: "Architecting SmartAttendance",
     description: "Engineered an automated presence tracking system for an external institution as my final-year capstone project. Focused on streamlining real-world operational workflows and ensuring high-fidelity data integrity.",
     tag: "Capstone Engineering",

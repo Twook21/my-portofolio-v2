@@ -280,7 +280,7 @@ function ProjectCard({ project, inView }: {
                 borderRadius: "12px",
                 fontSize: "13px",
                 fontWeight: 700,
-                color: "#fff",
+                color: "var(--accent-contrast)",
                 textAlign: "center",
                 textDecoration: "none",
                 transition: "all 0.3s ease",
@@ -389,7 +389,7 @@ export default function Projects() {
                 borderRadius: "100px",
                 fontSize: "14px",
                 fontWeight: 700,
-                color: filter === cat ? "#fff" : "var(--text-secondary)",
+                color: filter === cat ? "var(--accent-contrast)" : "var(--text-secondary)",
                 cursor: "pointer",
                 transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
                 boxShadow: filter === cat ? "0 4px 12px var(--accent-glow)" : "none"

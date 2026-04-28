@@ -297,7 +297,7 @@ export default function Hero() {
               background: "var(--accent)",
               borderRadius: "100px",
               fontSize: "15px", fontWeight: 700,
-              color: "#fff",
+              color: "var(--accent-contrast)",
               transition: "all 0.3s cubic-bezier(0.34,1.56,0.64,1)",
               display: "inline-block",
               boxShadow: "var(--shadow-accent)",
