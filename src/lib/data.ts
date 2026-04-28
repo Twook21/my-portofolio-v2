@@ -488,68 +488,73 @@ export const moments = [
   {
     id: 1,
     title: "Jakarta Golden Hour",
-    description: "The vibrant energy of Jakarta during sunset.",
+    description: "The vibrant energy of the city where my enterprise engineering journey began.",
     image: "https://images.unsplash.com/photo-1555899434-94d1368aa7af?auto=format&fit=crop&q=80&w=800",
-    size: "large",
+    size: "large", // 2x2 (Highlight Atas)
     category: "Life",
   },
   {
-    id: 2,
-    title: "Clean Code Philosophy",
-    description: "Writing code for humans, not just machines.",
-    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=600",
-    size: "small",
-    category: "Engineering",
-  },
-  {
-    id: 3,
-    title: "PENS Surabaya Campus",
-    description: "Where my engineering foundation was built.",
+    id: 2, // Susunan diubah agar mengisi kolom kanan atas dengan sempurna
+    title: "PENS Surabaya",
+    description: "The academic foundation where my technical rigor was built.",
     image: "/moments/pens-campus.jpg",
-    size: "tall",
+    size: "tall", // 1x2
     category: "Education",
   },
   {
-    id: 4,
-    title: "SCI Birthday Celebration",
-    description: "A meaningful and joyful occasion celebrating SCI together as one united team.",
-    image: "/moments/sci-birthday.jpg",
-    size: "large",
-    category: "Team",
-  },
-  {
-    id: 5,
-    title: "Microsoft METC Session",
-    description: "Diving deep into Microsoft Fabric and Azure AI alongside selected participants.",
-    image: "/moments/microsoft-metc.jpg",
-    size: "small",
-    category: "Training",
-  },
-  {
-    id: 6,
-    title: "BDD Full-Stack Track",
-    description: "Exploring modern web development, Serverless on AWS, and Laravel in the AI era.",
+    id: 3, 
+    title: "BDD Conference",
+    description: "Exploring modern web scaling, AWS Serverless, and Laravel in the AI era.",
     image: "/moments/bdd-conference.jpg",
-    size: "tall",
+    size: "tall", // 1x2
     category: "Conference",
   },
   {
-    id: 7,
-    title: "JIDA Graduation",
-    description: "Grateful to be among the final 50 participants and earning the BNSP Junior Web Programmer certification.",
-    image: "/moments/jida-graduation.jpg",
-    size: "wide",
-    category: "Achievement",
+    id: 4,
+    title: "SCI Tech Family",
+    description: "Cross-functional synergy. Celebrating milestones together as one united team.",
+    image: "/moments/sci-birthday.jpg",
+    size: "wide", // 2x1
+    category: "Team",
   },
-    size: "large",
+  {
+    id: 5, 
+    title: "Microsoft METC",
+    description: "Diving deep into Microsoft Fabric and Azure AI to navigate modern data architectures.",
+    image: "/moments/microsoft-metc.jpg",
+    size: "wide", // Diubah dari small ke wide (+1 unit agar total grid genap 20)
+    category: "Engineering",
+  },
+  {
+    id: 6,
+    title: "DDC 2026",
+    description: "Calibrating skills with emerging Cloud and AI patterns to stay ahead of the curve.",
+    image: "/moments/dicoding-conf.jpg",
+    size: "large", // 2x2 (Highlight Bawah)
     category: "Event",
   },
   {
+    id: 7, 
+    title: "JIDA Graduation",
+    description: "Earning the BNSP Junior Web Programmer certification. Proud to be among the final 50.",
+    image: "/moments/jida-graduation.jpg",
+    size: "wide", // 2x1
+    category: "Achievement",
+  },
+  {
+    id: 8,
+    title: "Clean Architecture",
+    description: "Shipping maintainable code. Built for humans, not just machines.",
+    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=600",
+    size: "small", // 1x1 (Menutup kolom kanan bawah)
+    category: "Training",
+  },
+  {
     id: 9,
-    title: "Personal Milestone",
-    description: "Capturing a moment of growth at DDC 2026.",
+    title: "Always Calibrating",
+    description: "Capturing a moment of personal growth and technical exploration.",
     image: "/moments/me.jpeg",
-    size: "small",
+    size: "small", // 1x1 (Menutup kolom kanan bawah)
     category: "Personal",
   },
 ];
