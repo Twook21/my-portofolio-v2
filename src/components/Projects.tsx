@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import FloatingSymbols from "./FloatingSymbols";
 
 function useInView(threshold = 0.08) {
@@ -28,13 +28,13 @@ function use3DTilt() {
     const { left, top, width, height } = el.getBoundingClientRect();
     const x = (e.clientX - left) / width  - 0.5;
     const y = (e.clientY - top)  / height - 0.5;
-    el.style.transform = `perspective(900px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg) translateY(-4px)`;
+    el.style.transform = `perspective(1000px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-2px)`;
     el.style.boxShadow = "var(--shadow-lg)";
   };
   const handleMouseLeave = () => {
     const el = ref.current;
     if (!el) return;
-    el.style.transform = "perspective(900px) rotateX(0) rotateY(0) translateY(0)";
+    el.style.transform = "perspective(1000px) rotateX(0) rotateY(0) translateY(0)";
     el.style.boxShadow = "var(--shadow-sm)";
   };
   return { ref, handleMouseMove, handleMouseLeave };
@@ -43,512 +43,424 @@ function use3DTilt() {
 const statusColorMap: Record<string, string> = {
   green: "var(--green)", blue: "var(--accent)", orange: "var(--orange)",
 };
-const statusSoftMap: Record<string, string> = {
-  green: "var(--green-soft)", blue: "var(--accent-soft)", orange: "var(--orange-soft)",
-};
 
-function ProjectCard({ project, idx, inView }: {
+function ProjectCard({ project, inView }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  project: any; idx: number; inView: boolean;
+  project: any; inView: boolean;
 }) {
   const { t } = useLanguage();
   const { ref, handleMouseMove, handleMouseLeave } = use3DTilt();
   const [isHovered, setIsHovered] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    handleMouseMove(e);
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 640);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
 
   return (
-    <div
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       ref={ref}
-      onMouseMove={onMouseMove}
+      onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         handleMouseLeave();
         setIsHovered(false);
       }}
-      onClick={() => {
-        if (isMobile) {
-          setIsExpanded(!isExpanded);
-        }
-      }}
       style={{
         background: "var(--bg-card)",
         border: "1px solid var(--border)",
-        borderRadius: "var(--radius-xl)",
-        padding: 0, // No padding on outer card
-        marginBottom: "20px",
+        borderRadius: "24px",
         position: "relative",
         overflow: "hidden",
         boxShadow: "var(--shadow-md)",
-        display: "flex", flexDirection: "column",
-        opacity: inView ? 1 : 0,
-        animation: inView
-          ? `fadeInUp 0.8s cubic-bezier(0.22,1,0.36,1) ${idx * 0.12}s both`
-          : "none",
-        willChange: "transform",
-        transition: "box-shadow 0.2s, border-color 0.2s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease",
-        height: "100%",
-        cursor: "pointer"
+        display: "flex", 
+        flexDirection: "column",
+        cursor: "pointer",
+        transition: "border-color 0.3s ease, box-shadow 0.3s ease",
       }}
-      className={`project-card-inner ${isExpanded ? 'is-expanded' : ''}`}
+      className="project-card-v2"
     >
-      {/* Spotlight Effect Removed */}
-
-      {/* Image Header */}
-      <div className="project-image-container" style={{ 
+      {/* Image Section */}
+      <div style={{ 
         position: "relative", 
-        height: "260px", 
-        overflow: "hidden", 
-        background: "var(--bg-tertiary)", 
-        flexShrink: 0,
-        width: "100%",
-        borderTopLeftRadius: "inherit",
-        borderTopRightRadius: "inherit"
+        height: "220px", 
+        overflow: "hidden",
+        background: "var(--bg-tertiary)"
       }}>
         <img 
           src={project.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop"} 
           alt={project.name}
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop";
-          }}
           style={{
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            transition: "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)",
-            transform: isHovered ? "scale(1.08)" : "scale(1)",
-            filter: isHovered ? "brightness(1.05)" : "brightness(0.95)",
+            transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+            transform: isHovered ? "scale(1.1)" : "scale(1)",
+            filter: isHovered ? "brightness(1.05)" : "brightness(0.9)",
           }}
         />
-        {/* Gradient Overlay Removed */}
-
-        {/* Status Badge - Floating */}
-        <div className="project-status-badge" style={{
+        
+        {/* Status & Date Badges */}
+        <div style={{
           position: "absolute",
-          top: "20px",
-          left: "20px",
-          padding: "6px 14px",
-          borderRadius: "100px",
-          fontSize: "11px",
-          fontWeight: 800,
-          color: "#fff",
-          background: "rgba(0,0,0,0.5)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-          border: "1px solid rgba(255,255,255,0.2)",
+          top: "16px",
+          left: "16px",
           display: "flex",
-          alignItems: "center",
           gap: "8px",
-          letterSpacing: "0.05em",
-          textTransform: "uppercase",
-          zIndex: 2,
+          zIndex: 2
         }}>
-          <span style={{
-            width: "8px", height: "8px", borderRadius: "50%",
-            background: statusColorMap[project.statusColor],
-            boxShadow: `0 0 10px ${statusColorMap[project.statusColor]}`,
-            animation: project.status === "In Development" ? "pulse 2s infinite" : "none",
-          }} />
-          <span className="status-text">{project.status === "In Development" ? t.ui.inDevelopment : project.status === "Shipped" ? t.ui.shipped : project.status}</span>
-        </div>
-
-        {/* Year Label */}
-        <div className="project-year" style={{
-          position: "absolute",
-          bottom: "20px",
-          right: "20px",
-          color: "rgba(255,255,255,0.9)",
-          fontSize: "12px",
-          fontWeight: 700,
-          zIndex: 2,
-          textShadow: "0 2px 4px rgba(0,0,0,0.3)"
-        }}>
-          {project.period}
+          <div style={{
+            padding: "5px 12px",
+            borderRadius: "100px",
+            fontSize: "10px",
+            fontWeight: 800,
+            color: "#fff",
+            background: "rgba(0,0,0,0.6)",
+            backdropFilter: "blur(8px)",
+            border: "1px solid rgba(255,255,255,0.1)",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            textTransform: "uppercase",
+            letterSpacing: "0.05em"
+          }}>
+            <span style={{
+              width: "6px", height: "6px", borderRadius: "50%",
+              background: statusColorMap[project.statusColor] || "var(--accent)",
+              boxShadow: `0 0 8px ${statusColorMap[project.statusColor] || "var(--accent)"}`,
+            }} />
+            {project.status === "In Development" ? t.ui.inDevelopment : project.status === "Shipped" ? t.ui.shipped : project.status}
+          </div>
+          
+          <div style={{
+            padding: "5px 12px",
+            borderRadius: "100px",
+            fontSize: "10px",
+            fontWeight: 700,
+            color: "rgba(255,255,255,0.8)",
+            background: "rgba(0,0,0,0.4)",
+            backdropFilter: "blur(8px)",
+            border: "1px solid rgba(255,255,255,0.1)",
+          }}>
+            {project.period}
+          </div>
         </div>
       </div>
 
-      {/* Content Area */}
-      <div style={{ padding: "36px", display: "flex", flexDirection: "column", flex: 1, position: "relative", zIndex: 2 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }} className="project-header-row">
-          {project.associatedLogo && (
-            <div className="mobile-project-logo" style={{ display: "none" }}>
-              <img 
-                src={project.associatedLogo} 
-                alt="" 
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + (project.associatedWith || "Org") + "&background=random";
-                }}
-                style={{ width: "100%", height: "100%", objectFit: "contain" }} 
-              />
-            </div>
-          )}
-          <div style={{ flex: 1 }}>
-            {project.associatedWith && (
-              <div style={{ 
-                fontSize: "12px", 
-                fontWeight: 700, 
-                color: "var(--text-tertiary)", 
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                marginBottom: "12px",
-                display: "flex",
-                alignItems: "center",
-                gap: "10px"
-              }} className="associated-label">
-                {project.associatedLogo && (
-                  <div style={{
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "4px",
-                    background: "white",
-                    padding: "2px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    border: "1px solid var(--border)",
-                  }}>
-                    <img 
-                      src={project.associatedLogo} 
-                      alt="" 
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + (project.associatedWith || "Org") + "&background=random";
-                      }}
-                      style={{ width: "100%", height: "100%", objectFit: "contain" }} 
-                    />
-                  </div>
-                )}
-                {project.associatedWith}
-              </div>
+      {/* Content Section */}
+      <div style={{ padding: "28px", flex: 1, display: "flex", flexDirection: "column" }}>
+        {project.associatedWith && (
+          <div style={{ 
+            fontSize: "11px", 
+            fontWeight: 700, 
+            color: "var(--accent)", 
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            marginBottom: "12px",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px"
+          }}>
+            {project.associatedLogo && (
+              <img src={project.associatedLogo} alt="" style={{ width: "16px", height: "16px", objectFit: "contain" }} />
             )}
-            <h3 style={{
-              fontSize: "24px", fontWeight: 800,
-              letterSpacing: "-0.03em", color: "var(--text-primary)",
-              marginBottom: "8px", lineHeight: 1.1,
-            }}>
-              {project.name}
-            </h3>
-            
-            <div style={{ 
-              fontSize: "14px", 
-              color: "var(--accent)", 
-              fontWeight: 700, 
-              marginBottom: "16px",
-              display: "flex",
-              alignItems: "center",
-              gap: "6px"
-            }} className="tagline-row">
-              <span style={{ opacity: 0.8 }}>✦</span> {project.tagline}
-            </div>
+            {project.associatedWith}
           </div>
-          
-          <div className="expand-icon" style={{ display: "none", color: "var(--text-tertiary)", transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)", transform: isExpanded ? "rotate(180deg)" : "rotate(0)" }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-          </div>
+        )}
+        
+        <h3 style={{
+          fontSize: "22px", fontWeight: 800,
+          letterSpacing: "-0.02em", color: "var(--text-primary)",
+          marginBottom: "6px", lineHeight: 1.2,
+        }}>
+          {project.name}
+        </h3>
+        
+        <p style={{ 
+          fontSize: "13px", 
+          color: "var(--text-tertiary)", 
+          fontWeight: 600, 
+          marginBottom: "16px",
+          display: "flex",
+          alignItems: "center",
+          gap: "6px"
+        }}>
+          <span style={{ color: "var(--accent)" }}>✦</span> {project.tagline}
+        </p>
+
+        <p style={{ 
+          fontSize: "14px", 
+          color: "var(--text-secondary)", 
+          lineHeight: 1.6, 
+          marginBottom: "24px",
+          display: "-webkit-box",
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden"
+        }}>
+          {project.description}
+        </p>
+
+        {/* Tech Stack */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "28px", marginTop: "auto" }}>
+          {project.tags.slice(0, 4).map((tag: string) => (
+            <span
+              key={tag}
+              style={{
+                padding: "4px 10px",
+                background: "var(--bg-tertiary)",
+                border: "1px solid var(--border)",
+                borderRadius: "8px",
+                fontSize: "10px", 
+                fontWeight: 700, 
+                color: "var(--text-tertiary)",
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+          {project.tags.length > 4 && (
+            <span style={{ fontSize: "10px", color: "var(--text-tertiary)", alignSelf: "center", fontWeight: 600 }}>
+              +{project.tags.length - 4} more
+            </span>
+          )}
         </div>
 
-        <AnimatePresence>
-          {(!isMobile || isExpanded) && (
-            <motion.div 
-              className="project-expandable-content"
-              initial={isMobile ? { height: 0, opacity: 0 } : {}}
-              animate={isMobile ? { height: "auto", opacity: 1 } : {}}
-              exit={isMobile ? { height: 0, opacity: 0 } : {}}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as any }}
-              style={{ overflow: "hidden" }}
+        {/* Action Buttons */}
+        <div style={{ display: "flex", gap: "10px" }}>
+          {project.github ? (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="proj-btn github"
+              style={{
+                flex: 1,
+                padding: "10px",
+                background: "var(--bg-tertiary)",
+                border: "1px solid var(--border)",
+                borderRadius: "12px",
+                fontSize: "13px",
+                fontWeight: 700,
+                color: "var(--text-primary)",
+                textAlign: "center",
+                textDecoration: "none",
+                transition: "all 0.3s ease"
+              }}
             >
-              <p style={{ 
-                fontSize: "15px", 
-                color: "var(--text-secondary)", 
-                lineHeight: 1.6, 
-                marginBottom: "24px",
-                marginTop: isMobile ? "20px" : "0"
-              }}>
-                {project.description}
-              </p>
-
-              {/* Tech Stack Pills */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "32px" }}>
-                {project.tags.map((tag: string) => (
-                  <span
-                    key={tag}
-                    style={{
-                      padding: "5px 12px",
-                      background: "var(--bg-tertiary)",
-                      border: "1px solid var(--border)",
-                      borderRadius: "8px",
-                      fontSize: "11px", 
-                      fontWeight: 600, 
-                      color: "var(--text-secondary)",
-                      transition: "all 0.3s ease",
-                    }}
-                    className="tech-tag"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div style={{ marginTop: "auto", display: "flex", gap: "12px" }}>
-                {project.github ? (
-                  <a
-                    href={project.github}
-                    onClick={(e) => e.stopPropagation()}
-                    className="project-link github"
-                    style={{
-                      flex: 1,
-                      textAlign: "center",
-                      padding: "12px",
-                      background: "var(--bg-tertiary)",
-                      border: "1px solid var(--border)",
-                      borderRadius: "12px",
-                      fontSize: "14px",
-                      fontWeight: 700,
-                      color: "var(--text-primary)",
-                      transition: "all 0.3s ease",
-                      textDecoration: "none"
-                    }}
-                  >
-                    GitHub ↗
-                  </a>
-                ) : (
-                  <div style={{
-                    flex: 1,
-                    textAlign: "center",
-                    padding: "12px",
-                    background: "var(--bg-secondary)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "12px",
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    color: "var(--text-tertiary)",
-                    opacity: 0.7
-                  }}>
-                    {t.ui.projPrivate}
-                  </div>
-                )}
-                
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    onClick={(e) => e.stopPropagation()}
-                    className="project-link demo"
-                    style={{
-                      flex: 1,
-                      textAlign: "center",
-                      padding: "12px",
-                      background: "var(--accent)",
-                      borderRadius: "12px",
-                      fontSize: "14px",
-                      fontWeight: 700,
-                      color: "#fff",
-                      transition: "all 0.3s ease",
-                      boxShadow: "0 4px 12px var(--accent-glow)",
-                      textDecoration: "none"
-                    }}
-                  >
-                    Live Demo
-                  </a>
-                )}
-              </div>
-            </motion.div>
+              GitHub ↗
+            </a>
+          ) : (
+            <div style={{
+              flex: 1,
+              padding: "10px",
+              background: "var(--bg-secondary)",
+              border: "1px solid var(--border)",
+              borderRadius: "12px",
+              fontSize: "12px",
+              fontWeight: 600,
+              color: "var(--text-tertiary)",
+              textAlign: "center",
+              opacity: 0.6
+            }}>
+              {t.ui.projPrivate}
+            </div>
           )}
-        </AnimatePresence>
+          
+          {project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="proj-btn demo"
+              style={{
+                flex: 1,
+                padding: "10px",
+                background: "var(--accent)",
+                borderRadius: "12px",
+                fontSize: "13px",
+                fontWeight: 700,
+                color: "#fff",
+                textAlign: "center",
+                textDecoration: "none",
+                transition: "all 0.3s ease",
+                boxShadow: "0 4px 12px var(--accent-glow)"
+              }}
+            >
+              Live Demo
+            </a>
+          )}
+        </div>
       </div>
 
       <style jsx>{`
-        .project-link.github:hover {
+        .proj-btn.github:hover {
           background: var(--bg-secondary) !important;
           border-color: var(--accent) !important;
           color: var(--accent) !important;
-          transform: translateY(-2px);
         }
-        .project-link.demo:hover {
+        .proj-btn.demo:hover {
           background: var(--accent-hover) !important;
           transform: translateY(-2px);
           box-shadow: 0 6px 16px var(--accent-glow) !important;
         }
-        .tech-tag:hover {
-          border-color: var(--accent) !important;
-          color: var(--accent) !important;
-          background: var(--accent-soft) !important;
-        }
-        @media (max-width: 640px) {
-          .project-card-inner {
-            flex-direction: column !important;
-            padding: 24px 20px !important;
-            border-radius: 20px !important;
-            border: 1px solid var(--border) !important;
-            background: var(--bg-secondary) !important;
-            box-shadow: var(--shadow-sm) !important;
-            height: auto !important;
-            margin-bottom: 12px !important;
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
-          }
-          .project-card-inner {
-            padding: 20px !important;
-            border-radius: 20px !important;
-            border: 1px solid var(--border) !important;
-            background: var(--bg-card) !important;
-            box-shadow: var(--shadow-sm) !important;
-            margin-bottom: 12px !important;
-          }
-          .project-header-row {
-            gap: 16px !important;
-          }
-          .associated-label {
-            display: flex !important;
-            margin-bottom: 0 !important;
-            font-size: 11px !important;
-            order: 2; /* Move place name below title */
-          }
-          .associated-label div {
-            display: none !important; /* Hide small logo in label, we'll show a bigger one */
-          }
-          /* Custom Logo on Left for Mobile */
-          .mobile-project-logo {
-             display: flex !important;
-             width: 44px !important;
-             height: 44px !important;
-             border-radius: 8px !important;
-             background: white !important;
-             border: 1px solid var(--border) !important;
-             padding: 6px !important;
-             flex-shrink: 0 !important;
-          }
-          .project-card-inner h3 {
-            font-size: 15px !important;
-            margin-bottom: 2px !important;
-          }
-          .tagline-row {
-            display: none !important;
-          }
-          .project-card-inner.is-expanded .tagline-row {
-            display: flex !important;
-            margin-top: 12px !important;
-          }
-          .expand-icon {
-            display: block !important;
-            margin-left: auto !important;
-          }
-          .project-image-container {
-            display: none !important;
-          }
-          .project-card-inner.is-expanded .project-image-container {
-            display: block !important;
-            width: 100% !important;
-            height: 200px !important;
-            border-radius: 14px !important;
-            margin-top: 24px !important;
-            margin-bottom: 24px !important;
-          }
+        .project-card-v2:hover {
+          border-color: var(--accent-soft) !important;
+          box-shadow: var(--shadow-lg) !important;
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 }
-
-
 
 export default function Projects() {
   const { t } = useLanguage();
   const { ref, inView } = useInView();
+  const [filter, setFilter] = useState("All");
   const [showAll, setShowAll] = useState(false);
   
-  const INITIAL_LIMIT = 4;
-  const displayedProjects = showAll ? t.projects : t.projects.slice(0, INITIAL_LIMIT);
+  const categories = ["All", "Next.js", "Laravel", "React"];
+  
+  const filteredProjects = t.projects.filter((p: any) => {
+    if (filter === "All") return true;
+    return p.tags.some((tag: string) => tag.includes(filter));
+  });
+
+  const INITIAL_LIMIT = 6;
+  const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, INITIAL_LIMIT);
 
   return (
-    <section
-      id="projects"
-      style={{
-        padding: "100px 20px",
-        background: "var(--bg-primary)",
-        transition: "background 0.35s ease",
-        position: "relative",
-        overflow: "hidden",
-      }}
-      className="projects-section"
-    >
-      <div className="grid-pattern" style={{ opacity: 0.4 }} />
-      <FloatingSymbols density={10} />
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "60px" }}>
-          <span className="section-label">{t.ui.projects}</span>
-          <h2
+    <section id="projects" className="projects-section" style={{
+      padding: "120px 20px",
+      background: "var(--bg-primary)",
+      position: "relative",
+      overflow: "hidden"
+    }}>
+      <div className="grid-pattern" style={{ opacity: 0.3 }} />
+      <FloatingSymbols density={8} />
+
+      <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 5 }}>
+        {/* Header */}
+        <div style={{ marginBottom: "60px", textAlign: "center" }}>
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="section-label"
+          >
+            {t.ui.projects}
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             style={{
               fontFamily: '"Stack Sans Notch", sans-serif',
-              fontSize: "clamp(28px, 6vw, 52px)",
-              fontWeight: 800, letterSpacing: "-0.03em",
-              lineHeight: 1.1, color: "var(--text-primary)", maxWidth: "560px",
+              fontSize: "clamp(32px, 5vw, 56px)",
+              fontWeight: 900, letterSpacing: "-0.04em",
+              lineHeight: 1.1, color: "var(--text-primary)",
+              marginTop: "16px"
             }}
           >
             {t.ui.projTitle1}
             <br />
-            <span style={{ color: "var(--text-tertiary)", fontWeight: 700 }}>
-              {t.ui.projTitle2}
-            </span>
-          </h2>
+            <span className="shimmer-text">{t.ui.projTitle2}</span>
+          </motion.h2>
         </div>
 
-        <div
-          ref={ref}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))",
-            gap: "32px",
-          }}
-          className="projects-grid"
-        >
-          {displayedProjects.map((project, idx) => (
-            <ProjectCard key={project.id} project={project} idx={idx} inView={inView} />
+        {/* Filters */}
+        <div style={{ 
+          display: "flex", 
+          justifyContent: "center", 
+          gap: "10px", 
+          marginBottom: "50px",
+          flexWrap: "wrap" 
+        }}>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => {
+                setFilter(cat);
+                setShowAll(false);
+              }}
+              style={{
+                padding: "8px 20px",
+                background: filter === cat ? "var(--accent)" : "var(--bg-card)",
+                border: "1px solid",
+                borderColor: filter === cat ? "var(--accent)" : "var(--border)",
+                borderRadius: "100px",
+                fontSize: "14px",
+                fontWeight: 700,
+                color: filter === cat ? "#fff" : "var(--text-secondary)",
+                cursor: "pointer",
+                transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
+                boxShadow: filter === cat ? "0 4px 12px var(--accent-glow)" : "none"
+              }}
+              onMouseEnter={(e) => {
+                if (filter !== cat) {
+                  e.currentTarget.style.borderColor = "var(--accent)";
+                  e.currentTarget.style.color = "var(--accent)";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (filter !== cat) {
+                  e.currentTarget.style.borderColor = "var(--border)";
+                  e.currentTarget.style.color = "var(--text-secondary)";
+                }
+              }}
+            >
+              {cat}
+            </button>
           ))}
         </div>
 
-        {t.projects.length > INITIAL_LIMIT && (
-          <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
+        {/* Grid */}
+        <div ref={ref} style={{ position: "relative" }}>
+          <LayoutGroup>
+            <motion.div 
+              layout
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+                gap: "24px",
+              }}
+              className="projects-grid-bento"
+            >
+              <AnimatePresence mode="popLayout">
+                {displayedProjects.map((project: any) => (
+                  <ProjectCard 
+                    key={project.id} 
+                    project={project} 
+                    inView={inView} 
+                  />
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          </LayoutGroup>
+        </div>
+
+        {/* Load More */}
+        {filteredProjects.length > INITIAL_LIMIT && (
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "60px" }}>
             <button
               onClick={() => setShowAll(!showAll)}
               style={{
-                padding: "12px 28px",
+                padding: "14px 40px",
                 background: "transparent",
                 border: "1px solid var(--border)",
                 borderRadius: "100px",
-                fontSize: "14px", fontWeight: 700,
+                fontSize: "14px", fontWeight: 800,
                 color: "var(--text-secondary)",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
               }}
               onMouseEnter={(e) => {
-                const el = e.currentTarget;
-                el.style.color = "var(--text-primary)";
-                el.style.borderColor = "var(--border-hover)";
-                el.style.background = "var(--bg-tertiary)";
+                e.currentTarget.style.borderColor = "var(--accent)";
+                e.currentTarget.style.color = "var(--text-primary)";
+                e.currentTarget.style.background = "var(--bg-tertiary)";
               }}
               onMouseLeave={(e) => {
-                const el = e.currentTarget;
-                el.style.color = "var(--text-secondary)";
-                el.style.borderColor = "var(--border)";
-                el.style.background = "transparent";
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.color = "var(--text-secondary)";
+                e.currentTarget.style.background = "transparent";
               }}
             >
               {showAll ? t.ui.showLess : t.ui.showMore}
@@ -558,13 +470,19 @@ export default function Projects() {
       </div>
 
       <style jsx>{`
-        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.88)} }
+        .shimmer-text {
+          background: linear-gradient(90deg, var(--text-tertiary), var(--text-primary), var(--text-tertiary));
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: shimmer 4s linear infinite;
+        }
+        @keyframes shimmer {
+          to { background-position: 200% center; }
+        }
         @media (max-width: 768px) {
           .projects-section { padding: 80px 16px !important; }
-        }
-        @media (max-width: 640px) {
-          .projects-grid { grid-template-columns: 1fr !important; }
-          .project-card-inner { padding: 28px 24px !important; }
+          .projects-grid-bento { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>

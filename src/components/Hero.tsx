@@ -13,6 +13,7 @@ export default function Hero() {
 
   const roles = [
     t.personal.tagline, // Software Engineer (translated)
+    "Long Life Learner",
     "Fullstack Developer",
     "Frontend Developer",
     "Backend Developer",

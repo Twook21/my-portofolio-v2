@@ -107,9 +107,9 @@ export default function Skills() {
 
   const categories = [
     { label: t.ui.skillsCat1, data: t.skills.frontend, color: "var(--accent)" },
-    { label: t.ui.skillsCat2, data: t.skills.backend,  color: "var(--green)" },
-    { label: t.ui.skillsCat3, data: t.skills.devops,   color: "var(--orange)" },
-    { label: t.ui.skillsCat4, data: t.skills.testing,  color: "var(--purple)" },
+    { label: t.ui.skillsCat2, data: t.skills.backend, color: "var(--green)" },
+    { label: t.ui.skillsCat3, data: t.skills.devops, color: "var(--orange)" },
+    { label: t.ui.skillsCat4, data: t.skills.testing, color: "var(--purple)" },
   ];
 
   const techLogos = [
@@ -118,13 +118,13 @@ export default function Skills() {
     { name: "TypeScript", url: "https://cdn.simpleicons.org/typescript/3178C6" },
     { name: "Tailwind CSS", url: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
     { name: ".NET Core", url: "https://cdn.simpleicons.org/dotnet/512BD4" },
-    { name: "C#", url: "https://cdn.simpleicons.org/csharp/239120" },
+    { name: "C#", url: "/c.png" },
     { name: "PostgreSQL", url: "https://cdn.simpleicons.org/postgresql/4169E1" },
     { name: "Docker", url: "https://cdn.simpleicons.org/docker/2496ED" },
     { name: "Jest", url: "https://cdn.simpleicons.org/jest/C21325" },
     { name: "GitHub", url: "https://cdn.simpleicons.org/github/white" },
     { name: "FastAPI", url: "https://cdn.simpleicons.org/fastapi/05998B" },
-    { name: "Oracle", url: "https://cdn.simpleicons.org/oracle/F80000" },
+    { name: "Oracle", url: "/oracle.png" },
   ];
 
   return (
@@ -165,11 +165,11 @@ export default function Skills() {
         </div>
 
         {/* Infinite Tech Marquee */}
-        <div 
-          className="marquee-container" 
-          style={{ 
-            marginBottom: "80px", 
-            opacity: inView ? 1 : 0, 
+        <div
+          className="marquee-container"
+          style={{
+            marginBottom: "80px",
+            opacity: inView ? 1 : 0,
             transition: "opacity 1s ease",
             background: "rgba(128, 128, 128, 0.03)",
             border: "1px solid rgba(128, 128, 128, 0.08)",
@@ -180,16 +180,16 @@ export default function Skills() {
           <div className="marquee-content">
             {[...techLogos, ...techLogos].map((logo, i) => (
               <div key={i} className="marquee-item">
-                <img 
-                  src={logo.url} 
-                  alt={logo.name} 
-                  style={{ 
-                    height: "28px", 
-                    width: "auto", 
+                <img
+                  src={logo.url}
+                  alt={logo.name}
+                  style={{
+                    height: "28px",
+                    width: "auto",
                     filter: "grayscale(0.4) brightness(1.2)",
                     opacity: 1,
                     transition: "all 0.3s ease"
-                  }} 
+                  }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.filter = "grayscale(0) brightness(1)";
                     e.currentTarget.style.opacity = "1";
