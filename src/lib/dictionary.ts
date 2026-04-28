@@ -8,10 +8,10 @@ export const dictionary = {
         "A Software Developer bridging the gap between robust backend services and fluid, modern user interfaces. I specialize in the Next.js & .NET ecosystems, with a deep focus on quality-driven delivery and scalable architecture.",
       location: "Jakarta, Indonesia",
       email: "akmalbintang33@gmail.com",
-      github: "https://github.com/akmal-bintang",
-      linkedin: "https://linkedin.com/in/akmal-bintang",
+      github: "https://github.com/Twook21",
+      linkedin: "https://linkedin.com/in/akmal-bintang-budiawan",
       status: "Open to opportunities",
-      philosophy: "Clean Code Evangelist & Growth Mindset Practitioner",
+      philosophy: "Driven by impact, defined by adaptability",
       goal: "Expert Software Engineer · Singapore Tech Ecosystem 2031",
     },
     experiences: [
@@ -163,7 +163,7 @@ export const dictionary = {
       {
         id: "pgri",
         role: "Full-Stack Web Developer",
-        company: "PGRI",
+        company: "PGRI Education Foundation",
         parent: "Education Sector",
         period: "Oct 2024 — Aug 2025",
         location: "Bandung, West Java",
@@ -202,11 +202,11 @@ export const dictionary = {
           "Integrated machine learning APIs for user data processing",
           "Delivered personalized recommendations with 90% accuracy",
         ],
-        github: "#",
-        demo: "#",
+        github: null,
+        demo: "http://telco-six.vercel.app/",
         image: "/projects/telcorecs.png",
-        associatedWith: "Enterprise Client",
-        associatedLogo: "/logo-experience/bfa.png",
+        associatedWith: "ASAH",
+        associatedLogo: "/logo-experience/asah.png",
       },
       {
         id: "nomi",
@@ -223,15 +223,15 @@ export const dictionary = {
           "Built responsive, dynamic frontend interface with Next.js",
           "Meticulously clean, linted code adhering to ESLint standards",
         ],
-        github: "#",
-        demo: "#",
+        github: null,
+        demo: "https://nomi-antiwastefood.vercel.app/",
         image: "/projects/nomi.png",
-        associatedWith: "Community Project",
-        associatedLogo: "/logo-experience/sci.png",
+        associatedWith: "Jabar Digital Academy",
+        associatedLogo: "/logo-experience/jida.png",
       },
       {
         id: "pgri-finance",
-        name: "PGRI Finance",
+        name: "PGRI Education Foundation Finance",
         tagline: "Centralized Financial Ecosystem",
         description: "A robust, centralized financial management platform designed to consolidate reports across dispersed regional branches, replacing manual workflows.",
         status: "Shipped",
@@ -247,7 +247,7 @@ export const dictionary = {
         github: null,
         demo: null,
         image: "/projects/pgri-finance.png",
-        associatedWith: "PGRI",
+        associatedWith: "PGRI Education Foundation",
         associatedLogo: "/logo-experience/pgri.png",
       },
       {
@@ -265,11 +265,11 @@ export const dictionary = {
           "Achieved 90% verification accuracy rate",
           "Real-time analytics dashboard with anomaly detection",
         ],
-        github: "#",
-        demo: "#",
+        github: null,
+        demo: null,
         image: "/projects/fintap.png",
-        associatedWith: "Internal Project",
-        associatedLogo: "/logo-experience/jida.png",
+        associatedWith: "PGRI Education Foundation",
+        associatedLogo: "/logo-experience/pgri.png",
       },
       {
         id: "wastego-project",
@@ -285,11 +285,11 @@ export const dictionary = {
           "Translated complex user flows into responsive components",
           "Scaled platform from campus to community level",
         ],
-        github: "#",
-        demo: "#",
+        github: null,
+        demo: "https://wastegosite.vercel.app/",
         image: "/projects/wastego.png",
-        associatedWith: "Campus Initiative",
-        associatedLogo: "/logo-experience/asah.png",
+        associatedWith: "EEPIS",
+        associatedLogo: null,
       },
       {
         id: "e-archive",
@@ -308,12 +308,12 @@ export const dictionary = {
         github: null,
         demo: null,
         image: "/projects/e-archive.png",
-        associatedWith: "Internal System",
+        associatedWith: "PGRI Education Foundation",
         associatedLogo: "/logo-experience/pgri.png",
       },
       {
         id: "yplp-portal",
-        name: "YPLP PGRI West Java",
+        name: "YPLP PGRI Education Foundation West Java",
         tagline: "Official Web Portal",
         description: "A robust digital presence portal equipped with a custom Content Management System (CMS).",
         status: "Shipped",
@@ -326,9 +326,9 @@ export const dictionary = {
           "Ensured maximum uptime and data safety",
         ],
         github: null,
-        demo: "#",
+        demo: "https://perwakilanyplppgrijawabarat.com/",
         image: "/projects/pgri.png",
-        associatedWith: "PGRI",
+        associatedWith: "PGRI Education Foundation",
         associatedLogo: "/logo-experience/pgri.png",
       },
       {
@@ -345,11 +345,11 @@ export const dictionary = {
           "Focus on modularity and foundational React architecture",
           "Seamless single-page application experience",
         ],
-        github: "#",
-        demo: "#",
+        github: null,
+        demo: "https://jocular-alpaca-d526ba.netlify.app/",
         image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000&auto=format&fit=crop",
-        associatedWith: "Personal Project",
-        associatedLogo: null,
+        associatedWith: "Sanbercode",
+        associatedLogo: "/logo-experience/sanbercode.png",
       },
     ],
     skills: {
@@ -448,7 +448,7 @@ export const dictionary = {
       },
       {
         date: "2024 — 2025",
-        title: "11-Month Fullstack Internship (PGRI)",
+        title: "11-Month Fullstack Internship (PGRI Education Foundation)",
         description: "Shipped end-to-end internal web applications, establishing a strong baseline in full-stack development and operational systems.",
         tag: "Building the Foundation",
         color: "accent",
@@ -462,7 +462,7 @@ export const dictionary = {
       },
       {
         date: "2023",
-        title: "Mastering Web Fundamentals",
+        title: "My First <Hello World !>",
         description: "Initiated my software engineering journey during my first semester, mastering the core building blocks: HTML, CSS, and JavaScript.",
         tag: "The Starting Point",
         color: "green",
@@ -475,7 +475,7 @@ export const dictionary = {
         date: "Feb 2026",
         logo: "/certifications/asu.png",
         skills: ["Front-End Development"],
-        link: "#"
+        link: "https://us-asean.asu.edu/"
       },
       {
         name: "Front-End Web & Back-end Developer",
@@ -484,7 +484,7 @@ export const dictionary = {
         id: "ASAH/GRAD/XXVI-01/F123D5Y0133",
         logo: "/logo-experience/asah.png",
         skills: ["JavaScript", "Front-End Development"],
-        link: "#"
+        link: "https://www.dicoding.com/asah"
       },
       {
         name: "IBM Front-End Developer",
@@ -493,7 +493,7 @@ export const dictionary = {
         id: "DTKKFQCJQIFI",
         logo: "/certifications/ibm.png",
         skills: ["React.js", "Front-End Development"],
-        link: "#"
+        link: "https://www.coursera.org/account/accomplishments/professional-cert/certificate/DTKKFQCJQIFI"
       },
       {
         name: "Cloud Native, DevOps, Agile & NoSQL Essentials",
@@ -501,7 +501,7 @@ export const dictionary = {
         date: "Jan 2026",
         logo: "/certifications/coursera.png",
         skills: ["Cloud Native", "DevOps"],
-        link: "#"
+        link: "https://www.credly.com/badges/2f511ade-fbfd-483f-b62b-2d0e206e368b/linked_in_profile"
       },
       {
         name: "React JS - Web Frontend Development",
@@ -510,7 +510,7 @@ export const dictionary = {
         id: "48732/828/SNBR/BOOTCAMP/XII/2025",
         logo: "/logo-experience/sanbercode.png",
         skills: ["JavaScript", "React.js"],
-        link: "#"
+        link: "https://sanbercode.com/certificate/in/64e461bd-6d47-4aba-9f0d-4e7adfec7dc2"
       },
       {
         name: "Certificate Of Competence - Web Developer",
@@ -519,7 +519,7 @@ export const dictionary = {
         id: "13231353",
         logo: "/certifications/bnsp.png",
         skills: ["Tailwind CSS", "Debugging"],
-        link: "#"
+        link: "https://bnsp.go.id/"
       },
       {
         name: "Certificate Of Competence - Junior Web Programmer",
@@ -528,7 +528,7 @@ export const dictionary = {
         id: "14357791",
         logo: "/certifications/bnsp.png",
         skills: ["User Interface Design", "Structured Programming"],
-        link: "#"
+        link: "https://bnsp.go.id/"
       },
       {
         name: "Fullstack Web Programming",
@@ -536,7 +536,7 @@ export const dictionary = {
         date: "Aug 2025",
         logo: "/logo-experience/jida.png",
         skills: ["NextAuth", "Redux.js"],
-        link: "#"
+        link: "https://jda.alkademi.id/dashboard/students/profile/7d6c2f3a5f1feb6e9048a0a0ccc0c07866764adaaaf40995?slug=fase-2-fullstack-web-programming---jida-2025"
       },
       {
         name: "AWS Academy Graduate - AWS Academy Cloud Foundations",
@@ -544,7 +544,7 @@ export const dictionary = {
         date: "Jun 2025",
         logo: "/certifications/aws.png",
         skills: ["Cloud Computing"],
-        link: "#"
+        link: "https://www.credly.com/badges/41f700bb-eceb-42b0-b879-05ca1a4b5b01/linked_in_profile"
       }
     ],
     moments: [
@@ -560,10 +560,10 @@ export const dictionary = {
         name: "FindMe Team Dev",
         role: "Product Owner",
         teamSize: 4,
-        description: "A location-based community application designed to connect people with local services and real-time community updates. Built with a focus on high-performance map integration and real-time data sync.",
+        description: "Driving early-stage product development within a lean, 4-person startup environment. Focused on rapid prototyping, zero-to-one system architecture, and building a scalable technical foundation for an upcoming market launch.",
         contribution: "Developed the core map interface and state management for real-time location updates.",
         logo: "📍",
-        tags: ["React Native", "Google Maps API", "Firebase"],
+        tags: [],
         period: "2025",
         members: [
           { name: "Team Member 1", github: "#" },
@@ -575,12 +575,12 @@ export const dictionary = {
       {
         id: "insomnia-space",
         name: "Insomnia-Space",
-        role: "Core Contributor",
+        role: "Frontend Developer",
         teamSize: 6,
         logo: "🌌",
-        description: "A collaborative workspace for developers to share API collections and documentation. Active collaborator on 5 repositories within the organization, maintaining core utility libraries.",
+        description: "Collaborated within (Team Insomnia) a fast-paced, cross-functional engineering team during the Dicoding Capstone. Successfully bridged the gap between complex AI models and user interfaces to deliver a smart, production-ready B2B recommendation engine for telecom enterprises.",
         contribution: "Implemented the collaborative real-time editor and organized organization-wide documentation standards.",
-        tags: ["Next.js", "Socket.io", "Redis"],
+        tags: [],
         period: "2024 — 2025",
         members: [
           { name: "Project Lead", github: "#" },
@@ -593,11 +593,11 @@ export const dictionary = {
         id: "kala-esok",
         name: "Kala-Esok",
         role: "Frontend Developer",
-        teamSize: 3,
+        teamSize: 6,
         logo: "⏳",
-        description: "A productivity and time-management application focused on long-term goal tracking and visual timeline planning. Features a unique 'future-vision' dashboard.",
+        description: "Navigated distributed development in a 6-person cross-university collaboration between PENS and BINUS. Successfully orchestrated the technical delivery of a patented, legally certified social application, proving my ability to ship robust products within strict regulatory frameworks.",
         contribution: "Crafted the complex timeline visualization components and interactive goal-setting UI.",
-        tags: ["Vue.js", "D3.js", "Tailwind CSS"],
+        tags: [],
         period: "2024",
         members: [
           { name: "Designer", github: "#" },
@@ -612,9 +612,9 @@ export const dictionary = {
         role: "Frontend Developer",
         teamSize: 5,
         logo: "♻️",
-        description: "An eco-tech platform aimed at optimizing waste collection and recycling workflows. Connects households with local recycling centers through a gamified interface.",
+        description: "Built alongside a tight-knit team of 5 engineering peers from PENS. What started as a shared environmental vision among friends evolved into WasteGo a fully functional smart waste management platform driven by seamless technical synergy and collective passion.",
         contribution: "Built the rewards system backend and integrated the mobile-responsive user dashboard.",
-        tags: ["React", "Node.js", "PostgreSQL"],
+        tags: [],
         period: "2024",
         members: [
           { name: "Contributor 1", github: "#" },
@@ -683,7 +683,7 @@ export const dictionary = {
       skillsCat4: "Testing & Quality",
       contactTitle1: "Let's build",
       contactTitle2: "something great.",
-      contactDesc1: "Whether you're a recruiter, a team looking for a frontend engineer, or just want to talk tech — my inbox is always open.",
+      contactDesc1: "whether you're scaling a team, looking for a relentless problem solver, or just want to talk clean code, my inbox is open.",
       contactCopy: "Copy",
       contactCopied: "✓ Copied!",
       contactSend: "Send Email ↗",
@@ -716,8 +716,8 @@ export const dictionary = {
         "Mahasiswa tingkat akhir Teknik Informatika di PENS. Saya merancang frontend tingkat perusahaan dan memecahkan masalah yang berarti — saat ini berkontribusi di bidang teknologi kesehatan di Kalbe Farma, dan menargetkan panggung teknologi global.",
       location: "Jakarta, Indonesia",
       email: "akmalbintang33@gmail.com",
-      github: "https://github.com/akmal-bintang",
-      linkedin: "https://linkedin.com/in/akmal-bintang",
+      github: "https://github.com/Twook21",
+      linkedin: "https://linkedin.com/in/akmal-bintang-budiawan",
       status: "Terbuka untuk peluang",
       philosophy: "Penggiat Clean Code & Praktisi Growth Mindset",
       goal: "Software Engineer Kelas Dunia · Ekosistem Teknologi Singapura 2031",
@@ -871,7 +871,7 @@ export const dictionary = {
       {
         id: "pgri",
         role: "Full-Stack Web Developer",
-        company: "PGRI",
+        company: "PGRI Education Foundation",
         parent: "Sektor Pendidikan",
         period: "Okt 2024 — Agu 2025",
         location: "Bandung, Jawa Barat",
@@ -910,11 +910,11 @@ export const dictionary = {
           "Mengintegrasikan API machine learning untuk pemrosesan data pengguna",
           "Memberikan rekomendasi yang dipersonalisasi dengan akurasi hingga 90%",
         ],
-        github: "#",
-        demo: "#",
+        github: null,
+        demo: "http://telco-six.vercel.app/",
         image: "/projects/telcorecs.png",
-        associatedWith: "Klien Enterprise",
-        associatedLogo: "/logo-experience/bfa.png",
+        associatedWith: "ASAH",
+        associatedLogo: "/logo-experience/asah.png",
       },
       {
         id: "nomi",
@@ -931,15 +931,15 @@ export const dictionary = {
           "Membangun antarmuka frontend yang responsif dan dinamis dengan Next.js",
           "Kode yang sangat bersih dan rapi sesuai dengan standar ESLint",
         ],
-        github: "#",
-        demo: "#",
+        github: null,
+        demo: "https://nomi-antiwastefood.vercel.app/",
         image: "/projects/nomi.png",
-        associatedWith: "Proyek Komunitas",
-        associatedLogo: "/logo-experience/sci.png",
+        associatedWith: "Jabar Digital Academy",
+        associatedLogo: "/logo-experience/jida.png",
       },
       {
         id: "pgri-finance",
-        name: "PGRI Finance",
+        name: "PGRI Education Foundation Finance",
         tagline: "Ekosistem Keuangan Terpusat",
         description: "Platform manajemen keuangan terpusat yang tangguh untuk mengonsolidasikan laporan di seluruh cabang regional, menggantikan alur kerja manual.",
         status: "Dirilis",
@@ -955,7 +955,7 @@ export const dictionary = {
         github: null,
         demo: null,
         image: "/projects/pgri-finance.png",
-        associatedWith: "PGRI",
+        associatedWith: "PGRI Education Foundation",
         associatedLogo: "/logo-experience/pgri.png",
       },
       {
@@ -973,11 +973,11 @@ export const dictionary = {
           "Mencapai tingkat akurasi verifikasi hingga 90%",
           "Dasbor analitik real-time dengan deteksi anomali",
         ],
-        github: "#",
-        demo: "#",
+        github: null,
+        demo: null,
         image: "/projects/fintap.png",
-        associatedWith: "Proyek Internal",
-        associatedLogo: "/logo-experience/jida.png",
+        associatedWith: "PGRI Education Foundation",
+        associatedLogo: "/logo-experience/pgri.png",
       },
       {
         id: "wastego-project",
@@ -993,11 +993,11 @@ export const dictionary = {
           "Mengubah alur pengguna yang kompleks menjadi komponen yang responsif",
           "Mengembangkan platform dari level kampus ke level komunitas",
         ],
-        github: "#",
-        demo: "#",
+        github: null,
+        demo: "https://wastegosite.vercel.app/",
         image: "/projects/wastego.png",
-        associatedWith: "Inisiatif Kampus",
-        associatedLogo: "/logo-experience/asah.png",
+        associatedWith: "EEPIS",
+        associatedLogo: null,
       },
       {
         id: "e-archive",
@@ -1016,12 +1016,12 @@ export const dictionary = {
         github: null,
         demo: null,
         image: "/projects/e-archive.png",
-        associatedWith: "Sistem Internal",
+        associatedWith: "PGRI Education Foundation",
         associatedLogo: "/logo-experience/pgri.png",
       },
       {
         id: "yplp-portal",
-        name: "YPLP PGRI Jawa Barat",
+        name: "YPLP PGRI Education Foundation Jawa Barat",
         tagline: "Portal Web Resmi",
         description: "Portal kehadiran digital yang tangguh dilengkapi dengan Content Management System (CMS) kustom.",
         status: "Dirilis",
@@ -1034,9 +1034,9 @@ export const dictionary = {
           "Memastikan uptime maksimal dan keamanan data",
         ],
         github: null,
-        demo: "#",
+        demo: "https://perwakilanyplppgrijawabarat.com/",
         image: "/projects/pgri.png",
-        associatedWith: "PGRI",
+        associatedWith: "PGRI Education Foundation",
         associatedLogo: "/logo-experience/pgri.png",
       },
       {
@@ -1053,11 +1053,11 @@ export const dictionary = {
           "Fokus pada modularitas dan arsitektur React dasar",
           "Pengalaman aplikasi single-page yang mulus",
         ],
-        github: "#",
-        demo: "#",
+        github: null,
+        demo: "https://jocular-alpaca-d526ba.netlify.app/",
         image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000&auto=format&fit=crop",
-        associatedWith: "Proyek Pribadi",
-        associatedLogo: null,
+        associatedWith: "Sanbercode",
+        associatedLogo: "/logo-experience/sanbercode.png",
       },
     ],
     skills: {
@@ -1156,7 +1156,7 @@ export const dictionary = {
       },
       {
         date: "2024 — 2025",
-        title: "Magang Fullstack 11-Bulan (PGRI)",
+        title: "Magang Fullstack 11-Bulan (PGRI Education Foundation)",
         description: "Merilis aplikasi web internal end-to-end, menetapkan basis yang kuat dalam pengembangan full-stack dan sistem operasional.",
         tag: "Membangun Fondasi",
         color: "accent",
@@ -1183,7 +1183,7 @@ export const dictionary = {
         date: "Feb 2026",
         logo: "/certifications/asu.png",
         skills: ["Front-End Development"],
-        link: "#"
+        link: "https://us-asean.asu.edu/"
       },
       {
         name: "Front-End Web & Back-end Developer",
@@ -1192,7 +1192,7 @@ export const dictionary = {
         id: "ASAH/GRAD/XXVI-01/F123D5Y0133",
         logo: "/logo-experience/asah.png",
         skills: ["JavaScript", "Front-End Development"],
-        link: "#"
+        link: "https://www.dicoding.com/asah"
       },
       {
         name: "IBM Front-End Developer",
@@ -1201,7 +1201,7 @@ export const dictionary = {
         id: "DTKKFQCJQIFI",
         logo: "/certifications/ibm.png",
         skills: ["React.js", "Front-End Development"],
-        link: "#"
+        link: "https://www.coursera.org/account/accomplishments/professional-cert/certificate/DTKKFQCJQIFI"
       },
       {
         name: "Cloud Native, DevOps, Agile & NoSQL Essentials",
@@ -1209,7 +1209,7 @@ export const dictionary = {
         date: "Jan 2026",
         logo: "/certifications/coursera.png",
         skills: ["Cloud Native", "DevOps"],
-        link: "#"
+        link: "https://www.credly.com/badges/2f511ade-fbfd-483f-b62b-2d0e206e368b/linked_in_profile"
       },
       {
         name: "React JS - Web Frontend Development",
@@ -1218,7 +1218,7 @@ export const dictionary = {
         id: "48732/828/SNBR/BOOTCAMP/XII/2025",
         logo: "/logo-experience/sanbercode.png",
         skills: ["JavaScript", "React.js"],
-        link: "#"
+        link: "https://sanbercode.com/certificate/in/64e461bd-6d47-4aba-9f0d-4e7adfec7dc2"
       },
       {
         name: "Certificate Of Competence - Web Developer",
@@ -1227,7 +1227,7 @@ export const dictionary = {
         id: "13231353",
         logo: "/certifications/bnsp.png",
         skills: ["Tailwind CSS", "Debugging"],
-        link: "#"
+        link: "https://bnsp.go.id/"
       },
       {
         name: "Certificate Of Competence - Junior Web Programmer",
@@ -1236,7 +1236,7 @@ export const dictionary = {
         id: "14357791",
         logo: "/certifications/bnsp.png",
         skills: ["User Interface Design", "Structured Programming"],
-        link: "#"
+        link: "https://bnsp.go.id/"
       },
       {
         name: "Fullstack Web Programming",
@@ -1244,7 +1244,7 @@ export const dictionary = {
         date: "Agu 2025",
         logo: "/logo-experience/jida.png",
         skills: ["NextAuth", "Redux.js"],
-        link: "#"
+        link: "https://jda.alkademi.id/dashboard/students/profile/7d6c2f3a5f1feb6e9048a0a0ccc0c07866764adaaaf40995?slug=fase-2-fullstack-web-programming---jida-2025"
       },
       {
         name: "AWS Academy Graduate - AWS Academy Cloud Foundations",
@@ -1252,7 +1252,7 @@ export const dictionary = {
         date: "Jun 2025",
         logo: "/certifications/aws.png",
         skills: ["Cloud Computing"],
-        link: "#"
+        link: "https://www.credly.com/badges/41f700bb-eceb-42b0-b879-05ca1a4b5b01/linked_in_profile"
       }
     ],
     moments: [
@@ -1271,7 +1271,7 @@ export const dictionary = {
         description: "Aplikasi komunitas berbasis lokasi yang dirancang untuk menghubungkan orang dengan layanan lokal dan pembaruan komunitas secara real-time. Dibangun dengan fokus pada integrasi peta berperforma tinggi dan sinkronisasi data real-time.",
         contribution: "Mengembangkan antarmuka peta inti dan manajemen state untuk pembaruan lokasi secara real-time.",
         logo: "📍",
-        tags: ["React Native", "Google Maps API", "Firebase"],
+        tags: [],
         period: "2025",
         members: [
           { name: "Anggota Tim 1", github: "#" },
@@ -1288,7 +1288,7 @@ export const dictionary = {
         logo: "🌌",
         description: "Ruang kerja kolaboratif bagi pengembang untuk berbagi koleksi API dan dokumentasi. Kolaborator aktif di 5 repositori dalam organisasi, memelihara pustaka utilitas inti.",
         contribution: "Mengimplementasikan editor kolaboratif real-time dan mengatur standar dokumentasi di seluruh organisasi.",
-        tags: ["Next.js", "Socket.io", "Redis"],
+        tags: [],
         period: "2024 — 2025",
         members: [
           { name: "Project Lead", github: "#" },
@@ -1301,11 +1301,11 @@ export const dictionary = {
         id: "kala-esok",
         name: "Kala-Esok",
         role: "Frontend Developer",
-        teamSize: 3,
+        teamSize: 6,
         logo: "⏳",
         description: "Aplikasi produktivitas dan manajemen waktu yang berfokus pada pelacakan tujuan jangka panjang dan perencanaan garis waktu visual. Menampilkan dasbor 'future-vision' yang unik.",
         contribution: "Membangun komponen visualisasi garis waktu yang kompleks dan UI pengaturan tujuan yang interaktif.",
-        tags: ["Vue.js", "D3.js", "Tailwind CSS"],
+        tags: [],
         period: "2024",
         members: [
           { name: "Desainer", github: "#" },
@@ -1322,7 +1322,7 @@ export const dictionary = {
         logo: "♻️",
         description: "Platform teknologi ramah lingkungan yang bertujuan untuk mengoptimalkan pengumpulan sampah dan alur kerja daur ulang. Menghubungkan rumah tangga dengan pusat daur ulang lokal melalui antarmuka yang digamifikasi.",
         contribution: "Membangun backend sistem poin dan mengintegrasikan dasbor pengguna yang responsif seluler.",
-        tags: ["React", "Node.js", "PostgreSQL"],
+        tags: [],
         period: "2024",
         members: [
           { name: "Kontributor 1", github: "#" },
