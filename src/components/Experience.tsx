@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useSpring, AnimatePresence, Variants } from "framer-motion";
 import FloatingSymbols from "./FloatingSymbols";
 
 export default function Experience() {
@@ -135,7 +135,7 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
   const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0, x: 30 },
     visible: {
       opacity: 1,
@@ -154,7 +154,7 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 15, filter: "blur(4px)" },
     visible: { 
       opacity: 1, 
@@ -164,7 +164,7 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
     }
   };
 
-  const logoVariants = {
+  const logoVariants: Variants = {
     hidden: { scale: 0, rotate: -20 },
     visible: { 
       scale: 1, 
@@ -187,7 +187,9 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
         variants={logoVariants}
         whileHover={{ scale: 1.15, rotate: 5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
         style={{ 
-          position: "absolute", left: "-72px", top: "0", 
+          position: "absolute", 
+          left: "-72px", 
+          top: "0", 
           width: "56px", height: "56px", borderRadius: "16px", 
           background: "white", border: "2px solid var(--border)",
           display: "flex", alignItems: "center", justifyContent: "center",
@@ -195,6 +197,7 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
           boxShadow: "var(--shadow-sm)",
           cursor: "pointer"
         }}
+        className="experience-logo-node"
       >
         <img src={exp.logo} alt={exp.company} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
       </motion.div>
@@ -313,13 +316,28 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
       </div>
 
       <style jsx>{`
-        @media (max-width: 640px) {
-          .timeline-container { padding-left: 50px !important; }
+        @media (max-width: 768px) {
+          .experience-section { padding: 80px 16px !important; }
+          .timeline-container { padding-left: 44px !important; }
           .timeline-container > div:first-child, 
           .timeline-container > div:nth-child(2) { left: 16px !important; }
-          .meta { text-align: left !important; margin-top: 8px; }
-          img[alt] { width: 32px !important; height: 32px !important; left: -16px !important; }
-          div[style*="left: -68px"] { left: -44px !important; width: 40px !important; height: 40px !important; }
+          .meta { text-align: left !important; margin-top: 10px; width: 100%; }
+          .experience-logo-node { 
+            left: -36px !important; 
+            width: 36px !important; 
+            height: 36px !important; 
+            padding: 5px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .timeline-container { padding-left: 36px !important; }
+          .timeline-container > div:first-child, 
+          .timeline-container > div:nth-child(2) { left: 12px !important; }
+          .experience-logo-node { 
+            left: -30px !important;
+            width: 32px !important;
+            height: 32px !important;
+          }
         }
       `}</style>
     </motion.div>

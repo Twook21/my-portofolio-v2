@@ -3,7 +3,7 @@
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
 import FloatingSymbols from "./FloatingSymbols";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -91,6 +91,13 @@ export default function Collaborations() {
         @keyframes shimmer {
           to { background-position: 200% center; }
         }
+        @media (max-width: 768px) {
+          .collaborations-section { padding: 80px 16px !important; }
+        }
+        @media (max-width: 640px) {
+          .collaborations-grid { grid-template-columns: 1fr !important; }
+          .collab-member-avatar { width: 28px !important; height: 28px !important; fontSize: 13px !important; }
+        }
       `}</style>
     </section>
   );
@@ -98,27 +105,33 @@ export default function Collaborations() {
 
 function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView: boolean }) {
   const { t } = useLanguage();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
       transition={{ duration: 0.5, delay: idx * 0.05, ease: "easeOut" }}
+      onClick={() => {
+        if (window.innerWidth <= 640) setIsExpanded(!isExpanded);
+      }}
       style={{
         background: "var(--bg-secondary)",
         border: "1px solid var(--border)",
         borderRadius: "16px",
-        padding: "28px",
+        padding: "24px",
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        transition: "border-color 0.3s ease",
+        transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
+        cursor: "pointer",
       }}
+      className={`collab-card-inner ${isExpanded ? 'is-expanded' : ''}`}
       onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--border-hover)"; }}
       onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border)"; }}
     >
       {/* Mini Header */}
-      <div style={{ display: "flex", gap: "14px", alignItems: "center", marginBottom: "20px" }}>
+      <div style={{ display: "flex", gap: "14px", alignItems: "center" }} className="collab-header">
         <div style={{
           width: "44px",
           height: "44px",
@@ -130,74 +143,137 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
           justifyContent: "center",
           fontSize: "20px",
           flexShrink: 0
-        }}>
+        }} className="collab-logo">
           {collab.logo || "👥"}
         </div>
-        <div style={{ overflow: "hidden" }}>
+        <div style={{ flex: 1, overflow: "hidden" }}>
           <h3 style={{ fontSize: "16px", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.01em", marginBottom: "2px" }}>
             {collab.name}
           </h3>
-          <p style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 700 }}>
+          <p style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 700 }} className="collab-role">
             {collab.role}
           </p>
         </div>
-      </div>
-
-      {/* Description */}
-      <div style={{ flex: 1 }}>
-        <p style={{ fontSize: "14px", lineHeight: 1.5, color: "var(--text-secondary)", marginBottom: "16px" }}>
-          {collab.description}
-        </p>
-
-        {/* Essential Info Tags */}
-        <div style={{ display: "flex", gap: "12px", marginBottom: "20px", flexWrap: "wrap" }}>
-           <span style={{ fontSize: "11px", color: "var(--text-tertiary)", display: "flex", alignItems: "center", gap: "4px" }}>
-             <span style={{ opacity: 0.5 }}>📅</span> {collab.period}
-           </span>
-           <span style={{ fontSize: "11px", color: "var(--text-tertiary)", display: "flex", alignItems: "center", gap: "4px" }}>
-             <span style={{ opacity: 0.5 }}>👥</span> {collab.teamSize} members
-           </span>
-        </div>
-
-        {/* Tech Tags - Minimalist */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-          {collab.tags.map((tag: string) => (
-            <span key={tag} style={{ fontSize: "10px", fontWeight: 600, color: "var(--text-tertiary)", padding: "2px 8px", background: "rgba(0,0,0,0.05)", borderRadius: "4px" }}>
-              {tag}
-            </span>
-          ))}
+        <div className="expand-icon" style={{ display: "none", color: "var(--text-tertiary)", transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)", transform: isExpanded ? "rotate(180deg)" : "rotate(0)" }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </div>
       </div>
 
-      {/* Action Link */}
-      <div style={{ marginTop: "24px", paddingTop: "16px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ display: "flex", gap: "6px" }}>
-          {collab.members?.slice(0, 3).map((m: any, i: number) => (
-            <a key={i} href={m.github} target="_blank" rel="noopener noreferrer" title={m.name} style={{ width: "20px", height: "20px", borderRadius: "50%", background: "var(--bg-tertiary)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", color: "var(--text-tertiary)", border: "1px solid var(--border)" }}>
-              {m.name[0]}
-            </a>
-          ))}
-        </div>
-        <a
-          href={collab.github || collab.demo || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            fontSize: "12px",
-            fontWeight: 800,
-            color: "var(--text-primary)",
-            textDecoration: "none",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "4px",
-            transition: "gap 0.2s ease"
-          }}
-          onMouseEnter={(e) => { e.currentTarget.style.gap = "6px"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.gap = "4px"; }}
-        >
-          View Project <span>→</span>
-        </a>
-      </div>
+      <AnimatePresence>
+        {(!window || window.innerWidth > 640 || isExpanded) && (
+          <motion.div 
+            className="collab-expandable-content"
+            initial={window.innerWidth <= 640 ? { height: 0, opacity: 0 } : {}}
+            animate={window.innerWidth <= 640 ? { height: "auto", opacity: 1 } : {}}
+            exit={window.innerWidth <= 640 ? { height: 0, opacity: 0 } : {}}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            style={{ flex: 1, overflow: "hidden" }}
+          >
+            <p style={{ fontSize: "14px", lineHeight: 1.5, color: "var(--text-secondary)", marginBottom: "16px", marginTop: "16px" }}>
+              {collab.description}
+            </p>
+
+            {/* Essential Info Tags */}
+            <div style={{ display: "flex", gap: "12px", marginBottom: "20px", flexWrap: "wrap" }}>
+               <span style={{ fontSize: "11px", color: "var(--text-tertiary)", display: "flex", alignItems: "center", gap: "4px" }}>
+                 <span style={{ opacity: 0.5 }}>📅</span> {collab.period}
+               </span>
+               <span style={{ fontSize: "11px", color: "var(--text-tertiary)", display: "flex", alignItems: "center", gap: "4px" }}>
+                 <span style={{ opacity: 0.5 }}>👥</span> {collab.teamSize} members
+               </span>
+            </div>
+
+            {/* Tech Tags - Minimalist */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              {collab.tags.map((tag: string) => (
+                <span key={tag} style={{ fontSize: "10px", fontWeight: 600, color: "var(--text-tertiary)", padding: "2px 8px", background: "rgba(0,0,0,0.05)", borderRadius: "4px" }}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            {/* Action Link & Members */}
+            <div style={{ marginTop: "24px", paddingTop: "16px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ display: "flex", gap: "6px" }}>
+                {collab.members?.slice(0, 3).map((m: any, i: number) => (
+                  <a key={i} href={m.github} target="_blank" rel="noopener noreferrer" title={m.name} className="collab-member-avatar" style={{ width: "20px", height: "20px", borderRadius: "50%", background: "var(--bg-tertiary)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", color: "var(--text-tertiary)", border: "1px solid var(--border)" }}>
+                    {m.name[0]}
+                  </a>
+                ))}
+              </div>
+              <a
+                href={collab.github || collab.demo || "#"}
+                onClick={(e) => e.stopPropagation()}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontSize: "12px",
+                  fontWeight: 800,
+                  color: "var(--text-primary)",
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "4px",
+                  transition: "gap 0.2s ease"
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.gap = "6px"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.gap = "4px"; }}
+              >
+                View Project <span>→</span>
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <style jsx>{`
+        @media (max-width: 640px) {
+          .collab-card-inner {
+            padding: 24px 20px !important;
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 20px !important;
+            height: auto !important;
+            margin-bottom: 12px !important;
+          }
+          .collab-card-inner.is-expanded {
+            background: var(--bg-secondary) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border-color: var(--accent) !important;
+            box-shadow: var(--shadow-lg) !important;
+          }
+          .collab-logo {
+            display: none !important;
+          }
+          .collab-card-inner.is-expanded .collab-logo {
+            display: flex !important;
+            margin-bottom: 16px !important;
+          }
+          .collab-role {
+            display: none !important;
+          }
+          .collab-card-inner.is-expanded .collab-role {
+            display: block !important;
+          }
+          .collab-card-inner h3 {
+            font-size: 17px !important;
+            font-weight: 800 !important;
+          }
+          .expand-icon {
+            display: block !important;
+            opacity: 0.6;
+          }
+          .collab-card-inner.is-expanded .collab-header {
+            padding-bottom: 16px !important;
+            border-bottom: 1px solid var(--border) !important;
+          }
+        }
+      `}</style>
+
     </motion.div>
   );
 }
+

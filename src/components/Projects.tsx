@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import FloatingSymbols from "./FloatingSymbols";
 
 function useInView(threshold = 0.08) {
@@ -54,6 +55,7 @@ function ProjectCard({ project, idx, inView }: {
   const { ref, handleMouseMove, handleMouseLeave } = use3DTilt();
   const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     handleMouseMove(e);
@@ -73,8 +75,13 @@ function ProjectCard({ project, idx, inView }: {
         handleMouseLeave();
         setIsHovered(false);
       }}
+      onClick={() => {
+        if (window.innerWidth <= 640) {
+          setIsExpanded(!isExpanded);
+        }
+      }}
       style={{
-        background: "var(--bg-card)",
+        background: "var(--bg-secondary)",
         border: "1px solid var(--border)",
         borderRadius: "24px",
         display: "flex", flexDirection: "column",
@@ -88,22 +95,14 @@ function ProjectCard({ project, idx, inView }: {
         position: "relative",
         overflow: "hidden",
         height: "100%",
+        cursor: "pointer"
       }}
-      className="project-card-inner"
+      className={`project-card-inner ${isExpanded ? 'is-expanded' : ''}`}
     >
-      {/* Spotlight Effect */}
-      <div style={{
-        position: "absolute",
-        top: 0, left: 0, right: 0, bottom: 0,
-        background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, var(--accent-soft), transparent 40%)`,
-        opacity: isHovered ? 0.15 : 0,
-        pointerEvents: "none",
-        zIndex: 1,
-        transition: "opacity 0.3s ease",
-      }} />
+      {/* Spotlight Effect Removed */}
 
       {/* Image Header */}
-      <div style={{ position: "relative", height: "240px", overflow: "hidden", background: "var(--bg-tertiary)" }}>
+      <div className="project-image-container" style={{ position: "relative", height: "240px", overflow: "hidden", background: "var(--bg-tertiary)", flexShrink: 0 }}>
         <img 
           src={project.image} 
           alt={project.name}
@@ -116,16 +115,10 @@ function ProjectCard({ project, idx, inView }: {
             filter: isHovered ? "brightness(1.05)" : "brightness(0.95)",
           }}
         />
-        <div style={{
-          position: "absolute",
-          top: 0, left: 0, right: 0, bottom: 0,
-          background: "linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%)",
-          opacity: isHovered ? 0.4 : 0.6,
-          transition: "opacity 0.4s ease"
-        }} />
+        {/* Gradient Overlay Removed */}
 
         {/* Status Badge - Floating */}
-        <div style={{
+        <div className="project-status-badge" style={{
           position: "absolute",
           top: "16px",
           left: "16px",
@@ -151,11 +144,11 @@ function ProjectCard({ project, idx, inView }: {
             boxShadow: `0 0 10px ${statusColorMap[project.statusColor]}`,
             animation: project.status === "In Development" ? "pulse 2s infinite" : "none",
           }} />
-          {project.status === "In Development" ? t.ui.inDevelopment : project.status === "Shipped" ? t.ui.shipped : project.status}
+          <span className="status-text">{project.status === "In Development" ? t.ui.inDevelopment : project.status === "Shipped" ? t.ui.shipped : project.status}</span>
         </div>
 
         {/* Year Label */}
-        <div style={{
+        <div className="project-year" style={{
           position: "absolute",
           bottom: "16px",
           right: "16px",
@@ -171,151 +164,173 @@ function ProjectCard({ project, idx, inView }: {
 
       {/* Content Area */}
       <div style={{ padding: "32px", display: "flex", flexDirection: "column", flex: 1, position: "relative", zIndex: 2 }}>
-        {project.associatedWith && (
-          <div style={{ 
-            fontSize: "12px", 
-            fontWeight: 700, 
-            color: "var(--text-tertiary)", 
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            marginBottom: "12px",
-            display: "flex",
-            alignItems: "center",
-            gap: "10px"
-          }}>
-            {project.associatedLogo && (
-              <div style={{
-                width: "20px",
-                height: "20px",
-                borderRadius: "4px",
-                background: "white",
-                padding: "2px",
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }} className="project-header-row">
+          <div style={{ flex: 1 }}>
+            {project.associatedWith && (
+              <div style={{ 
+                fontSize: "12px", 
+                fontWeight: 700, 
+                color: "var(--text-tertiary)", 
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                marginBottom: "12px",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center",
-                border: "1px solid var(--border)",
-              }}>
-                <img src={project.associatedLogo} alt="" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                gap: "10px"
+              }} className="associated-label">
+                {project.associatedLogo && (
+                  <div style={{
+                    width: "20px",
+                    height: "20px",
+                    borderRadius: "4px",
+                    background: "white",
+                    padding: "2px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    border: "1px solid var(--border)",
+                  }}>
+                    <img src={project.associatedLogo} alt="" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                  </div>
+                )}
+                {project.associatedWith}
               </div>
             )}
-            {project.associatedWith}
-          </div>
-        )}
-        <h3 style={{
-          fontSize: "24px", fontWeight: 800,
-          letterSpacing: "-0.03em", color: "var(--text-primary)",
-          marginBottom: "8px", lineHeight: 1.1,
-        }}>
-          {project.name}
-        </h3>
-        
-        <div style={{ 
-          fontSize: "14px", 
-          color: "var(--accent)", 
-          fontWeight: 700, 
-          marginBottom: "16px",
-          display: "flex",
-          alignItems: "center",
-          gap: "6px"
-        }}>
-          <span style={{ opacity: 0.8 }}>✦</span> {project.tagline}
-        </div>
-
-        <p style={{ 
-          fontSize: "15px", 
-          color: "var(--text-secondary)", 
-          lineHeight: 1.6, 
-          marginBottom: "24px",
-          display: "-webkit-box",
-          WebkitLineClamp: 3,
-          WebkitBoxOrient: "vertical",
-          overflow: "hidden"
-        }}>
-          {project.description}
-        </p>
-
-        {/* Tech Stack Pills */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "32px" }}>
-          {project.tags.map((tag: string) => (
-            <span
-              key={tag}
-              style={{
-                padding: "5px 12px",
-                background: "var(--bg-tertiary)",
-                border: "1px solid var(--border)",
-                borderRadius: "8px",
-                fontSize: "11px", 
-                fontWeight: 600, 
-                color: "var(--text-secondary)",
-                transition: "all 0.3s ease",
-              }}
-              className="tech-tag"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-
-        <div style={{ marginTop: "auto", display: "flex", gap: "12px" }}>
-          {project.github ? (
-            <a
-              href={project.github}
-              className="project-link github"
-              style={{
-                flex: 1,
-                textAlign: "center",
-                padding: "12px",
-                background: "var(--bg-tertiary)",
-                border: "1px solid var(--border)",
-                borderRadius: "12px",
-                fontSize: "14px",
-                fontWeight: 700,
-                color: "var(--text-primary)",
-                transition: "all 0.3s ease",
-                textDecoration: "none"
-              }}
-            >
-              GitHub ↗
-            </a>
-          ) : (
-            <div style={{
-              flex: 1,
-              textAlign: "center",
-              padding: "12px",
-              background: "var(--bg-secondary)",
-              border: "1px solid var(--border)",
-              borderRadius: "12px",
-              fontSize: "14px",
-              fontWeight: 600,
-              color: "var(--text-tertiary)",
-              opacity: 0.7
+            <h3 style={{
+              fontSize: "24px", fontWeight: 800,
+              letterSpacing: "-0.03em", color: "var(--text-primary)",
+              marginBottom: "8px", lineHeight: 1.1,
             }}>
-              {t.ui.projPrivate}
+              {project.name}
+            </h3>
+            
+            <div style={{ 
+              fontSize: "14px", 
+              color: "var(--accent)", 
+              fontWeight: 700, 
+              marginBottom: "16px",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px"
+            }} className="tagline-row">
+              <span style={{ opacity: 0.8 }}>✦</span> {project.tagline}
             </div>
-          )}
+          </div>
           
-          {project.demo && (
-            <a
-              href={project.demo}
-              className="project-link demo"
-              style={{
-                flex: 1,
-                textAlign: "center",
-                padding: "12px",
-                background: "var(--accent)",
-                borderRadius: "12px",
-                fontSize: "14px",
-                fontWeight: 700,
-                color: "#fff",
-                transition: "all 0.3s ease",
-                boxShadow: "0 4px 12px var(--accent-glow)",
-                textDecoration: "none"
-              }}
-            >
-              Live Demo
-            </a>
-          )}
+          <div className="expand-icon" style={{ display: "none", color: "var(--text-tertiary)", transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)", transform: isExpanded ? "rotate(180deg)" : "rotate(0)" }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
         </div>
+
+        <AnimatePresence>
+          {(!window || window.innerWidth > 640 || isExpanded) && (
+            <motion.div 
+              className="project-expandable-content"
+              initial={window.innerWidth <= 640 ? { height: 0, opacity: 0 } : {}}
+              animate={window.innerWidth <= 640 ? { height: "auto", opacity: 1 } : {}}
+              exit={window.innerWidth <= 640 ? { height: 0, opacity: 0 } : {}}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              style={{ overflow: "hidden" }}
+            >
+              <p style={{ 
+                fontSize: "15px", 
+                color: "var(--text-secondary)", 
+                lineHeight: 1.6, 
+                marginBottom: "24px",
+                marginTop: window.innerWidth <= 640 ? "20px" : "0"
+              }}>
+                {project.description}
+              </p>
+
+              {/* Tech Stack Pills */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "32px" }}>
+                {project.tags.map((tag: string) => (
+                  <span
+                    key={tag}
+                    style={{
+                      padding: "5px 12px",
+                      background: "var(--bg-tertiary)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "8px",
+                      fontSize: "11px", 
+                      fontWeight: 600, 
+                      color: "var(--text-secondary)",
+                      transition: "all 0.3s ease",
+                    }}
+                    className="tech-tag"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div style={{ marginTop: "auto", display: "flex", gap: "12px" }}>
+                {project.github ? (
+                  <a
+                    href={project.github}
+                    onClick={(e) => e.stopPropagation()}
+                    className="project-link github"
+                    style={{
+                      flex: 1,
+                      textAlign: "center",
+                      padding: "12px",
+                      background: "var(--bg-tertiary)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "12px",
+                      fontSize: "14px",
+                      fontWeight: 700,
+                      color: "var(--text-primary)",
+                      transition: "all 0.3s ease",
+                      textDecoration: "none"
+                    }}
+                  >
+                    GitHub ↗
+                  </a>
+                ) : (
+                  <div style={{
+                    flex: 1,
+                    textAlign: "center",
+                    padding: "12px",
+                    background: "var(--bg-secondary)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "12px",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    color: "var(--text-tertiary)",
+                    opacity: 0.7
+                  }}>
+                    {t.ui.projPrivate}
+                  </div>
+                )}
+                
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    onClick={(e) => e.stopPropagation()}
+                    className="project-link demo"
+                    style={{
+                      flex: 1,
+                      textAlign: "center",
+                      padding: "12px",
+                      background: "var(--accent)",
+                      borderRadius: "12px",
+                      fontSize: "14px",
+                      fontWeight: 700,
+                      color: "#fff",
+                      transition: "all 0.3s ease",
+                      boxShadow: "0 4px 12px var(--accent-glow)",
+                      textDecoration: "none"
+                    }}
+                  >
+                    Live Demo
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <style jsx>{`
@@ -335,10 +350,73 @@ function ProjectCard({ project, idx, inView }: {
           color: var(--accent) !important;
           background: var(--accent-soft) !important;
         }
+        @media (max-width: 640px) {
+          .project-card-inner {
+            flex-direction: column !important;
+            padding: 24px 20px !important;
+            border-radius: 20px !important;
+            border: 1px solid var(--border) !important;
+            background: var(--bg-secondary) !important;
+            box-shadow: var(--shadow-sm) !important;
+            height: auto !important;
+            margin-bottom: 12px !important;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
+          }
+          .project-card-inner.is-expanded {
+            background: var(--bg-secondary) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border-color: var(--accent) !important;
+            box-shadow: var(--shadow-lg) !important;
+          }
+          .project-image-container {
+            display: none !important;
+          }
+          .project-card-inner.is-expanded .project-image-container {
+            display: block !important;
+            width: 100% !important;
+            height: 200px !important;
+            border-radius: 14px !important;
+            margin-top: 24px !important;
+            margin-bottom: 24px !important;
+          }
+          .project-status-badge, .project-year {
+            display: none !important;
+          }
+          .expand-icon {
+            display: block !important;
+            opacity: 0.6;
+          }
+          .project-card-inner > div:last-child {
+            padding: 0 !important;
+          }
+          .project-card-inner h3 {
+            font-size: 17px !important;
+            font-weight: 800 !important;
+            margin-bottom: 0 !important;
+          }
+          .associated-label, .tagline-row {
+            display: none !important;
+          }
+          .project-card-inner.is-expanded .tagline-row {
+            display: flex !important;
+            margin-top: 8px !important;
+            font-size: 13px !important;
+          }
+          .project-card-inner.is-expanded .associated-label {
+            display: flex !important;
+            margin-bottom: 12px !important;
+          }
+          .project-card-inner.is-expanded .project-header-row {
+             margin-bottom: 12px !important;
+          }
+        }
       `}</style>
     </div>
   );
 }
+
+
 
 export default function Projects() {
   const { t } = useLanguage();
