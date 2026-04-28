@@ -3,7 +3,7 @@ export const personal = {
   tagline: "Software Engineer",
   subtitle: "Building clean, purposeful software — from Jakarta to the world.",
   description:
-    "Final-year Informatics Engineering student at PENS. I architect enterprise-grade frontends and chase meaningful problems — currently contributing to healthcare tech at Kalbe Farma, and aiming for the global tech stage.",
+    "Software Developer bridging the gap between robust backend services and fluid, modern user interfaces. I specialize in the Next.js & .NET ecosystems, with a deep focus on quality-driven delivery and scalable architecture.",
   location: "Jakarta, Indonesia",
   email: "akmalbintang33@gmail.com",
   github: "https://github.com/akmal-bintang",
@@ -11,7 +11,7 @@ export const personal = {
   instagram: "https://www.instagram.com/tw0ok_/", // Placeholder
   status: "Open to opportunities",
   philosophy: "Clean Code Evangelist & Growth Mindset Practitioner",
-  goal: "World-class Software Engineer · Singapore Tech Ecosystem 2031",
+  goal: "Expert Software Engineer · Singapore Tech Ecosystem 2031",
 };
 
 export const experiences = [
@@ -227,42 +227,51 @@ export const milestones = [
   {
     date: "Apr 2026",
     title: "Dicoding Developer Conference",
-    description:
-      "Attended in Bandung to stay on the leading edge of Cloud architecture and emerging AI development patterns.",
-    tag: "Learning",
+    description: "Exploring modern Cloud architecture and emerging AI development patterns to stay ahead of the curve.",
+    tag: "Continuous Learning",
     color: "accent",
-  },
-  {
-    date: "Apr 2026",
-    title: "KBIC Psychological Screening",
-    description:
-      "Completed internal screening at Kalbe Business Innovation Center — identified as a high-potential talent candidate.",
-    tag: "Recognition",
-    color: "green",
   },
   {
     date: "Jan 2026",
-    title: "SmartAttendance Capstone Kickoff",
-    description:
-      "Began building an AI-driven student presence tracking system as final-year capstone project.",
-    tag: "Project",
+    title: "Architecting SmartAttendance",
+    description: "Engineered an automated presence tracking system for an external institution as my final-year capstone project. Focused on streamlining real-world operational workflows and ensuring high-fidelity data integrity.",
+    tag: "Capstone Engineering",
     color: "purple",
   },
   {
-    date: "2025",
-    title: "Joined Kalbe Farma Ecosystem",
-    description:
-      "Started as Frontend Developer Intern at SCI (Stem Cell and Cancer Institute), entering enterprise biotech engineering.",
-    tag: "Career",
+    date: "2025 — Present",
+    title: "Advancing to Kalbe’s IT Center (Bifarma)",
+    description: "Handpicked to transition from SCI to PT. Bifarma Adiluhung—Kalbe’s centralized IT hub. After successfully delivering multidisciplinary systems for R&D, QA, and Production divisions at SCI, I now engineer group-wide enterprise projects, scaling my expertise from Frontend to Full-Stack architecture.",
+    tag: "Strategic Career Advancement",
     color: "orange",
   },
   {
-    date: "2023 — 2024",
-    title: "11-Month Fullstack Internship",
-    description:
-      "Built end-to-end web applications at a PGRI office — laying a solid fullstack engineering foundation.",
-    tag: "Career",
+    date: "2025 — 2026",
+    title: "Advanced Full-Stack Trainee (Asah & JIDA)",
+    description: "Sharpened technical rigor through industry-aligned programs: Asah (Dicoding x Accenture) focused on AI-integrated backend and Jabar Digital Academy (JIDA) for scalable web fundamentals.",
+    tag: "Competency Mastery",
+    color: "green",
+  },
+  {
+    date: "2024 — 2025",
+    title: "11-Month Fullstack Internship (PGRI)",
+    description: "Shipped end-to-end internal web applications, establishing a strong baseline in full-stack development and operational systems.",
+    tag: "Building the Foundation",
     color: "accent",
+  },
+  {
+    date: "2024",
+    title: "Laravel Training at Gema Foundation",
+    description: "Transitioned from static interfaces to server-side logic. Completed an intensive program where I built my very first database-driven web application.",
+    tag: "Entering the Dynamic Web",
+    color: "purple",
+  },
+  {
+    date: "2023",
+    title: "Mastering Web Fundamentals",
+    description: "Initiated my software engineering journey during my first semester, mastering the core building blocks: HTML, CSS, and JavaScript.",
+    tag: "The Starting Point",
+    color: "green",
   },
 ];
 
