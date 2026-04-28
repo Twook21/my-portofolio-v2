@@ -66,6 +66,15 @@ function ProjectCard({ project, idx, inView }: {
     });
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <div
       ref={ref}
@@ -76,24 +85,26 @@ function ProjectCard({ project, idx, inView }: {
         setIsHovered(false);
       }}
       onClick={() => {
-        if (window.innerWidth <= 640) {
+        if (isMobile) {
           setIsExpanded(!isExpanded);
         }
       }}
       style={{
-        background: "var(--bg-secondary)",
+        background: "var(--bg-card)",
         border: "1px solid var(--border)",
-        borderRadius: "24px",
+        borderRadius: "var(--radius-xl)",
+        padding: "36px",
+        marginBottom: "20px",
+        position: "relative",
+        overflow: "hidden",
+        boxShadow: "var(--shadow-md)",
         display: "flex", flexDirection: "column",
-        boxShadow: isHovered ? "var(--shadow-xl)" : "var(--shadow-sm)",
         opacity: inView ? 1 : 0,
         animation: inView
           ? `fadeInUp 0.8s cubic-bezier(0.22,1,0.36,1) ${idx * 0.12}s both`
           : "none",
         willChange: "transform",
-        transition: "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
-        position: "relative",
-        overflow: "hidden",
+        transition: "box-shadow 0.2s, border-color 0.2s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease",
         height: "100%",
         cursor: "pointer"
       }}
@@ -106,6 +117,9 @@ function ProjectCard({ project, idx, inView }: {
         <img 
           src={project.image} 
           alt={project.name}
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop";
+          }}
           style={{
             width: "100%",
             height: "100%",
@@ -165,6 +179,18 @@ function ProjectCard({ project, idx, inView }: {
       {/* Content Area */}
       <div style={{ padding: "32px", display: "flex", flexDirection: "column", flex: 1, position: "relative", zIndex: 2 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }} className="project-header-row">
+          {project.associatedLogo && (
+            <div className="mobile-project-logo" style={{ display: "none" }}>
+              <img 
+                src={project.associatedLogo} 
+                alt="" 
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + (project.associatedWith || "Org") + "&background=random";
+                }}
+                style={{ width: "100%", height: "100%", objectFit: "contain" }} 
+              />
+            </div>
+          )}
           <div style={{ flex: 1 }}>
             {project.associatedWith && (
               <div style={{ 
@@ -190,7 +216,14 @@ function ProjectCard({ project, idx, inView }: {
                     justifyContent: "center",
                     border: "1px solid var(--border)",
                   }}>
-                    <img src={project.associatedLogo} alt="" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                    <img 
+                      src={project.associatedLogo} 
+                      alt="" 
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + (project.associatedWith || "Org") + "&background=random";
+                      }}
+                      style={{ width: "100%", height: "100%", objectFit: "contain" }} 
+                    />
                   </div>
                 )}
                 {project.associatedWith}
@@ -225,12 +258,12 @@ function ProjectCard({ project, idx, inView }: {
         </div>
 
         <AnimatePresence>
-          {(!window || window.innerWidth > 640 || isExpanded) && (
+          {(!isMobile || isExpanded) && (
             <motion.div 
               className="project-expandable-content"
-              initial={window.innerWidth <= 640 ? { height: 0, opacity: 0 } : {}}
-              animate={window.innerWidth <= 640 ? { height: "auto", opacity: 1 } : {}}
-              exit={window.innerWidth <= 640 ? { height: 0, opacity: 0 } : {}}
+              initial={isMobile ? { height: 0, opacity: 0 } : {}}
+              animate={isMobile ? { height: "auto", opacity: 1 } : {}}
+              exit={isMobile ? { height: 0, opacity: 0 } : {}}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               style={{ overflow: "hidden" }}
             >
@@ -362,12 +395,51 @@ function ProjectCard({ project, idx, inView }: {
             margin-bottom: 12px !important;
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1) !important;
           }
-          .project-card-inner.is-expanded {
-            background: var(--bg-secondary) !important;
-            backdrop-filter: blur(20px) !important;
-            -webkit-backdrop-filter: blur(20px) !important;
-            border-color: var(--accent) !important;
-            box-shadow: var(--shadow-lg) !important;
+          .project-card-inner {
+            padding: 20px !important;
+            border-radius: 20px !important;
+            border: 1px solid var(--border) !important;
+            background: var(--bg-card) !important;
+            box-shadow: var(--shadow-sm) !important;
+            margin-bottom: 12px !important;
+          }
+          .project-header-row {
+            gap: 16px !important;
+          }
+          .associated-label {
+            display: flex !important;
+            margin-bottom: 0 !important;
+            font-size: 11px !important;
+            order: 2; /* Move place name below title */
+          }
+          .associated-label div {
+            display: none !important; /* Hide small logo in label, we'll show a bigger one */
+          }
+          /* Custom Logo on Left for Mobile */
+          .mobile-project-logo {
+             display: flex !important;
+             width: 44px !important;
+             height: 44px !important;
+             border-radius: 8px !important;
+             background: white !important;
+             border: 1px solid var(--border) !important;
+             padding: 6px !important;
+             flex-shrink: 0 !important;
+          }
+          .project-card-inner h3 {
+            font-size: 15px !important;
+            margin-bottom: 2px !important;
+          }
+          .tagline-row {
+            display: none !important;
+          }
+          .project-card-inner.is-expanded .tagline-row {
+            display: flex !important;
+            margin-top: 12px !important;
+          }
+          .expand-icon {
+            display: block !important;
+            margin-left: auto !important;
           }
           .project-image-container {
             display: none !important;
@@ -379,36 +451,6 @@ function ProjectCard({ project, idx, inView }: {
             border-radius: 14px !important;
             margin-top: 24px !important;
             margin-bottom: 24px !important;
-          }
-          .project-status-badge, .project-year {
-            display: none !important;
-          }
-          .expand-icon {
-            display: block !important;
-            opacity: 0.6;
-          }
-          .project-card-inner > div:last-child {
-            padding: 0 !important;
-          }
-          .project-card-inner h3 {
-            font-size: 17px !important;
-            font-weight: 800 !important;
-            margin-bottom: 0 !important;
-          }
-          .associated-label, .tagline-row {
-            display: none !important;
-          }
-          .project-card-inner.is-expanded .tagline-row {
-            display: flex !important;
-            margin-top: 8px !important;
-            font-size: 13px !important;
-          }
-          .project-card-inner.is-expanded .associated-label {
-            display: flex !important;
-            margin-bottom: 12px !important;
-          }
-          .project-card-inner.is-expanded .project-header-row {
-             margin-bottom: 12px !important;
           }
         }
       `}</style>

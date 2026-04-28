@@ -107,28 +107,46 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
   const { t } = useLanguage();
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
       transition={{ duration: 0.5, delay: idx * 0.05, ease: "easeOut" }}
       onClick={() => {
-        if (window.innerWidth <= 640) setIsExpanded(!isExpanded);
+        if (isMobile) setIsExpanded(!isExpanded);
       }}
       style={{
-        background: "var(--bg-secondary)",
+        background: "var(--bg-card)",
         border: "1px solid var(--border)",
-        borderRadius: "16px",
-        padding: "24px",
-        display: "flex",
+        borderRadius: "var(--radius-xl)",
+        padding: "36px",
+        marginBottom: "20px",
+        position: "relative",
+        overflow: "hidden",
+        boxShadow: "var(--shadow-md)",
+        display: "flex", 
         flexDirection: "column",
         height: "100%",
-        transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
+        transition: "box-shadow 0.2s, border-color 0.2s",
         cursor: "pointer",
       }}
       className={`collab-card-inner ${isExpanded ? 'is-expanded' : ''}`}
-      onMouseEnter={(e) => { e.currentTarget.style.borderColor = "var(--border-hover)"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--border)"; }}
+      onMouseEnter={(e) => { 
+        e.currentTarget.style.borderColor = "var(--accent)";
+        e.currentTarget.style.boxShadow = "var(--shadow-lg)";
+      }}
+      onMouseLeave={(e) => { 
+        e.currentTarget.style.borderColor = "var(--border)";
+        e.currentTarget.style.boxShadow = "var(--shadow-md)";
+      }}
     >
       {/* Mini Header */}
       <div style={{ display: "flex", gap: "14px", alignItems: "center" }} className="collab-header">
@@ -144,7 +162,18 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
           fontSize: "20px",
           flexShrink: 0
         }} className="collab-logo">
-          {collab.logo || "👥"}
+          {collab.logo ? (
+            <img 
+              src={collab.logo} 
+              alt={collab.name} 
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + collab.name + "&background=random";
+              }}
+              style={{ width: "100%", height: "100%", objectFit: "contain" }} 
+            />
+          ) : (
+            <span style={{ fontSize: "20px" }}>🤝</span>
+          )}
         </div>
         <div style={{ flex: 1, overflow: "hidden" }}>
           <h3 style={{ fontSize: "16px", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.01em", marginBottom: "2px" }}>
@@ -162,12 +191,12 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
       </div>
 
       <AnimatePresence>
-        {(!window || window.innerWidth > 640 || isExpanded) && (
+        {(!isMobile || isExpanded) && (
           <motion.div 
             className="collab-expandable-content"
-            initial={window.innerWidth <= 640 ? { height: 0, opacity: 0 } : {}}
-            animate={window.innerWidth <= 640 ? { height: "auto", opacity: 1 } : {}}
-            exit={window.innerWidth <= 640 ? { height: 0, opacity: 0 } : {}}
+            initial={isMobile ? { height: 0, opacity: 0 } : {}}
+            animate={isMobile ? { height: "auto", opacity: 1 } : {}}
+            exit={isMobile ? { height: 0, opacity: 0 } : {}}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             style={{ flex: 1, overflow: "hidden" }}
           >
@@ -231,42 +260,33 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
       <style jsx>{`
         @media (max-width: 640px) {
           .collab-card-inner {
-            padding: 24px 20px !important;
-            background: var(--bg-card) !important;
-            border: 1px solid var(--border) !important;
+            padding: 20px !important;
             border-radius: 20px !important;
-            height: auto !important;
+            border: 1px solid var(--border) !important;
+            background: var(--bg-card) !important;
+            box-shadow: var(--shadow-sm) !important;
             margin-bottom: 12px !important;
           }
-          .collab-card-inner.is-expanded {
-            background: var(--bg-secondary) !important;
-            backdrop-filter: blur(20px) !important;
-            -webkit-backdrop-filter: blur(20px) !important;
-            border-color: var(--accent) !important;
-            box-shadow: var(--shadow-lg) !important;
+          .collab-header {
+            gap: 16px !important;
           }
           .collab-logo {
-            display: none !important;
-          }
-          .collab-card-inner.is-expanded .collab-logo {
             display: flex !important;
-            margin-bottom: 16px !important;
-          }
-          .collab-role {
-            display: none !important;
-          }
-          .collab-card-inner.is-expanded .collab-role {
-            display: block !important;
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 8px !important;
+            padding: 6px !important;
           }
           .collab-card-inner h3 {
-            font-size: 17px !important;
-            font-weight: 800 !important;
+            font-size: 15px !important;
+            margin-bottom: 2px !important;
+          }
+          .collab-info {
+            font-size: 13px !important;
+            color: var(--text-secondary) !important;
           }
           .expand-icon {
             display: block !important;
-            opacity: 0.6;
-          }
-          .collab-card-inner.is-expanded .collab-header {
             padding-bottom: 16px !important;
             border-bottom: 1px solid var(--border) !important;
           }

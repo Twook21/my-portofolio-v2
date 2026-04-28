@@ -26,6 +26,7 @@ export const metadata: Metadata = {
   },
 };
 
+import Script from "next/script";
 import CustomCursor from "@/components/CustomCursor";
 
 export default function RootLayout({
@@ -44,8 +45,12 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap"
           rel="stylesheet"
         />
+      </head>
+      <body>
         {/* Inline script to prevent flash of wrong theme */}
-        <script
+        <Script
+          id="theme-prevent-flash"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -57,8 +62,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body>
         <ThemeProvider>
           <LanguageProvider>
             <CustomCursor />

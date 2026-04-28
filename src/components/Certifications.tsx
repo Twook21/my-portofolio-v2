@@ -153,6 +153,14 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
   const { t } = useLanguage();
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -160,30 +168,31 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.6, delay: idx * 0.05, ease: [0.22, 1, 0.36, 1] }}
       onClick={() => {
-        if (window.innerWidth <= 640) setIsExpanded(!isExpanded);
+        if (isMobile) setIsExpanded(!isExpanded);
       }}
       style={{
-        background: "var(--bg-secondary)",
+        background: "var(--bg-card)",
         border: "1px solid var(--border)",
-        borderRadius: "24px",
-        padding: "32px",
+        borderRadius: "var(--radius-xl)",
+        padding: "36px",
+        marginBottom: "20px",
+        position: "relative",
+        overflow: "hidden",
+        boxShadow: "var(--shadow-md)",
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        position: "relative",
-        transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
+        transition: "box-shadow 0.2s, border-color 0.2s",
         cursor: "pointer"
       }}
       className={`cert-card-inner ${isExpanded ? 'is-expanded' : ''}`}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = "var(--accent)";
-        e.currentTarget.style.background = "var(--bg-card-hover)";
-        e.currentTarget.style.transform = "translateY(-4px)";
+        e.currentTarget.style.boxShadow = "var(--shadow-lg)";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = "var(--border)";
-        e.currentTarget.style.background = "var(--bg-secondary)";
-        e.currentTarget.style.transform = "translateY(0)";
+        e.currentTarget.style.boxShadow = "var(--shadow-md)";
       }}
     >
       <div style={{ display: "flex", gap: "20px", alignItems: "center" }} className="cert-header">
@@ -204,7 +213,14 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
           className="cert-logo"
         >
           {cert.logo ? (
-            <img src={cert.logo} alt={cert.issuer} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+            <img 
+              src={cert.logo} 
+              alt={cert.issuer} 
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + cert.issuer + "&background=random";
+              }}
+              style={{ width: "100%", height: "100%", objectFit: "contain" }} 
+            />
           ) : (
             <span style={{ fontSize: "24px" }}>🏅</span>
           )}
@@ -224,6 +240,7 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
           <p style={{ fontSize: "14px", color: "var(--accent)", fontWeight: 700, marginTop: "2px" }} className="cert-issuer">
             {cert.issuer}
           </p>
+          <span className="cert-date-mobile" style={{ display: "none" }}>{t.ui.issued} {cert.issued}</span>
         </div>
         <div className="expand-icon" style={{ display: "none", color: "var(--text-tertiary)", transition: "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)", transform: isExpanded ? "rotate(180deg)" : "rotate(0)" }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -233,12 +250,12 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
       </div>
 
       <AnimatePresence>
-        {(!window || window.innerWidth > 640 || isExpanded) && (
+        {(!isMobile || isExpanded) && (
           <motion.div 
             className="cert-expandable-content"
-            initial={window.innerWidth <= 640 ? { height: 0, opacity: 0 } : {}}
-            animate={window.innerWidth <= 640 ? { height: "auto", opacity: 1 } : {}}
-            exit={window.innerWidth <= 640 ? { height: 0, opacity: 0 } : {}}
+            initial={isMobile ? { height: 0, opacity: 0 } : {}}
+            animate={isMobile ? { height: "auto", opacity: 1 } : {}}
+            exit={isMobile ? { height: 0, opacity: 0 } : {}}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             style={{ flex: 1, overflow: "hidden" }}
           >
@@ -313,39 +330,53 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
       <style jsx>{`
         @media (max-width: 640px) {
           .cert-card-inner {
-            padding: 24px 20px !important;
-            background: var(--bg-card) !important;
-            border: 1px solid var(--border) !important;
+            padding: 20px !important;
             border-radius: 20px !important;
-            height: auto !important;
-            transform: none !important;
+            border: 1px solid var(--border) !important;
+            background: var(--bg-card) !important;
+            box-shadow: var(--shadow-sm) !important;
             margin-bottom: 12px !important;
           }
-          .cert-card-inner.is-expanded {
-            background: var(--bg-secondary) !important;
-            backdrop-filter: blur(20px) !important;
-            -webkit-backdrop-filter: blur(20px) !important;
-            border-color: var(--accent) !important;
-            box-shadow: var(--shadow-lg) !important;
+          .cert-header {
+            gap: 16px !important;
           }
           .cert-logo {
-            display: none !important;
-          }
-          .cert-card-inner.is-expanded .cert-logo {
             display: flex !important;
-            margin-bottom: 16px !important;
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 8px !important;
+            padding: 6px !important;
+          }
+          .cert-card-inner h3 {
+            font-size: 15px !important;
+            margin-bottom: 2px !important;
           }
           .cert-issuer {
-            display: none !important;
+            font-size: 13px !important;
+            margin-top: 0 !important;
+            color: var(--text-secondary) !important;
           }
-          .cert-card-inner.is-expanded .cert-issuer {
+          .cert-date-mobile {
             display: block !important;
+            font-size: 12px !important;
+            color: var(--text-tertiary) !important;
+            margin-top: 2px !important;
+          }
+          .expand-icon {
+            display: block !important;
+            margin-left: auto !important;
+          }
+          /* Hide details by default on mobile */
+          .cert-expandable-content {
+            padding-top: 0 !important;
+          }
+          .cert-card-inner.is-expanded {
+             background: var(--bg-card) !important;
           }
           .cert-card-inner h3 {
             font-size: 17px !important;
             font-weight: 800 !important;
           }
-          .expand-icon {
             display: block !important;
             opacity: 0.6;
           }
