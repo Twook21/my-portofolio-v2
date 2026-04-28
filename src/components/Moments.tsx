@@ -67,6 +67,7 @@ export default function Moments() {
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
             gridAutoRows: "180px",
+            gridAutoFlow: "dense",
             gap: "16px",
           }}
         >
@@ -122,15 +123,11 @@ export default function Moments() {
                 <div
                   style={{
                     position: "absolute",
-                    bottom: "12px",
-                    left: "12px",
-                    right: "12px",
-                    padding: "16px",
-                    background: "rgba(0, 0, 0, 0.4)",
-                    backdropFilter: "blur(12px)",
-                    WebkitBackdropFilter: "blur(12px)",
-                    borderRadius: "16px",
-                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    bottom: "0",
+                    left: "0",
+                    right: "0",
+                    padding: "24px 16px 16px",
+                    background: "linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 40%, transparent 100%)",
                     transform: "translateY(0)",
                     transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
                   }}
@@ -188,34 +185,41 @@ export default function Moments() {
       </div>
 
       <style jsx>{`
+        .bento-item {
+          border: 1px solid var(--border) !important;
+          background: var(--bg-card);
+        }
         .bento-item:hover .bento-img {
-          transform: scale(1.08);
+          transform: scale(1.08) rotate(1deg);
         }
         .bento-item:hover .bento-content-card {
-          background: rgba(0, 0, 0, 0.65) !important;
-          bottom: 16px !important;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%) !important;
         }
         .bento-item:hover .bento-desc {
           max-height: 120px !important;
           opacity: 1 !important;
+          margin-top: 10px !important;
         }
         @media (max-width: 900px) {
           .bento-grid {
             grid-template-columns: repeat(2, 1fr) !important;
-            grid-auto-rows: 200px !important;
+            grid-auto-rows: 180px !important;
           }
         }
         @media (max-width: 600px) {
           .bento-grid {
-            grid-template-columns: 1fr !important;
-            grid-auto-rows: 220px !important;
+            grid-auto-rows: 140px !important;
+            gap: 12px !important;
           }
-          .bento-item {
-            grid-column: span 1 !important;
-            grid-row: span 1 !important;
+          .bento-content-card {
+            padding: 20px 12px 12px !important;
+          }
+          .bento-content-card h3 {
+            font-size: 13px !important;
+            letter-spacing: -0.01em !important;
           }
           .moments-section {
-            padding: 80px 16px !important;
+            padding: 60px 16px !important;
           }
         }
       `}</style>

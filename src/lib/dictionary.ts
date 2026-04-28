@@ -548,11 +548,14 @@ export const dictionary = {
       }
     ],
     moments: [
-      { id: 1, title: "Deep Focus Workspace", category: "Productivity", description: "Minimal setup designed for long engineering sessions and deep focus." },
-      { id: 2, title: "Jakarta Golden Hour", category: "Life", description: "The vibrant energy of Jakarta during sunset." },
-      { id: 3, title: "Clean Code Philosophy", category: "Engineering", description: "Writing code for humans, not just machines. Constant refactoring." },
-      { id: 4, title: "Late Night Debugging", category: "Process", description: "Quiet hours when complex bugs are finally solved." },
-      { id: 5, title: "PENS Surabaya Campus", category: "Education", description: "Where my engineering foundation was built." },
+      { id: 1, title: "Jakarta Golden Hour", category: "Life", description: "The vibrant energy of Jakarta during sunset." },
+      { id: 2, title: "Clean Code Philosophy", category: "Engineering", description: "Writing code for humans, not just machines." },
+      { id: 3, title: "PENS Surabaya Campus", category: "Education", description: "Where my engineering foundation was built." },
+      { id: 4, title: "SCI Birthday Celebration", category: "Team", description: "A meaningful and joyful occasion celebrating SCI together as one united team." },
+      { id: 5, title: "Microsoft METC Session", category: "Training", description: "Diving deep into Microsoft Fabric and Azure AI alongside selected participants." },
+      { id: 6, title: "BDD Full-Stack Track", category: "Conference", description: "Exploring modern web development, Serverless on AWS, and Laravel in the AI era." },
+      { id: 7, title: "JIDA Graduation", category: "Achievement", description: "Grateful to be among the final 50 participants and earning the BNSP Junior Web Programmer certification." },
+      { id: 8, title: "Dicoding Developer Conference", category: "Event", description: "Exploring the future of technology, cloud architecture, and AI integration at Indonesia's largest developer event." },
     ],
     teamProjects: [
       {
@@ -1256,11 +1259,14 @@ export const dictionary = {
       }
     ],
     moments: [
-      { id: 1, title: "Ruang Kerja Fokus", category: "Produktivitas", description: "Setup minimalis yang dirancang untuk sesi rekayasa panjang dan fokus mendalam." },
-      { id: 2, title: "Senja di Jakarta", category: "Kehidupan", description: "Energi Jakarta yang bersemangat saat matahari terbenam." },
-      { id: 3, title: "Filosofi Kode Bersih", category: "Rekayasa", description: "Menulis kode untuk manusia, bukan sekadar mesin. Refactoring konstan." },
-      { id: 4, title: "Debugging Larut Malam", category: "Proses", description: "Jam-jam tenang saat bug yang kompleks akhirnya terpecahkan." },
-      { id: 5, title: "Kampus PENS Surabaya", category: "Pendidikan", description: "Tempat di mana fondasi rekayasa saya dibangun." },
+      { id: 1, title: "Senja di Jakarta", category: "Kehidupan", description: "Energi Jakarta yang bersemangat saat matahari terbenam." },
+      { id: 2, title: "Filosofi Kode Bersih", category: "Rekayasa", description: "Menulis kode untuk manusia, bukan sekadar mesin." },
+      { id: 3, title: "Kampus PENS Surabaya", category: "Pendidikan", description: "Tempat di mana fondasi rekayasa saya dibangun." },
+      { id: 4, title: "Perayaan HUT SCI", category: "Tim", description: "Momen penuh makna dan kebahagiaan merayakan hari jadi SCI bersama seluruh tim." },
+      { id: 5, title: "Sesi Microsoft METC", category: "Pelatihan", description: "Mendalami Microsoft Fabric dan Azure AI bersama para peserta terpilih." },
+      { id: 6, title: "BDD Jalur Full-Stack", category: "Konferensi", description: "Mengeksplorasi pengembangan web modern, Serverless di AWS, dan Laravel di era AI." },
+      { id: 7, title: "Kelulusan JIDA", category: "Pencapaian", description: "Bersyukur menjadi bagian dari 50 peserta terbaik dan meraih sertifikasi BNSP Junior Web Programmer." },
+      { id: 8, title: "Dicoding Developer Conference", category: "Acara", description: "Menelusuri masa depan teknologi, arsitektur cloud, dan integrasi AI di konferensi developer terbesar di Indonesia." },
     ],
     teamProjects: [
       {
