@@ -7,7 +7,7 @@ export const dictionary = {
       description:
         "Final-year Informatics Engineering student at PENS. I architect enterprise-grade frontends and chase meaningful problems — currently contributing to healthcare tech at Kalbe Farma, and aiming for the global tech stage.",
       location: "Jakarta, Indonesia",
-      email: "akmal@example.com",
+      email: "akmalbintang33@gmail.com",
       github: "https://github.com/akmal-bintang",
       linkedin: "https://linkedin.com/in/akmal-bintang",
       status: "Open to opportunities",
@@ -199,6 +199,8 @@ export const dictionary = {
         ],
         github: "#",
         demo: "#",
+        associatedWith: "PENS — Capstone Project",
+        associatedLogo: "/logo-experience/jida.png",
       },
       {
         id: "klikgen",
@@ -218,6 +220,8 @@ export const dictionary = {
         ],
         github: null,
         demo: null,
+        associatedWith: "SCI / Kalbe Farma",
+        associatedLogo: "/logo-experience/sci.png",
       },
       {
         id: "bifarma",
@@ -236,6 +240,8 @@ export const dictionary = {
         ],
         github: null,
         demo: null,
+        associatedWith: "SCI / Kalbe Farma",
+        associatedLogo: "/logo-experience/bfa.png",
       },
       {
         id: "tracklab",
@@ -254,6 +260,8 @@ export const dictionary = {
         ],
         github: null,
         demo: null,
+        associatedWith: "SCI / Kalbe Farma",
+        associatedLogo: "/logo-experience/sci.png",
       },
     ],
     skills: {
@@ -366,13 +374,82 @@ export const dictionary = {
     ],
     certifications: [
       {
-        name: "Certification",
-        issuer: "— Coming Soon —",
-        date: "",
-        status: "upcoming",
-        description:
-          "Currently pursuing relevant certifications to strengthen the engineering profile.",
+        name: "Industry Professional Credentials Track – IBM Front-End Developer",
+        issuer: "Arizona State University",
+        date: "Feb 2026",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0a/Arizona_State_University_logo.svg/1200px-Arizona_State_University_logo.svg.png",
+        skills: ["Front-End Development"],
+        link: "#"
       },
+      {
+        name: "Front-End Web & Back-end Developer",
+        issuer: "Asah led by Dicoding",
+        date: "Jan 2026",
+        id: "ASAH/GRAD/XXVI-01/F123D5Y0133",
+        logo: "/logo-experience/asah.png",
+        skills: ["JavaScript", "Front-End Development"],
+        link: "#"
+      },
+      {
+        name: "IBM Front-End Developer",
+        issuer: "IBM",
+        date: "Jan 2026",
+        id: "DTKKFQCJQIFI",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/1200px-IBM_logo.svg.png",
+        skills: ["React.js", "Front-End Development"],
+        link: "#"
+      },
+      {
+        name: "Cloud Native, DevOps, Agile & NoSQL Essentials",
+        issuer: "Coursera",
+        date: "Jan 2026",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/1200px-Coursera-Logo_600x600.svg.png",
+        skills: ["Cloud Native", "DevOps"],
+        link: "#"
+      },
+      {
+        name: "React JS - Web Frontend Development",
+        issuer: "SanberCode",
+        date: "Dec 2025",
+        id: "48732/828/SNBR/BOOTCAMP/XII/2025",
+        logo: "https://sanbercode.com/assets/img/logo-sanber-transparent.png",
+        skills: ["JavaScript", "React.js"],
+        link: "#"
+      },
+      {
+        name: "Certificate Of Competence - Web Developer",
+        issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
+        date: "Nov 2024 — Nov 2027",
+        id: "13231353",
+        logo: "https://upload.wikimedia.org/wikipedia/id/thumb/a/a2/Logo_BNSP.png/220px-Logo_BNSP.png",
+        skills: ["Tailwind CSS", "Debugging"],
+        link: "#"
+      },
+      {
+        name: "Certificate Of Competence - Junior Web Programmer",
+        issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
+        date: "Sep 2025 — Sep 2028",
+        id: "14357791",
+        logo: "https://upload.wikimedia.org/wikipedia/id/thumb/a/a2/Logo_BNSP.png/220px-Logo_BNSP.png",
+        skills: ["User Interface Design", "Structured Programming"],
+        link: "#"
+      },
+      {
+        name: "Fullstack Web Programming",
+        issuer: "Jabar Istimewa Digital Academy",
+        date: "Aug 2025",
+        logo: "/logo-experience/jida.png",
+        skills: ["NextAuth", "Redux.js"],
+        link: "#"
+      },
+      {
+        name: "AWS Academy Graduate - AWS Academy Cloud Foundations",
+        issuer: "Amazon Web Services (AWS)",
+        date: "Jun 2025",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png",
+        skills: ["Cloud Computing"],
+        link: "#"
+      }
     ],
     moments: [
       { id: 1, title: "Deep Focus Workspace", category: "Productivity", description: "Minimal setup designed for long engineering sessions and deep focus." },
@@ -383,18 +460,69 @@ export const dictionary = {
     ],
     teamProjects: [
       {
-        id: "team-1",
-        name: "Enterprise Resource Planner",
+        id: "findme-app",
+        name: "FindMe-App",
         role: "Frontend Lead",
-        teamSize: 5,
-        description: "Collaborated with a cross-functional team of 5 to build a modular ERP system. Led the frontend architecture and established coding standards for the React application.",
-        contribution: "Designed the state management architecture and core UI components.",
-        tags: ["React", "Redux", "Material UI", "Team Lead"],
+        teamSize: 4,
+        description: "A location-based community application designed to connect people with local services and real-time community updates. Built with a focus on high-performance map integration and real-time data sync.",
+        contribution: "Developed the core map interface and state management for real-time location updates.",
+        logo: "📍",
+        tags: ["React Native", "Google Maps API", "Firebase"],
+        period: "2025",
+        members: [
+          { name: "Team Member 1", github: "#" },
+          { name: "Team Member 2", github: "#" }
+        ],
+        demo: "#",
+        github: "#"
+      },
+      {
+        id: "insomnia-space",
+        name: "Insomnia-Space",
+        role: "Core Contributor",
+        teamSize: 6,
+        logo: "🌌",
+        description: "A collaborative workspace for developers to share API collections and documentation. Active collaborator on 5 repositories within the organization, maintaining core utility libraries.",
+        contribution: "Implemented the collaborative real-time editor and organized organization-wide documentation standards.",
+        tags: ["Next.js", "Socket.io", "Redis"],
+        period: "2024 — 2025",
+        members: [
+          { name: "Project Lead", github: "#" },
+          { name: "Backend Engineer", github: "#" }
+        ],
+        demo: "#",
+        github: "#"
+      },
+      {
+        id: "kala-esok",
+        name: "Kala-Esok",
+        role: "Frontend Developer",
+        teamSize: 3,
+        logo: "⏳",
+        description: "A productivity and time-management application focused on long-term goal tracking and visual timeline planning. Features a unique 'future-vision' dashboard.",
+        contribution: "Crafted the complex timeline visualization components and interactive goal-setting UI.",
+        tags: ["Vue.js", "D3.js", "Tailwind CSS"],
         period: "2024",
         members: [
-          { name: "Alex Jones", github: "https://github.com/example1" },
-          { name: "Sarah Miller", github: "https://github.com/example2" },
-          { name: "Michael Chen", github: "https://github.com/example3" }
+          { name: "Designer", github: "#" },
+          { name: "DevOps", github: "#" }
+        ],
+        demo: "#",
+        github: "#"
+      },
+      {
+        id: "wastego",
+        name: "WasteGo",
+        role: "Fullstack Developer",
+        teamSize: 5,
+        logo: "♻️",
+        description: "An eco-tech platform aimed at optimizing waste collection and recycling workflows. Connects households with local recycling centers through a gamified interface.",
+        contribution: "Built the rewards system backend and integrated the mobile-responsive user dashboard.",
+        tags: ["React", "Node.js", "PostgreSQL"],
+        period: "2024",
+        members: [
+          { name: "Contributor 1", github: "#" },
+          { name: "Contributor 2", github: "#" }
         ],
         demo: "#",
         github: "#"
@@ -487,7 +615,7 @@ export const dictionary = {
       description:
         "Mahasiswa tingkat akhir Teknik Informatika di PENS. Saya merancang frontend tingkat perusahaan dan memecahkan masalah yang berarti — saat ini berkontribusi di bidang teknologi kesehatan di Kalbe Farma, dan menargetkan panggung teknologi global.",
       location: "Jakarta, Indonesia",
-      email: "akmal@example.com",
+      email: "akmalbintang33@gmail.com",
       github: "https://github.com/akmal-bintang",
       linkedin: "https://linkedin.com/in/akmal-bintang",
       status: "Terbuka untuk peluang",
@@ -679,6 +807,8 @@ export const dictionary = {
         ],
         github: "#",
         demo: "#",
+        associatedWith: "PENS — Proyek Akhir",
+        associatedLogo: "/logo-experience/jida.png",
       },
       {
         id: "klikgen",
@@ -698,6 +828,8 @@ export const dictionary = {
         ],
         github: null,
         demo: null,
+        associatedWith: "SCI / Kalbe Farma",
+        associatedLogo: "/logo-experience/sci.png",
       },
       {
         id: "bifarma",
@@ -716,6 +848,8 @@ export const dictionary = {
         ],
         github: null,
         demo: null,
+        associatedWith: "SCI / Kalbe Farma",
+        associatedLogo: "/logo-experience/bfa.png",
       },
       {
         id: "tracklab",
@@ -734,6 +868,8 @@ export const dictionary = {
         ],
         github: null,
         demo: null,
+        associatedWith: "SCI / Kalbe Farma",
+        associatedLogo: "/logo-experience/sci.png",
       },
     ],
     skills: {
@@ -846,13 +982,82 @@ export const dictionary = {
     ],
     certifications: [
       {
-        name: "Sertifikasi",
-        issuer: "— Segera Hadir —",
-        date: "",
-        status: "upcoming",
-        description:
-          "Saat ini sedang mengejar sertifikasi relevan untuk memperkuat profil rekayasa.",
+        name: "Industry Professional Credentials Track – IBM Front-End Developer",
+        issuer: "Arizona State University",
+        date: "Feb 2026",
+        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0a/Arizona_State_University_logo.svg/1200px-Arizona_State_University_logo.svg.png",
+        skills: ["Front-End Development"],
+        link: "#"
       },
+      {
+        name: "Front-End Web & Back-end Developer",
+        issuer: "Asah led by Dicoding",
+        date: "Jan 2026",
+        id: "ASAH/GRAD/XXVI-01/F123D5Y0133",
+        logo: "/logo-experience/asah.png",
+        skills: ["JavaScript", "Front-End Development"],
+        link: "#"
+      },
+      {
+        name: "IBM Front-End Developer",
+        issuer: "IBM",
+        date: "Jan 2026",
+        id: "DTKKFQCJQIFI",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/1200px-IBM_logo.svg.png",
+        skills: ["React.js", "Front-End Development"],
+        link: "#"
+      },
+      {
+        name: "Cloud Native, DevOps, Agile & NoSQL Essentials",
+        issuer: "Coursera",
+        date: "Jan 2026",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/1200px-Coursera-Logo_600x600.svg.png",
+        skills: ["Cloud Native", "DevOps"],
+        link: "#"
+      },
+      {
+        name: "React JS - Web Frontend Development",
+        issuer: "SanberCode",
+        date: "Des 2025",
+        id: "48732/828/SNBR/BOOTCAMP/XII/2025",
+        logo: "https://sanbercode.com/assets/img/logo-sanber-transparent.png",
+        skills: ["JavaScript", "React.js"],
+        link: "#"
+      },
+      {
+        name: "Certificate Of Competence - Web Developer",
+        issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
+        date: "Nov 2024 — Nov 2027",
+        id: "13231353",
+        logo: "https://upload.wikimedia.org/wikipedia/id/thumb/a/a2/Logo_BNSP.png/220px-Logo_BNSP.png",
+        skills: ["Tailwind CSS", "Debugging"],
+        link: "#"
+      },
+      {
+        name: "Certificate Of Competence - Junior Web Programmer",
+        issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
+        date: "Sep 2025 — Sep 2028",
+        id: "14357791",
+        logo: "https://upload.wikimedia.org/wikipedia/id/thumb/a/a2/Logo_BNSP.png/220px-Logo_BNSP.png",
+        skills: ["User Interface Design", "Structured Programming"],
+        link: "#"
+      },
+      {
+        name: "Fullstack Web Programming",
+        issuer: "Jabar Istimewa Digital Academy",
+        date: "Agu 2025",
+        logo: "/logo-experience/jida.png",
+        skills: ["NextAuth", "Redux.js"],
+        link: "#"
+      },
+      {
+        name: "AWS Academy Graduate - AWS Academy Cloud Foundations",
+        issuer: "Amazon Web Services (AWS)",
+        date: "Jun 2025",
+        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png",
+        skills: ["Cloud Computing"],
+        link: "#"
+      }
     ],
     moments: [
       { id: 1, title: "Ruang Kerja Fokus", category: "Produktivitas", description: "Setup minimalis yang dirancang untuk sesi rekayasa panjang dan fokus mendalam." },
@@ -863,18 +1068,69 @@ export const dictionary = {
     ],
     teamProjects: [
       {
-        id: "team-1",
-        name: "Enterprise Resource Planner",
+        id: "findme-app",
+        name: "FindMe-App",
         role: "Frontend Lead",
-        teamSize: 5,
-        description: "Berkolaborasi dengan tim lintas fungsi beranggotakan 5 orang untuk membangun sistem ERP modular. Memimpin arsitektur frontend dan menetapkan standar coding untuk aplikasi React.",
-        contribution: "Merancang arsitektur manajemen state dan komponen UI inti.",
-        tags: ["React", "Redux", "Material UI", "Team Lead"],
+        teamSize: 4,
+        description: "Aplikasi komunitas berbasis lokasi yang dirancang untuk menghubungkan orang dengan layanan lokal dan pembaruan komunitas secara real-time. Dibangun dengan fokus pada integrasi peta berperforma tinggi dan sinkronisasi data real-time.",
+        contribution: "Mengembangkan antarmuka peta inti dan manajemen state untuk pembaruan lokasi secara real-time.",
+        logo: "📍",
+        tags: ["React Native", "Google Maps API", "Firebase"],
+        period: "2025",
+        members: [
+          { name: "Anggota Tim 1", github: "#" },
+          { name: "Anggota Tim 2", github: "#" }
+        ],
+        demo: "#",
+        github: "#"
+      },
+      {
+        id: "insomnia-space",
+        name: "Insomnia-Space",
+        role: "Kontributor Inti",
+        teamSize: 6,
+        logo: "🌌",
+        description: "Ruang kerja kolaboratif bagi pengembang untuk berbagi koleksi API dan dokumentasi. Kolaborator aktif di 5 repositori dalam organisasi, memelihara pustaka utilitas inti.",
+        contribution: "Mengimplementasikan editor kolaboratif real-time dan mengatur standar dokumentasi di seluruh organisasi.",
+        tags: ["Next.js", "Socket.io", "Redis"],
+        period: "2024 — 2025",
+        members: [
+          { name: "Project Lead", github: "#" },
+          { name: "Backend Engineer", github: "#" }
+        ],
+        demo: "#",
+        github: "#"
+      },
+      {
+        id: "kala-esok",
+        name: "Kala-Esok",
+        role: "Frontend Developer",
+        teamSize: 3,
+        logo: "⏳",
+        description: "Aplikasi produktivitas dan manajemen waktu yang berfokus pada pelacakan tujuan jangka panjang dan perencanaan garis waktu visual. Menampilkan dasbor 'future-vision' yang unik.",
+        contribution: "Membangun komponen visualisasi garis waktu yang kompleks dan UI pengaturan tujuan yang interaktif.",
+        tags: ["Vue.js", "D3.js", "Tailwind CSS"],
         period: "2024",
         members: [
-          { name: "Alex Jones", github: "https://github.com/example1" },
-          { name: "Sarah Miller", github: "https://github.com/example2" },
-          { name: "Michael Chen", github: "https://github.com/example3" }
+          { name: "Desainer", github: "#" },
+          { name: "DevOps", github: "#" }
+        ],
+        demo: "#",
+        github: "#"
+      },
+      {
+        id: "wastego",
+        name: "WasteGo",
+        role: "Fullstack Developer",
+        teamSize: 5,
+        logo: "♻️",
+        description: "Platform teknologi ramah lingkungan yang bertujuan untuk mengoptimalkan pengumpulan sampah dan alur kerja daur ulang. Menghubungkan rumah tangga dengan pusat daur ulang lokal melalui antarmuka yang digamifikasi.",
+        contribution: "Membangun backend sistem poin dan mengintegrasikan dasbor pengguna yang responsif seluler.",
+        tags: ["React", "Node.js", "PostgreSQL"],
+        period: "2024",
+        members: [
+          { name: "Kontributor 1", github: "#" },
+          { name: "Kontributor 2", github: "#" }
         ],
         demo: "#",
         github: "#"

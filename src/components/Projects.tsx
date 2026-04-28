@@ -52,200 +52,290 @@ function ProjectCard({ project, idx, inView }: {
 }) {
   const { t } = useLanguage();
   const { ref, handleMouseMove, handleMouseLeave } = use3DTilt();
+  const [isHovered, setIsHovered] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    handleMouseMove(e);
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
 
   return (
     <div
       ref={ref}
-      onMouseMove={handleMouseMove}
+      onMouseMove={onMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        handleMouseLeave();
+        setIsHovered(false);
+      }}
       style={{
         background: "var(--bg-card)",
         border: "1px solid var(--border)",
-        borderRadius: "var(--radius-xl)",
-        padding: "36px",
+        borderRadius: "24px",
         display: "flex", flexDirection: "column",
-        boxShadow: "var(--shadow-sm)",
+        boxShadow: isHovered ? "var(--shadow-xl)" : "var(--shadow-sm)",
         opacity: inView ? 1 : 0,
         animation: inView
-          ? `fadeInUp 0.6s cubic-bezier(0.22,1,0.36,1) ${idx * 0.12}s both`
+          ? `fadeInUp 0.8s cubic-bezier(0.22,1,0.36,1) ${idx * 0.12}s both`
           : "none",
         willChange: "transform",
-        transition: "box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+        transition: "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
         position: "relative",
         overflow: "hidden",
+        height: "100%",
       }}
       className="project-card-inner"
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = "var(--border-hover)";
-      }}
-      onMouseLeave={(e) => {
-        handleMouseLeave();
-        (e.currentTarget as HTMLDivElement).style.borderColor = "var(--border)";
-      }}
     >
-      {/* Status */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "20px" }}>
-        <span
+      {/* Spotlight Effect */}
+      <div style={{
+        position: "absolute",
+        top: 0, left: 0, right: 0, bottom: 0,
+        background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, var(--accent-soft), transparent 40%)`,
+        opacity: isHovered ? 0.15 : 0,
+        pointerEvents: "none",
+        zIndex: 1,
+        transition: "opacity 0.3s ease",
+      }} />
+
+      {/* Image Header */}
+      <div style={{ position: "relative", height: "240px", overflow: "hidden", background: "var(--bg-tertiary)" }}>
+        <img 
+          src={project.image} 
+          alt={project.name}
           style={{
-            padding: "5px 12px",
-            borderRadius: "100px",
-            fontSize: "11px", fontWeight: 700,
-            color: statusColorMap[project.statusColor],
-            background: statusSoftMap[project.statusColor],
-            letterSpacing: "0.05em",
-            display: "flex", alignItems: "center", gap: "6px",
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            transition: "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)",
+            transform: isHovered ? "scale(1.08)" : "scale(1)",
+            filter: isHovered ? "brightness(1.05)" : "brightness(0.95)",
           }}
-        >
-          {project.status === "In Development" && (
-            <span
-              style={{
-                width: "6px", height: "6px", borderRadius: "50%",
-                background: "var(--green)", display: "inline-block",
-                animation: "pulse 2s ease-in-out infinite",
-              }}
-            />
-          )}
+        />
+        <div style={{
+          position: "absolute",
+          top: 0, left: 0, right: 0, bottom: 0,
+          background: "linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%)",
+          opacity: isHovered ? 0.4 : 0.6,
+          transition: "opacity 0.4s ease"
+        }} />
+
+        {/* Status Badge - Floating */}
+        <div style={{
+          position: "absolute",
+          top: "16px",
+          left: "16px",
+          padding: "6px 14px",
+          borderRadius: "100px",
+          fontSize: "11px",
+          fontWeight: 800,
+          color: "#fff",
+          background: "rgba(0,0,0,0.4)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          border: "1px solid rgba(255,255,255,0.2)",
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          letterSpacing: "0.05em",
+          textTransform: "uppercase",
+          zIndex: 2,
+        }}>
+          <span style={{
+            width: "8px", height: "8px", borderRadius: "50%",
+            background: statusColorMap[project.statusColor],
+            boxShadow: `0 0 10px ${statusColorMap[project.statusColor]}`,
+            animation: project.status === "In Development" ? "pulse 2s infinite" : "none",
+          }} />
           {project.status === "In Development" ? t.ui.inDevelopment : project.status === "Shipped" ? t.ui.shipped : project.status}
-        </span>
-        <span style={{ fontSize: "12px", color: "var(--text-tertiary)", fontWeight: 600 }}>
+        </div>
+
+        {/* Year Label */}
+        <div style={{
+          position: "absolute",
+          bottom: "16px",
+          right: "16px",
+          color: "rgba(255,255,255,0.9)",
+          fontSize: "12px",
+          fontWeight: 700,
+          zIndex: 2,
+          textShadow: "0 2px 4px rgba(0,0,0,0.3)"
+        }}>
           {project.period}
-        </span>
+        </div>
       </div>
 
-      {/* Title */}
-      <h3
-        style={{
-          fontSize: "22px", fontWeight: 800,
-          letterSpacing: "-0.02em", color: "var(--text-primary)",
-          marginBottom: "6px", lineHeight: 1.2,
-        }}
-      >
-        {project.name}
-      </h3>
-      <p style={{ fontSize: "14px", color: "var(--accent)", fontWeight: 600, marginBottom: "16px" }}>
-        {project.tagline}
-      </p>
-      <p style={{ fontSize: "14px", color: "var(--text-secondary)", lineHeight: 1.75, marginBottom: "22px" }}>
-        {project.description}
-      </p>
+      {/* Content Area */}
+      <div style={{ padding: "32px", display: "flex", flexDirection: "column", flex: 1, position: "relative", zIndex: 2 }}>
+        {project.associatedWith && (
+          <div style={{ 
+            fontSize: "12px", 
+            fontWeight: 700, 
+            color: "var(--text-tertiary)", 
+            textTransform: "uppercase",
+            letterSpacing: "0.1em",
+            marginBottom: "12px",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px"
+          }}>
+            {project.associatedLogo && (
+              <div style={{
+                width: "20px",
+                height: "20px",
+                borderRadius: "4px",
+                background: "white",
+                padding: "2px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                border: "1px solid var(--border)",
+              }}>
+                <img src={project.associatedLogo} alt="" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              </div>
+            )}
+            {project.associatedWith}
+          </div>
+        )}
+        <h3 style={{
+          fontSize: "24px", fontWeight: 800,
+          letterSpacing: "-0.03em", color: "var(--text-primary)",
+          marginBottom: "8px", lineHeight: 1.1,
+        }}>
+          {project.name}
+        </h3>
+        
+        <div style={{ 
+          fontSize: "14px", 
+          color: "var(--accent)", 
+          fontWeight: 700, 
+          marginBottom: "16px",
+          display: "flex",
+          alignItems: "center",
+          gap: "6px"
+        }}>
+          <span style={{ opacity: 0.8 }}>✦</span> {project.tagline}
+        </div>
 
-      {/* Highlights */}
-      <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "9px", marginBottom: "24px" }}>
-        {project.highlights.map((h: string, hi: number) => (
-          <li
-            key={h}
-            style={{
-              fontSize: "13px", color: "var(--text-secondary)",
-              display: "flex", gap: "10px", alignItems: "flex-start",
-              opacity: inView ? 1 : 0,
-              animation: inView ? `slideInLeft 0.4s ease ${idx * 0.1 + hi * 0.06 + 0.3}s both` : "none",
-            }}
-          >
+        <p style={{ 
+          fontSize: "15px", 
+          color: "var(--text-secondary)", 
+          lineHeight: 1.6, 
+          marginBottom: "24px",
+          display: "-webkit-box",
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden"
+        }}>
+          {project.description}
+        </p>
+
+        {/* Tech Stack Pills */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "32px" }}>
+          {project.tags.map((tag: string) => (
             <span
+              key={tag}
               style={{
-                color: "var(--green)", flexShrink: 0, marginTop: "1px",
+                padding: "5px 12px",
+                background: "var(--bg-tertiary)",
+                border: "1px solid var(--border)",
+                borderRadius: "8px",
+                fontSize: "11px", 
+                fontWeight: 600, 
+                color: "var(--text-secondary)",
+                transition: "all 0.3s ease",
+              }}
+              className="tech-tag"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div style={{ marginTop: "auto", display: "flex", gap: "12px" }}>
+          {project.github ? (
+            <a
+              href={project.github}
+              className="project-link github"
+              style={{
+                flex: 1,
+                textAlign: "center",
+                padding: "12px",
+                background: "var(--bg-tertiary)",
+                border: "1px solid var(--border)",
+                borderRadius: "12px",
+                fontSize: "14px",
                 fontWeight: 700,
+                color: "var(--text-primary)",
+                transition: "all 0.3s ease",
+                textDecoration: "none"
               }}
             >
-              ✓
-            </span>
-            {h}
-          </li>
-        ))}
-      </ul>
-
-      {/* Tags */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "7px", marginBottom: "28px", flex: 1, alignItems: "flex-start" }}>
-        {project.tags.map((tag: string, ti: number) => (
-          <span
-            key={tag}
-            style={{
-              padding: "4px 12px",
-              background: "var(--bg-tertiary)",
+              GitHub ↗
+            </a>
+          ) : (
+            <div style={{
+              flex: 1,
+              textAlign: "center",
+              padding: "12px",
+              background: "var(--bg-secondary)",
               border: "1px solid var(--border)",
-              borderRadius: "100px",
-              fontSize: "11px", fontWeight: 600, color: "var(--text-secondary)",
-              transition: "all 0.2s ease",
-              animation: inView ? `badgePop 0.4s cubic-bezier(0.34,1.56,0.64,1) ${idx * 0.1 + ti * 0.05 + 0.4}s both` : "none",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLSpanElement).style.background = "var(--accent-soft)";
-              (e.currentTarget as HTMLSpanElement).style.color = "var(--accent)";
-              (e.currentTarget as HTMLSpanElement).style.borderColor = "var(--accent)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLSpanElement).style.background = "var(--bg-tertiary)";
-              (e.currentTarget as HTMLSpanElement).style.color = "var(--text-secondary)";
-              (e.currentTarget as HTMLSpanElement).style.borderColor = "var(--border)";
-            }}
-          >
-            {tag}
-          </span>
-        ))}
+              borderRadius: "12px",
+              fontSize: "14px",
+              fontWeight: 600,
+              color: "var(--text-tertiary)",
+              opacity: 0.7
+            }}>
+              {t.ui.projPrivate}
+            </div>
+          )}
+          
+          {project.demo && (
+            <a
+              href={project.demo}
+              className="project-link demo"
+              style={{
+                flex: 1,
+                textAlign: "center",
+                padding: "12px",
+                background: "var(--accent)",
+                borderRadius: "12px",
+                fontSize: "14px",
+                fontWeight: 700,
+                color: "#fff",
+                transition: "all 0.3s ease",
+                boxShadow: "0 4px 12px var(--accent-glow)",
+                textDecoration: "none"
+              }}
+            >
+              Live Demo
+            </a>
+          )}
+        </div>
       </div>
 
-      {/* Links */}
-      <div style={{ display: "flex", gap: "12px" }}>
-        {project.github ? (
-          <a
-            href={project.github}
-            style={{
-              padding: "10px 20px",
-              background: "var(--bg-tertiary)", border: "1px solid var(--border)",
-              borderRadius: "100px", fontSize: "13px", fontWeight: 700,
-              color: "var(--text-secondary)",
-              transition: "all 0.25s cubic-bezier(0.34,1.56,0.64,1)",
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLAnchorElement;
-              el.style.color = "var(--text-primary)";
-              el.style.borderColor = "var(--border-hover)";
-              el.style.transform = "translateY(-2px)";
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLAnchorElement;
-              el.style.color = "var(--text-secondary)";
-              el.style.borderColor = "var(--border)";
-              el.style.transform = "translateY(0)";
-            }}
-          >
-            GitHub ↗
-          </a>
-        ) : (
-          <span
-            style={{
-              padding: "10px 20px",
-              background: "var(--bg-tertiary)", border: "1px solid var(--border)",
-              borderRadius: "100px", fontSize: "13px", fontWeight: 600,
-              color: "var(--text-tertiary)",
-            }}
-          >
-            {t.ui.projPrivate}
-          </span>
-        )}
-        {project.demo && (
-          <a
-            href={project.demo}
-            style={{
-              padding: "10px 20px", background: "var(--accent)",
-              borderRadius: "100px", fontSize: "13px", fontWeight: 700,
-              color: "#fff", transition: "all 0.25s cubic-bezier(0.34,1.56,0.64,1)",
-              boxShadow: "var(--shadow-accent)",
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLAnchorElement;
-              el.style.background = "var(--accent-hover)";
-              el.style.transform = "translateY(-2px)";
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLAnchorElement;
-              el.style.background = "var(--accent)";
-              el.style.transform = "translateY(0)";
-            }}
-          >
-            {t.ui.projDemo}
-          </a>
-        )}
-      </div>
+      <style jsx>{`
+        .project-link.github:hover {
+          background: var(--bg-secondary) !important;
+          border-color: var(--accent) !important;
+          color: var(--accent) !important;
+          transform: translateY(-2px);
+        }
+        .project-link.demo:hover {
+          background: var(--accent-hover) !important;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px var(--accent-glow) !important;
+        }
+        .tech-tag:hover {
+          border-color: var(--accent) !important;
+          color: var(--accent) !important;
+          background: var(--accent-soft) !important;
+        }
+      `}</style>
     </div>
   );
 }
@@ -270,7 +360,7 @@ export default function Projects() {
       }}
       className="projects-section"
     >
-      <div className="grid-pattern" />
+      <div className="grid-pattern" style={{ opacity: 0.4 }} />
       <FloatingSymbols density={10} />
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <div style={{ marginBottom: "60px" }}>
@@ -295,8 +385,8 @@ export default function Projects() {
           ref={ref}
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(480px, 1fr))",
-            gap: "20px",
+            gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))",
+            gap: "32px",
           }}
           className="projects-grid"
         >

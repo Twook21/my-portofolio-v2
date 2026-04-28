@@ -5,10 +5,10 @@ export const personal = {
   description:
     "Final-year Informatics Engineering student at PENS. I architect enterprise-grade frontends and chase meaningful problems — currently contributing to healthcare tech at Kalbe Farma, and aiming for the global tech stage.",
   location: "Jakarta, Indonesia",
-  email: "akmal@example.com",
+  email: "akmalbintang33@gmail.com",
   github: "https://github.com/akmal-bintang",
-  linkedin: "https://linkedin.com/in/akmal-bintang",
-  instagram: "https://instagram.com/akmalbintang_", // Placeholder
+  linkedin: "https://www.linkedin.com/in/akmal-bintang-budiawan",
+  instagram: "https://www.instagram.com/tw0ok_/", // Placeholder
   status: "Open to opportunities",
   philosophy: "Clean Code Evangelist & Growth Mindset Practitioner",
   goal: "World-class Software Engineer · Singapore Tech Ecosystem 2031",
@@ -89,6 +89,8 @@ export const projects = [
     ],
     github: "#",
     demo: "#",
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1000",
+    associatedWith: "PENS — Capstone Project",
   },
   {
     id: "klikgen",
@@ -108,6 +110,8 @@ export const projects = [
     ],
     github: null,
     demo: null,
+    image: "https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=1000",
+    associatedWith: "SCI / Kalbe Farma",
   },
   {
     id: "bifarma",
@@ -126,6 +130,8 @@ export const projects = [
     ],
     github: null,
     demo: null,
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000",
+    associatedWith: "SCI / Kalbe Farma",
   },
   {
     id: "tracklab",
@@ -144,6 +150,8 @@ export const projects = [
     ],
     github: null,
     demo: null,
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=1000",
+    associatedWith: "SCI / Kalbe Farma",
   },
 ];
 

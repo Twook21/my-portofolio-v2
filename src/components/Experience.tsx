@@ -2,124 +2,124 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
 import FloatingSymbols from "./FloatingSymbols";
-
-function useInView(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    if (!ref.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setInView(true); },
-      { threshold }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
-  return { ref, inView };
-}
-
-/** 3D tilt on mouse move */
-function use3DTilt() {
-  const ref = useRef<HTMLDivElement>(null);
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = ref.current;
-    if (!el) return;
-    const { left, top, width, height } = el.getBoundingClientRect();
-    const x = (e.clientX - left) / width  - 0.5;
-    const y = (e.clientY - top)  / height - 0.5;
-    el.style.transform = `perspective(800px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-4px)`;
-  };
-  const handleMouseLeave = () => {
-    const el = ref.current;
-    if (!el) return;
-    el.style.transform = "perspective(800px) rotateX(0) rotateY(0) translateY(0)";
-  };
-  return { ref, handleMouseMove, handleMouseLeave };
-}
 
 export default function Experience() {
   const { t } = useLanguage();
-  const { ref, inView } = useInView();
-  const [activeExp, setActiveExp] = useState<string | null>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
   const [showAll, setShowAll] = useState(false);
   
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 90%", "start 25%"]
+  });
+  
+  const pathLength = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   const INITIAL_LIMIT = 3;
-  const displayedExp = showAll ? t.experiences : t.experiences.slice(0, INITIAL_LIMIT);
+  const experiences = t.experiences;
+  const displayedExp = showAll ? experiences : experiences.slice(0, INITIAL_LIMIT);
 
   return (
     <section
       id="experience"
       style={{
-        padding: "100px 20px",
-        background: "var(--bg-secondary)",
-        borderTop: "1px solid var(--border)",
-        borderBottom: "1px solid var(--border)",
-        transition: "background 0.35s ease",
+        padding: "140px 20px",
+        background: "var(--bg-primary)",
         position: "relative",
         overflow: "hidden",
       }}
       className="experience-section"
     >
-      <div className="grid-pattern" />
-      <FloatingSymbols density={10} />
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "60px" }}>
-          <span className="section-label">{t.ui.experience}</span>
-          <h2
+      <div className="grid-pattern" style={{ opacity: 0.5 }} />
+      <FloatingSymbols density={6} />
+
+      <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative" }}>
+        <header style={{ marginBottom: "100px", textAlign: "center" }}>
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="section-label"
+          >
+            {t.ui.experience}
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             style={{
               fontFamily: '"Stack Sans Notch", sans-serif',
-              fontSize: "clamp(28px, 6vw, 52px)",
-              fontWeight: 800, letterSpacing: "-0.03em",
-              lineHeight: 1.1, color: "var(--text-primary)", maxWidth: "560px",
+              fontSize: "clamp(32px, 6vw, 52px)",
+              fontWeight: 900, letterSpacing: "-0.04em",
+              lineHeight: 1.1, color: "var(--text-primary)",
+              marginTop: "16px"
             }}
           >
             {t.ui.expTitle1}
             <br />
-            <span style={{ color: "var(--text-tertiary)", fontWeight: 700 }}>
-              {t.ui.expTitle2}
-            </span>
-          </h2>
+            <span className="shimmer-text">{t.ui.expTitle2}</span>
+          </motion.h2>
+        </header>
+
+        <div ref={timelineRef} style={{ position: "relative", paddingLeft: "80px" }} className="timeline-container">
+          {/* The Path */}
+          <div 
+            style={{ 
+              position: "absolute", left: "36px", top: "10px", bottom: "0", 
+              width: "4px", background: "var(--bg-tertiary)", borderRadius: "10px",
+              opacity: 0.5 
+            }} 
+          />
+          <motion.div 
+            style={{ 
+              position: "absolute", left: "36px", top: "10px", bottom: "0", 
+              width: "4px", background: "#00d2ff",
+              borderRadius: "10px", scaleY: pathLength, originY: 0, zIndex: 1,
+              opacity: 0.9,
+            }} 
+          />
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "80px" }}>
+            <AnimatePresence mode="popLayout">
+              {displayedExp.map((exp, idx) => (
+                <TimelineItem 
+                  key={exp.id} 
+                  exp={exp} 
+                  idx={idx} 
+                  isLast={idx === displayedExp.length - 1} 
+                />
+              ))}
+            </AnimatePresence>
+          </div>
         </div>
 
-        <div ref={ref} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          {displayedExp.map((exp, idx) => (
-            <ExpCard
-              key={exp.id}
-              exp={exp}
-              idx={idx}
-              inView={inView}
-              activeExp={activeExp}
-              setActiveExp={setActiveExp}
-            />
-          ))}
-        </div>
-
-        {t.experiences.length > INITIAL_LIMIT && (
-          <div style={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
+        {experiences.length > INITIAL_LIMIT && (
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "100px" }}>
             <button
               onClick={() => setShowAll(!showAll)}
               style={{
-                padding: "12px 28px",
+                padding: "14px 36px",
                 background: "transparent",
                 border: "1px solid var(--border)",
                 borderRadius: "100px",
-                fontSize: "14px", fontWeight: 700,
+                fontSize: "14px", fontWeight: 800,
                 color: "var(--text-secondary)",
                 cursor: "pointer",
                 transition: "all 0.3s ease",
               }}
               onMouseEnter={(e) => {
-                const el = e.currentTarget;
-                el.style.color = "var(--text-primary)";
-                el.style.borderColor = "var(--border-hover)";
-                el.style.background = "var(--bg-tertiary)";
+                e.currentTarget.style.borderColor = "var(--accent)";
+                e.currentTarget.style.color = "var(--text-primary)";
+                e.currentTarget.style.background = "var(--accent-soft)";
               }}
               onMouseLeave={(e) => {
-                const el = e.currentTarget;
-                el.style.color = "var(--text-secondary)";
-                el.style.borderColor = "var(--border)";
-                el.style.background = "transparent";
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.color = "var(--text-secondary)";
+                e.currentTarget.style.background = "transparent";
               }}
             >
               {showAll ? t.ui.showLess : t.ui.showMore}
@@ -131,250 +131,198 @@ export default function Experience() {
   );
 }
 
-function ExpCard({
-  exp, idx, inView, activeExp, setActiveExp,
-}: {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  exp: any; idx: number; inView: boolean;
-  activeExp: string | null; setActiveExp: (id: string | null) => void;
-}) {
+function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boolean }) {
   const { t } = useLanguage();
-  const { ref, handleMouseMove, handleMouseLeave } = use3DTilt();
-  const isOpen = activeExp === exp.id;
+  const [isOpen, setIsOpen] = useState(false);
+
+  const containerVariants = {
+    hidden: { opacity: 0, x: 30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      }
+    },
+    exit: { 
+      opacity: 0, 
+      x: -20, 
+      transition: { duration: 0.4, ease: "easeIn" } 
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15, filter: "blur(4px)" },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: "blur(0px)",
+      transition: { type: "spring", stiffness: 100, damping: 20 } 
+    }
+  };
+
+  const logoVariants = {
+    hidden: { scale: 0, rotate: -20 },
+    visible: { 
+      scale: 1, 
+      rotate: 0,
+      transition: { type: "spring", stiffness: 260, damping: 20, delay: 0.1 }
+    }
+  };
 
   return (
-    <div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      onClick={() => setActiveExp(isOpen ? null : exp.id)}
-      style={{
-        background: "var(--bg-card)",
-        border: exp.highlight
-          ? "1px solid color-mix(in srgb, var(--accent) 30%, transparent)"
-          : "1px solid var(--border)",
-        borderRadius: "var(--radius-xl)",
-        padding: "36px",
-        cursor: "pointer",
-        boxShadow: exp.highlight ? "var(--shadow-md)" : "var(--shadow-sm)",
-        opacity: inView ? 1 : 0,
-        animation: inView
-          ? `fadeInUp 0.6s cubic-bezier(0.22,1,0.36,1) ${idx * 0.12}s both`
-          : "none",
-        position: "relative",
-        overflow: "hidden",
-        willChange: "transform",
-        transition: "transition 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease",
-      }}
-      className="exp-card-inner"
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-lg)";
-      }}
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: true, margin: "-100px" }}
+      style={{ position: "relative", zIndex: 2 }}
     >
-      {/* Gradient top border */}
-      {exp.highlight && (
-        <div
-          style={{
-            position: "absolute", top: 0, left: 0, right: 0, height: "3px",
-            background: "linear-gradient(90deg, var(--accent), var(--green), var(--purple))",
-            backgroundSize: "200% auto",
-            animation: "shimmer 4s linear infinite",
-          }}
-        />
-      )}
-
-      {/* Hover shimmer overlay */}
-      <div
-        style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(135deg, var(--accent-soft) 0%, transparent 60%)",
-          opacity: 0, pointerEvents: "none",
-          transition: "opacity 0.3s ease",
-        }}
-        className="card-shimmer"
-      />
-
-      <div style={{ display: "flex", gap: "20px", alignItems: "flex-start" }} className="exp-header">
-        {/* Icon */}
-        <div
-          style={{
-            width: "72px", height: "72px", borderRadius: "20px",
-            background: "white",
-            border: "1px solid var(--border)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            flexShrink: 0,
-            animation: "float 8s ease-in-out infinite",
-            padding: "6px",
-          }}
-        >
-          <img 
-            src={exp.logo} 
-            alt={exp.company} 
-            style={{ width: "100%", height: "100%", objectFit: "contain" }} 
-          />
-        </div>
-
-        <div style={{ flex: 1 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "16px", flexWrap: "wrap" }} className="exp-title-row">
-            <div>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px", flexWrap: "wrap" }}>
-                <h3 style={{ fontSize: "19px", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
-                  {exp.role}
-                </h3>
-                {exp.highlight && (
-                  <span
-                    style={{
-                      padding: "3px 10px",
-                      background: "var(--accent-soft)",
-                      borderRadius: "100px",
-                      fontSize: "11px", fontWeight: 700, color: "var(--accent)",
-                      letterSpacing: "0.05em",
-                      animation: "borderGlow 3s ease-in-out infinite",
-                    }}
-                  >
-                    {t.ui.expCurrent}
-                  </span>
-                )}
-              </div>
-              <p style={{ fontSize: "15px", fontWeight: 600, color: "var(--text-secondary)", marginBottom: "2px" }}>
-                {exp.company}
-              </p>
-              <p style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>
-                {exp.parent}
-              </p>
-            </div>
-            <div style={{ textAlign: "right" }} className="exp-meta">
-              <p style={{ fontSize: "13px", fontWeight: 700, color: "var(--text-tertiary)", marginBottom: "4px" }}>
-                {exp.period}
-              </p>
-              <p style={{ fontSize: "12px", color: "var(--text-tertiary)" }}>
-                {exp.location}
-              </p>
-            </div>
-          </div>
-
-          <p style={{ marginTop: "16px", fontSize: "15px", color: "var(--text-secondary)", lineHeight: 1.75 }}>
-            {exp.description}
-          </p>
-
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "20px" }}>
-            {exp.tags.map((tag: string, ti: number) => (
-              <span
-                key={tag}
-                style={{
-                  padding: "4px 12px",
-                  background: "var(--bg-tertiary)",
-                  border: "1px solid var(--border)",
-                  borderRadius: "100px",
-                  fontSize: "12px", fontWeight: 600, color: "var(--text-secondary)",
-                  transition: "all 0.2s ease",
-                  animation: inView ? `badgePop 0.4s cubic-bezier(0.34,1.56,0.64,1) ${0.3 + ti * 0.05}s both` : "none",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLSpanElement).style.background = "var(--accent-soft)";
-                  (e.currentTarget as HTMLSpanElement).style.color = "var(--accent)";
-                  (e.currentTarget as HTMLSpanElement).style.borderColor = "var(--accent)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLSpanElement).style.background = "var(--bg-tertiary)";
-                  (e.currentTarget as HTMLSpanElement).style.color = "var(--text-secondary)";
-                  (e.currentTarget as HTMLSpanElement).style.borderColor = "var(--border)";
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          {exp.projects.length > 0 && (
-            <button
-              style={{
-                marginTop: "20px",
-                background: "none", border: "none", cursor: "pointer",
-                color: "var(--accent)", fontSize: "13px", fontWeight: 700,
-                display: "flex", alignItems: "center", gap: "6px",
-                transition: "gap 0.2s ease",
-              }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.gap = "10px"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.gap = "6px"; }}
-            >
-              <span
-                style={{
-                  display: "inline-block",
-                  transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1)",
-                  transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                }}
-              >
-                ↓
-              </span>
-              {isOpen ? t.ui.expHide : t.ui.expShow} {t.ui.expSub} ({exp.projects.length})
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* Sub-projects */}
-      <div
-        style={{
-          maxHeight: isOpen ? "600px" : "0",
-          overflow: "hidden",
-          transition: "max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+      {/* Logo Node */}
+      <motion.div 
+        variants={logoVariants}
+        whileHover={{ scale: 1.15, rotate: 5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
+        style={{ 
+          position: "absolute", left: "-72px", top: "0", 
+          width: "56px", height: "56px", borderRadius: "16px", 
+          background: "white", border: "2px solid var(--border)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          padding: "8px", zIndex: 10,
+          boxShadow: "var(--shadow-sm)",
+          cursor: "pointer"
         }}
       >
-        {isOpen && (
-          <div
+        <img src={exp.logo} alt={exp.company} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+      </motion.div>
+
+      <div style={{ flex: 1 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "12px" }}>
+          <motion.div variants={itemVariants}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
+              <h3 style={{ fontSize: "22px", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
+                {exp.role}
+              </h3>
+              {exp.highlight && (
+                <motion.span 
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 1, type: "spring" }}
+                  style={{ 
+                    fontSize: "10px", fontWeight: 900, color: "var(--accent)", 
+                    padding: "3px 10px", background: "var(--accent-soft)", 
+                    borderRadius: "100px", textTransform: "uppercase" 
+                  }}
+                >
+                  {t.ui.expCurrent}
+                </motion.span>
+              )}
+            </div>
+            <p style={{ fontSize: "16px", fontWeight: 700, color: "var(--accent)" }}>
+              {exp.company}
+            </p>
+          </motion.div>
+          <motion.div variants={itemVariants} style={{ textAlign: "right" }} className="meta">
+            <p style={{ fontSize: "15px", fontWeight: 800, color: "var(--text-primary)" }}>{exp.period}</p>
+            <p style={{ fontSize: "13px", color: "var(--text-tertiary)" }}>{exp.location} • {exp.type}</p>
+          </motion.div>
+        </div>
+
+        <motion.p 
+          variants={itemVariants}
+          style={{ marginTop: "16px", fontSize: "16px", color: "var(--text-secondary)", lineHeight: 1.7, maxWidth: "700px" }}
+        >
+          {exp.description}
+        </motion.p>
+
+        <motion.div 
+          variants={itemVariants}
+          style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "20px" }}
+        >
+          {exp.tags.map((tag: string) => (
+            <span 
+              key={tag}
+              style={{ 
+                padding: "4px 12px", background: "var(--bg-secondary)", 
+                border: "1px solid var(--border)", borderRadius: "6px",
+                fontSize: "12px", fontWeight: 600, color: "var(--text-tertiary)",
+                transition: "all 0.2s ease"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "var(--accent)";
+                e.currentTarget.style.color = "var(--accent)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.color = "var(--text-tertiary)";
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </motion.div>
+
+        {exp.projects.length > 0 && (
+          <motion.button
+            variants={itemVariants}
+            onClick={() => setIsOpen(!isOpen)}
             style={{
-              marginTop: "28px",
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))",
-              gap: "14px",
-              animation: "scaleIn 0.4s cubic-bezier(0.22,1,0.36,1)",
+              marginTop: "24px", background: "none", border: "none", cursor: "pointer",
+              color: "var(--accent)", fontSize: "13px", fontWeight: 700,
+              display: "flex", alignItems: "center", gap: "6px"
             }}
           >
-            {exp.projects.map((p: { name: string; tech: string; impact: string }, pi: number) => (
-              <div
-                key={p.name}
-                style={{
-                  background: "var(--bg-secondary)",
-                  border: "1px solid var(--border)",
-                  borderRadius: "var(--radius-md)",
-                  padding: "20px",
-                  transition: "all 0.25s cubic-bezier(0.34,1.56,0.64,1)",
-                  animation: `fadeInUp 0.4s cubic-bezier(0.22,1,0.36,1) ${pi * 0.08}s both`,
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.borderColor = "var(--accent)";
-                  el.style.transform = "translateY(-3px)";
-                  el.style.boxShadow = "var(--shadow-md)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.borderColor = "var(--border)";
-                  el.style.transform = "translateY(0)";
-                  el.style.boxShadow = "none";
-                }}
-              >
-                <p style={{ fontSize: "14px", fontWeight: 800, color: "var(--text-primary)", marginBottom: "4px" }}>{p.name}</p>
-                <p style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 600, marginBottom: "10px" }}>{p.tech}</p>
-                <p style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.65 }}>{p.impact}</p>
-              </div>
-            ))}
-          </div>
+            <motion.span animate={{ rotate: isOpen ? 180 : 0 }}>↓</motion.span>
+            {isOpen ? t.ui.expHide : t.ui.expShow} {t.ui.expSub} ({exp.projects.length})
+          </motion.button>
         )}
+
+        <AnimatePresence mode="wait">
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "circOut" }}
+              style={{ overflow: "hidden" }}
+            >
+              <div style={{ 
+                marginTop: "20px", display: "grid", gridTemplateColumns: "1fr", 
+                gap: "12px", paddingLeft: "12px", borderLeft: "2px solid var(--border)" 
+              }}>
+                {exp.projects.map((p: any, pi: number) => (
+                  <motion.div 
+                    key={p.name}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: pi * 0.05 }}
+                    style={{ padding: "8px 0" }}
+                  >
+                    <p style={{ fontSize: "14px", fontWeight: 800, color: "var(--text-primary)" }}>{p.name}</p>
+                    <p style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 600 }}>{p.tech}</p>
+                    <p style={{ fontSize: "13px", color: "var(--text-secondary)", marginTop: "4px" }}>{p.impact}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <style jsx>{`
-        @media (max-width: 768px) {
-          .experience-section { padding: 80px 16px !important; }
-        }
         @media (max-width: 640px) {
-          .exp-header { flex-direction: column !important; gap: 16px !important; }
-          .exp-card-inner { padding: 28px 24px !important; }
-          .exp-meta { text-align: left !important; margin-top: 4px; }
-          .exp-title-row { flex-direction: column !important; align-items: flex-start !important; gap: 4px !important; }
+          .timeline-container { padding-left: 50px !important; }
+          .timeline-container > div:first-child, 
+          .timeline-container > div:nth-child(2) { left: 16px !important; }
+          .meta { text-align: left !important; margin-top: 8px; }
+          img[alt] { width: 32px !important; height: 32px !important; left: -16px !important; }
+          div[style*="left: -68px"] { left: -44px !important; width: 40px !important; height: 40px !important; }
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 }
+

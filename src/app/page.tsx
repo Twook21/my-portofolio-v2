@@ -3,8 +3,8 @@ import Hero from "@/components/Hero";
 import Story from "@/components/Story";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
-import Moments from "@/components/Moments";
 import Collaborations from "@/components/Collaborations";
+import Moments from "@/components/Moments";
 import Skills from "@/components/Skills";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
@@ -19,6 +19,7 @@ export default function Home() {
       <Experience />
       <Projects />
       <Collaborations />
+
       <Skills />
       <Certifications />
       <Moments />
