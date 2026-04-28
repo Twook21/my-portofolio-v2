@@ -95,7 +95,7 @@ export const dictionary = {
         type: "Trainee",
         highlight: false,
         logo: "/logo-experience/asah.png",
-        description: "Mastered modern JavaScript stacks and integrated AI/Cloud fundamentals in an intensive, industry-aligned engineering path.",
+        description: "Proficient in modern JavaScript stacks and integrated AI/Cloud fundamentals in an intensive, industry-aligned engineering path.",
         projects: [
           {
             name: "AI-Integrated Architecture",
@@ -120,7 +120,7 @@ export const dictionary = {
         type: "Trainee",
         highlight: false,
         logo: "/logo-experience/sanbercode.png",
-        description: "Mastered component-driven UI development and dynamic state management through an intensive, project-based engineering program.",
+        description: "Proficient in component-driven UI development and dynamic state management through an intensive, project-based engineering program.",
         projects: [
           {
             name: "Component Architecture",
@@ -150,7 +150,7 @@ export const dictionary = {
           {
             name: "Project-Based Engineering",
             tech: "Full-Stack Program",
-            impact: "Mastered full-stack web development fundamentals through structured, industry-oriented technical assessments.",
+            impact: "Proficient in full-stack web development fundamentals through structured, industry-oriented technical assessments.",
           },
           {
             name: "Competency Recognition",
@@ -549,13 +549,13 @@ export const dictionary = {
     ],
     moments: [
       { id: 1, title: "Jakarta Golden Hour", category: "Life", description: "The vibrant energy of Jakarta during sunset." },
-      { id: 2, title: "Clean Code Philosophy", category: "Engineering", description: "Writing code for humans, not just machines." },
-      { id: 3, title: "PENS Surabaya Campus", category: "Education", description: "Where my engineering foundation was built." },
+      { id: 2, title: "PENS Surabaya Campus", category: "Education", description: "Where my engineering foundation was built." },
+      { id: 3, title: "BDD Full-Stack Track", category: "Conference", description: "Exploring modern web development, Serverless on AWS, and Laravel in the AI era." },
       { id: 4, title: "SCI Birthday Celebration", category: "Team", description: "A meaningful and joyful occasion celebrating SCI together as one united team." },
       { id: 5, title: "Microsoft METC Session", category: "Training", description: "Diving deep into Microsoft Fabric and Azure AI alongside selected participants." },
-      { id: 6, title: "BDD Full-Stack Track", category: "Conference", description: "Exploring modern web development, Serverless on AWS, and Laravel in the AI era." },
+      { id: 6, title: "Dicoding Developer Conference", category: "Conference", description: "Exploring the future of technology, cloud architecture, and AI integration at Indonesia's largest developer event." },
       { id: 7, title: "JIDA Graduation", category: "Achievement", description: "Grateful to be among the final 50 participants and earning the BNSP Junior Web Programmer certification." },
-      { id: 8, title: "Dicoding Developer Conference", category: "Event", description: "Exploring the future of technology, cloud architecture, and AI integration at Indonesia's largest developer event." },
+      { id: 8, title: "Clean Code Philosophy", category: "Mindset", description: "Writing code for humans, not just machines." },
       { id: 9, title: "Me at DDC 2026", category: "Personal", description: "A personal milestone attending Indonesia's largest developer conference." },
     ],
     teamProjects: [

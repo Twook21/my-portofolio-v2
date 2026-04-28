@@ -95,7 +95,7 @@ export const experiences = [
     type: "Trainee",
     highlight: false,
     logo: "/logo-experience/asah.png",
-    description: "Mastered modern JavaScript stacks and integrated AI/Cloud fundamentals in an intensive, industry-aligned engineering path.",
+    description: "Proficient in modern JavaScript stacks and integrated AI/Cloud fundamentals in an intensive, industry-aligned engineering path.",
     projects: [
       {
         name: "AI-Integrated Architecture",
@@ -120,7 +120,7 @@ export const experiences = [
     type: "Trainee",
     highlight: false,
     logo: "/logo-experience/sanbercode.png",
-    description: "Mastered component-driven UI development and dynamic state management through an intensive, project-based engineering program.",
+    description: "Proficient in component-driven UI development and dynamic state management through an intensive, project-based engineering program.",
     projects: [
       {
         name: "Component Architecture",
@@ -150,7 +150,7 @@ export const experiences = [
       {
         name: "Project-Based Engineering",
         tech: "Full-Stack Program",
-        impact: "Mastered full-stack web development fundamentals through structured, industry-oriented technical assessments.",
+        impact: "Proficient in full-stack web development fundamentals through structured, industry-oriented technical assessments.",
       },
       {
         name: "Competency Recognition",
@@ -502,7 +502,7 @@ export const moments = [
     category: "Education",
   },
   {
-    id: 3, 
+    id: 3,
     title: "BDD Conference",
     description: "Exploring modern web scaling, AWS Serverless, and Laravel in the AI era.",
     image: "/moments/bdd-conference.jpg",
@@ -518,7 +518,7 @@ export const moments = [
     category: "Team",
   },
   {
-    id: 5, 
+    id: 5,
     title: "Microsoft METC",
     description: "Diving deep into Microsoft Fabric and Azure AI to navigate modern data architectures.",
     image: "/moments/microsoft-metc.jpg",
@@ -534,7 +534,7 @@ export const moments = [
     category: "Event",
   },
   {
-    id: 7, 
+    id: 7,
     title: "JIDA Graduation",
     description: "Earning the BNSP Junior Web Programmer certification. Proud to be among the final 50.",
     image: "/moments/jida-graduation.jpg",
