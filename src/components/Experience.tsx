@@ -199,7 +199,14 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
         }}
         className="experience-logo-node"
       >
-        <img src={exp.logo} alt={exp.company} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+        <img 
+          src={exp.logo} 
+          alt={exp.company} 
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + exp.company + "&background=random";
+          }}
+          style={{ width: "100%", height: "100%", objectFit: "contain" }} 
+        />
       </motion.div>
 
       <div style={{ flex: 1 }}>

@@ -93,7 +93,7 @@ function ProjectCard({ project, idx, inView }: {
         background: "var(--bg-card)",
         border: "1px solid var(--border)",
         borderRadius: "var(--radius-xl)",
-        padding: "36px",
+        padding: 0, // No padding on outer card
         marginBottom: "20px",
         position: "relative",
         overflow: "hidden",
@@ -113,9 +113,18 @@ function ProjectCard({ project, idx, inView }: {
       {/* Spotlight Effect Removed */}
 
       {/* Image Header */}
-      <div className="project-image-container" style={{ position: "relative", height: "240px", overflow: "hidden", background: "var(--bg-tertiary)", flexShrink: 0 }}>
+      <div className="project-image-container" style={{ 
+        position: "relative", 
+        height: "260px", 
+        overflow: "hidden", 
+        background: "var(--bg-tertiary)", 
+        flexShrink: 0,
+        width: "100%",
+        borderTopLeftRadius: "inherit",
+        borderTopRightRadius: "inherit"
+      }}>
         <img 
-          src={project.image} 
+          src={project.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop"} 
           alt={project.name}
           onError={(e) => {
             (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop";
@@ -134,14 +143,14 @@ function ProjectCard({ project, idx, inView }: {
         {/* Status Badge - Floating */}
         <div className="project-status-badge" style={{
           position: "absolute",
-          top: "16px",
-          left: "16px",
+          top: "20px",
+          left: "20px",
           padding: "6px 14px",
           borderRadius: "100px",
           fontSize: "11px",
           fontWeight: 800,
           color: "#fff",
-          background: "rgba(0,0,0,0.4)",
+          background: "rgba(0,0,0,0.5)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
           border: "1px solid rgba(255,255,255,0.2)",
@@ -164,8 +173,8 @@ function ProjectCard({ project, idx, inView }: {
         {/* Year Label */}
         <div className="project-year" style={{
           position: "absolute",
-          bottom: "16px",
-          right: "16px",
+          bottom: "20px",
+          right: "20px",
           color: "rgba(255,255,255,0.9)",
           fontSize: "12px",
           fontWeight: 700,
@@ -177,7 +186,7 @@ function ProjectCard({ project, idx, inView }: {
       </div>
 
       {/* Content Area */}
-      <div style={{ padding: "32px", display: "flex", flexDirection: "column", flex: 1, position: "relative", zIndex: 2 }}>
+      <div style={{ padding: "36px", display: "flex", flexDirection: "column", flex: 1, position: "relative", zIndex: 2 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }} className="project-header-row">
           {project.associatedLogo && (
             <div className="mobile-project-logo" style={{ display: "none" }}>
