@@ -1,7 +1,7 @@
 export const personal = {
   name: "Akmal Bintang Budiawan",
   tagline: "Software Engineer",
-  subtitle: "Building clean, purposeful software — from Jakarta to the world.",
+  subtitle: "Building clean, purposeful software.",
   description:
     "A Software Developer bridging the gap between robust backend services and fluid, modern user interfaces. I specialize in the Next.js & .NET ecosystems, with a deep focus on quality-driven delivery and scalable architecture.",
   location: "Jakarta, Indonesia",
