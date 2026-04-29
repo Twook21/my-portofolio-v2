@@ -5,24 +5,61 @@ import ThemeProvider from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageContext";
 
 export const metadata: Metadata = {
-  title: "Akmal's Thing",
+  metadataBase: new URL("https://akmalbintang.vercel.app"),
+  title: {
+    default: "Akmal Bintang Budiawan — Software Engineer",
+    template: "%s | Akmal Bintang Budiawan",
+  },
   description:
-    "Final-year Informatics Engineering student at PENS. Frontend-focused Software Engineer with enterprise internship experience at Kalbe Farma. Building toward world-class engineering.",
+    "Frontend-focused Software Engineer building toward world-class engineering. Specializing in Next.js, .NET, and crafting purposeful digital experiences.",
   keywords: [
     "Akmal Bintang Budiawan",
     "Software Engineer",
     "Frontend Developer",
+    "Full-Stack Developer",
     "Next.js",
     "React",
     "PENS",
     "Portfolio",
+    "Jakarta Tech",
   ],
   authors: [{ name: "Akmal Bintang Budiawan" }],
+  creator: "Akmal Bintang Budiawan",
   openGraph: {
     title: "Akmal Bintang Budiawan — Software Engineer",
     description:
-      "Frontend-focused Software Engineer building toward world-class engineering.",
+      "Building clean, purposeful software — from Jakarta to the world. Frontend-focused Software Engineer specialized in Next.js & .NET ecosystems.",
+    url: "https://akmalbintang.vercel.app",
+    siteName: "Akmal Bintang Budiawan Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Akmal Bintang Budiawan — Software Engineer Portfolio",
+      },
+    ],
+    locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Akmal Bintang Budiawan — Software Engineer",
+    description:
+      "Frontend-focused Software Engineer specialized in Next.js & .NET ecosystems. Building toward world-class engineering.",
+    images: ["/og-image.png"],
+    creator: "@tw0ok_",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
