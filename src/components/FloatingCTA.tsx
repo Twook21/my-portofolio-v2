@@ -35,7 +35,15 @@ export default function FloatingCTA() {
     };
   }, []);
 
-  const socials = [
+  interface SocialItem {
+    id: string;
+    name: string;
+    url: string;
+    icon: React.ReactNode;
+    isInternal?: boolean;
+  }
+
+  const socials: SocialItem[] = [
     {
       id: "github",
       name: "GitHub",
