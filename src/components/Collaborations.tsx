@@ -37,10 +37,10 @@ export default function Collaborations() {
     >
       <div className="grid-pattern" style={{ opacity: 0.4 }} />
       <FloatingSymbols density={4} />
-      
+
       <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative" }}>
         <header style={{ marginBottom: "80px", textAlign: "center" }}>
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="section-label"
@@ -132,18 +132,18 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
         position: "relative",
         overflow: "hidden",
         boxShadow: "var(--shadow-md)",
-        display: "flex", 
+        display: "flex",
         flexDirection: "column",
         height: "100%",
         transition: "box-shadow 0.2s, border-color 0.2s",
         cursor: "pointer",
       }}
       className={`collab-card-inner ${isExpanded ? 'is-expanded' : ''}`}
-      onMouseEnter={(e) => { 
+      onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = "var(--accent)";
         e.currentTarget.style.boxShadow = "var(--shadow-lg)";
       }}
-      onMouseLeave={(e) => { 
+      onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = "var(--border)";
         e.currentTarget.style.boxShadow = "var(--shadow-md)";
       }}
@@ -163,13 +163,13 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
           flexShrink: 0
         }} className="collab-logo">
           {collab.logo ? (
-            <img 
-              src={collab.logo} 
-              alt={collab.name} 
+            <img
+              src={collab.logo}
+              alt={collab.name}
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + collab.name + "&background=random";
               }}
-              style={{ width: "100%", height: "100%", objectFit: "contain" }} 
+              style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
           ) : (
             <span style={{ fontSize: "20px" }}>🤝</span>
@@ -192,7 +192,7 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
 
       <AnimatePresence>
         {(!isMobile || isExpanded) && (
-          <motion.div 
+          <motion.div
             className="collab-expandable-content"
             initial={isMobile ? { height: 0, opacity: 0 } : {}}
             animate={isMobile ? { height: "auto", opacity: 1 } : {}}
@@ -206,12 +206,12 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
 
             {/* Essential Info Tags */}
             <div style={{ display: "flex", gap: "12px", marginBottom: "20px", flexWrap: "wrap" }}>
-               <span style={{ fontSize: "11px", color: "var(--text-tertiary)", display: "flex", alignItems: "center", gap: "4px" }}>
-                 <span style={{ opacity: 0.5 }}>📅</span> {collab.period}
-               </span>
-               <span style={{ fontSize: "11px", color: "var(--text-tertiary)", display: "flex", alignItems: "center", gap: "4px" }}>
-                 <span style={{ opacity: 0.5 }}>👥</span> {collab.teamSize} members
-               </span>
+              <span style={{ fontSize: "11px", color: "var(--text-tertiary)", display: "flex", alignItems: "center", gap: "4px" }}>
+                <span style={{ opacity: 0.5 }}>📅</span> {collab.period}
+              </span>
+              <span style={{ fontSize: "11px", color: "var(--text-tertiary)", display: "flex", alignItems: "center", gap: "4px" }}>
+                <span style={{ opacity: 0.5 }}>👥</span> {collab.teamSize} members
+              </span>
             </div>
 
             {/* Tech Tags - Minimalist */}
@@ -250,7 +250,7 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
                 onMouseEnter={(e) => { e.currentTarget.style.gap = "6px"; }}
                 onMouseLeave={(e) => { e.currentTarget.style.gap = "4px"; }}
               >
-                View Project <span>→</span>
+                View Project <span></span>
               </a>
             </div>
           </motion.div>

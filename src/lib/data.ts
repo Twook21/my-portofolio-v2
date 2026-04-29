@@ -208,6 +208,7 @@ export const projects = [
     image: "/projects/telcorecs.png",
     associatedWith: "ASAH",
     associatedLogo: "/logo-experience/asah.png",
+    size: "large",
   },
   {
     id: "nomi",
@@ -229,6 +230,7 @@ export const projects = [
     image: "/projects/nomi.png",
     associatedWith: "Jabar Digital Academy",
     associatedLogo: "/logo-experience/jida.png",
+    size: "wide",
   },
   {
     id: "pgri-finance",
@@ -250,6 +252,7 @@ export const projects = [
     image: "/projects/pgri-finance.png",
     associatedWith: "PGRI Education Foundation",
     associatedLogo: "/logo-experience/pgri.png",
+    size: "tall",
   },
   {
     id: "fintap",
@@ -271,6 +274,7 @@ export const projects = [
     image: "/projects/fintap.png",
     associatedWith: "PGRI Education Foundation",
     associatedLogo: "/logo-experience/pgri.png",
+    size: "small",
   },
   {
     id: "wastego-project",
@@ -291,6 +295,7 @@ export const projects = [
     image: "/projects/wastego.png",
     associatedWith: "EEPIS",
     associatedLogo: null,
+    size: "small",
   },
   {
     id: "e-archive",
@@ -311,6 +316,7 @@ export const projects = [
     image: "/projects/e-archive.png",
     associatedWith: "PGRI Education Foundation",
     associatedLogo: "/logo-experience/pgri.png",
+    size: "wide",
   },
   {
     id: "yplp-portal",
@@ -331,6 +337,7 @@ export const projects = [
     image: "/projects/pgri.png",
     associatedWith: "PGRI Education Foundation",
     associatedLogo: "/logo-experience/pgri.png",
+    size: "tall",
   },
   {
     id: "jobsly",
@@ -351,6 +358,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000&auto=format&fit=crop",
     associatedWith: "Sanbercode",
     associatedLogo: "/logo-experience/sanbercode.png",
+    size: "small",
   },
 ];
 
@@ -364,7 +372,7 @@ export const skills = {
     { name: ".NET Blazor", level: 85 },
   ],
   backend: [
-    { name: ".NET Core (C#)", level: 72 },
+    { name: "ASP .NET Core (C#)", level: 72 },
     { name: "FastAPI", level: 68 },
     { name: "PostgreSQL", level: 70 },
     { name: "Oracle SQL", level: 65 },
@@ -543,11 +551,11 @@ export const moments = [
   },
   {
     id: 8,
-    title: "Clean Architecture",
-    description: "Shipping maintainable code. Built for humans, not just machines.",
-    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=600",
+    title: "Gema Foundation Gathering",
+    description: "Educate to elevate",
+    image: "/moments/gema.jpg",
     size: "small", // 1x1 (Menutup kolom kanan bawah)
-    category: "Training",
+    category: "Gathering",
   },
   {
     id: 9,
@@ -556,5 +564,13 @@ export const moments = [
     image: "/moments/me.jpeg",
     size: "small", // 1x1 (Menutup kolom kanan bawah)
     category: "Personal",
+  },
+  {
+    id: 10,
+    title: "IT One Kalbe Gathering",
+    description: "Unifying technology and talent across the Kalbe ecosystem.",
+    image: "/moments/one-kalbe.jpg",
+    size: "wide",
+    category: "Team",
   },
 ];

@@ -44,7 +44,7 @@ export default function Certifications() {
 
       <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative" }}>
         <header style={{ marginBottom: "80px", textAlign: "center" }}>
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="section-label"
@@ -213,13 +213,13 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
           className="cert-logo"
         >
           {cert.logo ? (
-            <img 
-              src={cert.logo} 
-              alt={cert.issuer} 
+            <img
+              src={cert.logo}
+              alt={cert.issuer}
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + cert.issuer + "&background=random";
               }}
-              style={{ width: "100%", height: "100%", objectFit: "contain" }} 
+              style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
           ) : (
             <span style={{ fontSize: "24px" }}>🏅</span>
@@ -251,7 +251,7 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
 
       <AnimatePresence>
         {(!isMobile || isExpanded) && (
-          <motion.div 
+          <motion.div
             className="cert-expandable-content"
             initial={isMobile ? { height: 0, opacity: 0 } : {}}
             animate={isMobile ? { height: "auto", opacity: 1 } : {}}
@@ -263,11 +263,11 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
               <span style={{ fontSize: "14px", opacity: 0.6 }}>🗓️</span>
               <span style={{ fontSize: "13px", color: "var(--text-tertiary)", fontWeight: 600 }}>{cert.date}</span>
             </div>
-            
+
             {cert.id && (
-              <div style={{ 
-                fontSize: "11px", 
-                color: "var(--text-tertiary)", 
+              <div style={{
+                fontSize: "11px",
+                color: "var(--text-tertiary)",
                 fontFamily: "monospace",
                 marginBottom: "20px",
                 padding: "6px 12px",
@@ -283,11 +283,11 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
             {cert.skills && cert.skills.length > 0 && (
               <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "16px" }}>
                 {cert.skills.map((skill: string) => (
-                  <span 
+                  <span
                     key={skill}
-                    style={{ 
-                      fontSize: "11px", 
-                      fontWeight: 700, 
+                    style={{
+                      fontSize: "11px",
+                      fontWeight: 700,
                       color: "var(--text-secondary)",
                       padding: "4px 12px",
                       background: "rgba(255,255,255,0.03)",
@@ -321,7 +321,7 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
               onMouseEnter={(e) => { e.currentTarget.style.gap = "10px"; }}
               onMouseLeave={(e) => { e.currentTarget.style.gap = "6px"; }}
             >
-              View Credential <span style={{ fontSize: "16px" }}>→</span>
+              View Credential <span style={{ fontSize: "16px" }}></span>
             </a>
           </motion.div>
         )}

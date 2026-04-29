@@ -19,72 +19,38 @@ function useInView(threshold = 0.15) {
   return { ref, inView };
 }
 
-/** Animates a number from 0 → target when `trigger` becomes true */
-function useCounter(target: number, trigger: boolean, duration = 900, delay = 0) {
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!trigger) return;
-    let start: number | null = null;
-    let raf: number;
-    const delayTimer = setTimeout(() => {
-      const step = (ts: number) => {
-        if (!start) start = ts;
-        const elapsed = ts - start;
-        const progress = Math.min(elapsed / duration, 1);
-        // ease-out-expo
-        const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-        setVal(Math.round(eased * target));
-        if (progress < 1) raf = requestAnimationFrame(step);
-      };
-      raf = requestAnimationFrame(step);
-    }, delay);
-    return () => { clearTimeout(delayTimer); cancelAnimationFrame(raf); };
-  }, [trigger, target, duration, delay]);
-  return val;
-}
-
-function SkillBar({
-  name, level, color, inView, delay,
-}: {
-  name: string; level: number; color: string; inView: boolean; delay: number;
-}) {
-  const count = useCounter(level, inView, 900, delay * 1000);
-
+function SkillBadge({ name, color }: { name: string; color: string }) {
   return (
-    <div style={{ marginBottom: "20px" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-        <span style={{ fontSize: "14px", fontWeight: 600, color: "var(--text-primary)" }}>
-          {name}
-        </span>
-        <span
-          style={{
-            fontSize: "12px", fontWeight: 700, color: color,
-            fontVariantNumeric: "tabular-nums",
-            minWidth: "32px", textAlign: "right",
-          }}
-        >
-          {count}%
-        </span>
-      </div>
-      <div
-        style={{
-          height: "5px",
-          background: "var(--bg-tertiary)",
-          borderRadius: "3px",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            height: "100%",
-            width: inView ? `${level}%` : "0%",
-            background: `linear-gradient(90deg, ${color}, color-mix(in srgb, ${color} 60%, transparent))`,
-            borderRadius: "3px",
-            transition: `width 0.9s cubic-bezier(0.34, 1.10, 0.64, 1) ${delay}s`,
-            boxShadow: inView ? `0 0 8px color-mix(in srgb, ${color} 33%, transparent)` : "none",
-          }}
-        />
-      </div>
+    <div
+      style={{
+        padding: "8px 16px",
+        background: "var(--bg-tertiary)",
+        border: "1px solid var(--border)",
+        borderRadius: "12px",
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
+        cursor: "default",
+      }}
+      className="skill-badge"
+      onMouseEnter={(e) => {
+        const el = e.currentTarget as HTMLDivElement;
+        el.style.borderColor = color;
+        el.style.background = `color-mix(in srgb, ${color} 8%, var(--bg-tertiary))`;
+        el.style.transform = "translateY(-2px)";
+        el.style.boxShadow = `0 4px 12px color-mix(in srgb, ${color} 15%, transparent)`;
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget as HTMLDivElement;
+        el.style.borderColor = "var(--border)";
+        el.style.background = "var(--bg-tertiary)";
+        el.style.transform = "translateY(0)";
+        el.style.boxShadow = "none";
+      }}
+    >
+      <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: color }} />
+      <span style={{ fontSize: "13px", fontWeight: 700, color: "var(--text-secondary)" }}>{name}</span>
     </div>
   );
 }
@@ -118,23 +84,20 @@ export default function Skills() {
     { name: "TypeScript", url: "https://cdn.simpleicons.org/typescript/3178C6" },
     { name: "Tailwind CSS", url: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
     { name: ".NET Core", url: "https://cdn.simpleicons.org/dotnet/512BD4" },
-    { name: "C#", url: "/c.png" },
     { name: "PostgreSQL", url: "https://cdn.simpleicons.org/postgresql/4169E1" },
     { name: "Docker", url: "https://cdn.simpleicons.org/docker/2496ED" },
     { name: "Jest", url: "https://cdn.simpleicons.org/jest/C21325" },
     { name: "GitHub", url: "https://cdn.simpleicons.org/github/white" },
     { name: "FastAPI", url: "https://cdn.simpleicons.org/fastapi/05998B" },
-    { name: "Oracle", url: "/oracle.png" },
   ];
 
   return (
     <section
       id="skills"
       style={{
-        padding: "100px 20px",
+        padding: "120px 20px",
         background: "var(--bg-secondary)",
         borderTop: "1px solid var(--border)",
-        transition: "background 0.35s ease",
         position: "relative",
         overflow: "hidden",
       }}
@@ -142,18 +105,18 @@ export default function Skills() {
     >
       <div className="grid-pattern" />
       <FloatingSymbols density={10} />
-      <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "50px", animation: "fadeInUp 0.7s ease both" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ marginBottom: "60px", textAlign: "center" }}>
           <span className="section-label">{t.ui.skills}</span>
           <h2
             style={{
               fontFamily: '"Stack Sans Notch", sans-serif',
-              fontSize: "clamp(28px, 6vw, 52px)",
-              fontWeight: 800,
-              letterSpacing: "-0.03em",
+              fontSize: "clamp(32px, 6vw, 56px)",
+              fontWeight: 900,
+              letterSpacing: "-0.04em",
               lineHeight: 1.1,
               color: "var(--text-primary)",
-              maxWidth: "560px",
+              marginTop: "16px"
             }}
           >
             {t.ui.skillsTitle1}
@@ -168,13 +131,13 @@ export default function Skills() {
         <div
           className="marquee-container"
           style={{
-            marginBottom: "80px",
+            marginBottom: "100px",
             opacity: inView ? 1 : 0,
             transition: "opacity 1s ease",
             background: "rgba(128, 128, 128, 0.03)",
             border: "1px solid rgba(128, 128, 128, 0.08)",
             borderRadius: "100px",
-            padding: "16px 0",
+            padding: "20px 0",
           }}
         >
           <div className="marquee-content">
@@ -184,24 +147,21 @@ export default function Skills() {
                   src={logo.url}
                   alt={logo.name}
                   style={{
-                    height: "28px",
+                    height: "32px",
                     width: "auto",
-                    filter: "grayscale(0.4) brightness(1.2)",
-                    opacity: 1,
+                    filter: "grayscale(1) brightness(1.5)",
                     transition: "all 0.3s ease"
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.filter = "grayscale(0) brightness(1)";
-                    e.currentTarget.style.opacity = "1";
-                    e.currentTarget.style.transform = "scale(1.15)";
+                    e.currentTarget.style.transform = "scale(1.2)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.filter = "grayscale(0.4) brightness(1.2)";
-                    e.currentTarget.style.opacity = "1";
+                    e.currentTarget.style.filter = "grayscale(1) brightness(1.5)";
                     e.currentTarget.style.transform = "scale(1)";
                   }}
                 />
-                <span style={{ fontSize: "12px", fontWeight: 700, color: "var(--text-tertiary)", letterSpacing: "0.05em" }}>{logo.name}</span>
+                <span style={{ fontSize: "14px", fontWeight: 700, color: "var(--text-tertiary)", letterSpacing: "0.05em" }}>{logo.name}</span>
               </div>
             ))}
           </div>
@@ -212,9 +172,9 @@ export default function Skills() {
           ref={ref}
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-            gap: "20px",
-            marginBottom: "80px",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gap: "24px",
+            marginBottom: "100px",
           }}
           className="skills-grid"
         >
@@ -224,76 +184,62 @@ export default function Skills() {
               style={{
                 background: "var(--bg-card)",
                 border: "1px solid var(--border)",
-                borderRadius: "var(--radius-xl)",
-                padding: "32px",
+                borderRadius: "28px",
+                padding: "36px",
                 boxShadow: "var(--shadow-sm)",
                 opacity: inView ? 1 : 0,
-                transform: inView ? "translateY(0) scale(1)" : "translateY(24px) scale(0.97)",
-                transition: `opacity 0.55s cubic-bezier(0.22,1,0.36,1) ${catIdx * 0.1}s,
-                             transform 0.55s cubic-bezier(0.22,1,0.36,1) ${catIdx * 0.1}s,
-                             box-shadow 0.2s ease, border-color 0.2s ease`,
+                transform: inView ? "translateY(0) scale(1)" : "translateY(30px) scale(0.96)",
+                transition: `all 0.7s cubic-bezier(0.22,1,0.36,1) ${catIdx * 0.1}s`,
               }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-md)";
-                (e.currentTarget as HTMLDivElement).style.borderColor = "var(--border-hover)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "var(--shadow-sm)";
-                (e.currentTarget as HTMLDivElement).style.borderColor = "var(--border)";
-              }}
+              className="skill-category-card"
             >
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "28px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "32px" }}>
                 <div
                   style={{
-                    width: "28px", height: "28px", borderRadius: "8px",
-                    background: `color-mix(in srgb, ${cat.color} 9%, transparent)`,
+                    width: "36px", height: "36px", borderRadius: "10px",
+                    background: `color-mix(in srgb, ${cat.color} 12%, transparent)`,
                     display: "flex", alignItems: "center", justifyContent: "center",
                   }}
                 >
-                  <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: cat.color }} />
+                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: cat.color, boxShadow: `0 0 10px ${cat.color}` }} />
                 </div>
                 <span
                   style={{
-                    fontSize: "11px", fontWeight: 800,
+                    fontSize: "12px", fontWeight: 800,
                     color: "var(--text-tertiary)",
-                    letterSpacing: "0.12em",
+                    letterSpacing: "0.15em",
                     textTransform: "uppercase",
                   }}
                 >
                   {cat.label}
                 </span>
               </div>
-              {cat.data.map((skill, skillIdx) => (
-                <SkillBar
-                  key={skill.name}
-                  name={skill.name}
-                  level={skill.level}
-                  color={cat.color}
-                  inView={inView}
-                  delay={catIdx * 0.1 + skillIdx * 0.06}
-                />
-              ))}
+              
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+                {cat.data.map((skill) => (
+                  <SkillBadge
+                    key={skill.name}
+                    name={skill.name}
+                    color={cat.color}
+                  />
+                ))}
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Soft Skills */}
-        <div>
-          <p
-            style={{
-              fontSize: "11px", fontWeight: 800,
-              color: "var(--text-tertiary)", letterSpacing: "0.12em",
-              textTransform: "uppercase", marginBottom: "28px",
-            }}
-          >
-            {t.ui.softSkills}
-          </p>
+        {/* Soft Skills Section */}
+        <div style={{ borderTop: "1px solid var(--border)", paddingTop: "80px" }}>
+          <div style={{ marginBottom: "40px", textAlign: "center" }}>
+            <span className="section-label">{t.ui.softSkills}</span>
+          </div>
+          
           <div
             ref={softRef}
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(290px, 1fr))",
-              gap: "16px",
+              gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+              gap: "20px",
             }}
             className="soft-skills-grid"
           >
@@ -303,43 +249,33 @@ export default function Skills() {
                 style={{
                   background: "var(--bg-card)",
                   border: "1px solid var(--border)",
-                  borderRadius: "var(--radius-lg)",
-                  padding: "24px",
+                  borderRadius: "24px",
+                  padding: "32px",
                   display: "flex",
-                  gap: "16px",
+                  flexDirection: "column",
+                  gap: "20px",
                   boxShadow: "var(--shadow-sm)",
                   opacity: softInView ? 1 : 0,
                   transform: softInView ? "translateY(0)" : "translateY(20px)",
-                  transition: `opacity 0.5s cubic-bezier(0.22,1,0.36,1) ${idx * 0.07}s,
-                               transform 0.5s cubic-bezier(0.22,1,0.36,1) ${idx * 0.07}s,
-                               box-shadow 0.2s ease, border-color 0.2s ease`,
+                  transition: `all 0.6s cubic-bezier(0.22,1,0.36,1) ${idx * 0.08}s`,
                 }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.boxShadow = "var(--shadow-md)";
-                  el.style.borderColor = "var(--border-hover)";
-                  el.style.transform = "translateY(-3px)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLDivElement;
-                  el.style.boxShadow = "var(--shadow-sm)";
-                  el.style.borderColor = "var(--border)";
-                  el.style.transform = "translateY(0)";
-                }}
+                className="soft-skill-card"
               >
-                <span
-                  style={{
-                    fontSize: "26px", flexShrink: 0,
-                    animation: softInView ? `float ${6 + idx}s ease-in-out infinite ${idx * 0.3}s` : "none",
-                  }}
-                >
+                <div style={{ 
+                  width: "56px", height: "56px", 
+                  borderRadius: "16px", 
+                  background: "var(--bg-tertiary)", 
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: "32px",
+                  boxShadow: "inset 0 0 12px rgba(0,0,0,0.05)"
+                }}>
                   {skill.icon}
-                </span>
+                </div>
                 <div>
-                  <p style={{ fontSize: "15px", fontWeight: 700, color: "var(--text-primary)", marginBottom: "6px" }}>
+                  <h3 style={{ fontSize: "18px", fontWeight: 800, color: "var(--text-primary)", marginBottom: "10px", letterSpacing: "-0.01em" }}>
                     {skill.title}
-                  </p>
-                  <p style={{ fontSize: "13px", color: "var(--text-secondary)", lineHeight: 1.65 }}>
+                  </h3>
+                  <p style={{ fontSize: "14px", color: "var(--text-secondary)", lineHeight: 1.6, fontWeight: 500 }}>
                     {skill.description}
                   </p>
                 </div>
@@ -350,6 +286,16 @@ export default function Skills() {
       </div>
 
       <style jsx>{`
+        .skill-category-card:hover {
+          border-color: var(--border-hover) !important;
+          box-shadow: var(--shadow-lg) !important;
+          transform: translateY(-4px) scale(1.02) !important;
+        }
+        .soft-skill-card:hover {
+          border-color: var(--accent-soft) !important;
+          box-shadow: var(--shadow-md) !important;
+          transform: translateY(-4px) !important;
+        }
         .marquee-container {
           overflow: hidden;
           user-select: none;
@@ -359,14 +305,14 @@ export default function Skills() {
         }
         .marquee-content {
           display: flex;
-          gap: 60px;
-          animation: scroll 40s linear infinite;
+          gap: 80px;
+          animation: scroll 45s linear infinite;
           padding: 10px 0;
         }
         .marquee-item {
           display: flex;
           align-items: center;
-          gap: 12px;
+          gap: 16px;
           flex-shrink: 0;
         }
         @keyframes scroll {
@@ -375,7 +321,7 @@ export default function Skills() {
         }
         @media (max-width: 768px) {
           .skills-section { padding: 80px 16px !important; }
-          .marquee-content { gap: 40px; animation-duration: 30s; }
+          .marquee-content { gap: 40px; animation-duration: 35s; }
         }
         @media (max-width: 640px) {
           .skills-grid, .soft-skills-grid {

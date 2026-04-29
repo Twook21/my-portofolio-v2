@@ -26,8 +26,8 @@ function use3DTilt() {
     const el = ref.current;
     if (!el) return;
     const { left, top, width, height } = el.getBoundingClientRect();
-    const x = (e.clientX - left) / width  - 0.5;
-    const y = (e.clientY - top)  / height - 0.5;
+    const x = (e.clientX - left) / width - 0.5;
+    const y = (e.clientY - top) / height - 0.5;
     el.style.transform = `perspective(1000px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg) translateY(-2px)`;
     el.style.boxShadow = "var(--shadow-lg)";
   };
@@ -73,7 +73,7 @@ function ProjectCard({ project, inView }: {
         position: "relative",
         overflow: "hidden",
         boxShadow: "var(--shadow-md)",
-        display: "flex", 
+        display: "flex",
         flexDirection: "column",
         cursor: "pointer",
         transition: "border-color 0.3s ease, box-shadow 0.3s ease",
@@ -81,14 +81,14 @@ function ProjectCard({ project, inView }: {
       className="project-card-v2"
     >
       {/* Image Section */}
-      <div style={{ 
-        position: "relative", 
-        height: "220px", 
+      <div style={{
+        position: "relative",
+        height: "220px",
         overflow: "hidden",
         background: "var(--bg-tertiary)"
       }}>
-        <img 
-          src={project.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop"} 
+        <img
+          src={project.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop"}
           alt={project.name}
           style={{
             width: "100%",
@@ -99,7 +99,7 @@ function ProjectCard({ project, inView }: {
             filter: isHovered ? "brightness(1.05)" : "brightness(0.9)",
           }}
         />
-        
+
         {/* Status & Date Badges */}
         <div style={{
           position: "absolute",
@@ -131,7 +131,7 @@ function ProjectCard({ project, inView }: {
             }} />
             {project.status === "In Development" ? t.ui.inDevelopment : project.status === "Shipped" ? t.ui.shipped : project.status}
           </div>
-          
+
           <div style={{
             padding: "5px 12px",
             borderRadius: "100px",
@@ -150,10 +150,10 @@ function ProjectCard({ project, inView }: {
       {/* Content Section */}
       <div style={{ padding: "28px", flex: 1, display: "flex", flexDirection: "column" }}>
         {project.associatedWith && (
-          <div style={{ 
-            fontSize: "11px", 
-            fontWeight: 700, 
-            color: "var(--accent)", 
+          <div style={{
+            fontSize: "11px",
+            fontWeight: 700,
+            color: "var(--accent)",
             textTransform: "uppercase",
             letterSpacing: "0.1em",
             marginBottom: "12px",
@@ -167,7 +167,7 @@ function ProjectCard({ project, inView }: {
             {project.associatedWith}
           </div>
         )}
-        
+
         <h3 style={{
           fontSize: "22px", fontWeight: 800,
           letterSpacing: "-0.02em", color: "var(--text-primary)",
@@ -175,11 +175,11 @@ function ProjectCard({ project, inView }: {
         }}>
           {project.name}
         </h3>
-        
-        <p style={{ 
-          fontSize: "13px", 
-          color: "var(--text-tertiary)", 
-          fontWeight: 600, 
+
+        <p style={{
+          fontSize: "13px",
+          color: "var(--text-tertiary)",
+          fontWeight: 600,
           marginBottom: "16px",
           display: "flex",
           alignItems: "center",
@@ -188,10 +188,10 @@ function ProjectCard({ project, inView }: {
           <span style={{ color: "var(--accent)" }}>✦</span> {project.tagline}
         </p>
 
-        <p style={{ 
-          fontSize: "14px", 
-          color: "var(--text-secondary)", 
-          lineHeight: 1.6, 
+        <p style={{
+          fontSize: "14px",
+          color: "var(--text-secondary)",
+          lineHeight: 1.6,
           marginBottom: "24px",
           display: "-webkit-box",
           WebkitLineClamp: 3,
@@ -211,8 +211,8 @@ function ProjectCard({ project, inView }: {
                 background: "var(--bg-tertiary)",
                 border: "1px solid var(--border)",
                 borderRadius: "8px",
-                fontSize: "10px", 
-                fontWeight: 700, 
+                fontSize: "10px",
+                fontWeight: 700,
                 color: "var(--text-tertiary)",
               }}
             >
@@ -248,7 +248,7 @@ function ProjectCard({ project, inView }: {
                 transition: "all 0.3s ease"
               }}
             >
-              GitHub ↗
+              GitHub
             </a>
           ) : (
             <div style={{
@@ -266,7 +266,7 @@ function ProjectCard({ project, inView }: {
               {t.ui.projPrivate}
             </div>
           )}
-          
+
           {project.demo && (
             <a
               href={project.demo}
@@ -318,9 +318,9 @@ export default function Projects() {
   const { ref, inView } = useInView();
   const [filter, setFilter] = useState("All");
   const [showAll, setShowAll] = useState(false);
-  
+
   const categories = ["All", "Next.js", "Laravel", "React"];
-  
+
   const filteredProjects = t.projects.filter((p: any) => {
     if (filter === "All") return true;
     return p.tags.some((tag: string) => tag.includes(filter));
@@ -342,7 +342,7 @@ export default function Projects() {
       <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative", zIndex: 5 }}>
         {/* Header */}
         <div style={{ marginBottom: "60px", textAlign: "center" }}>
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="section-label"
@@ -367,12 +367,12 @@ export default function Projects() {
         </div>
 
         {/* Filters */}
-        <div style={{ 
-          display: "flex", 
-          justifyContent: "center", 
-          gap: "10px", 
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "10px",
           marginBottom: "50px",
-          flexWrap: "wrap" 
+          flexWrap: "wrap"
         }}>
           {categories.map((cat) => (
             <button
@@ -415,7 +415,7 @@ export default function Projects() {
         {/* Grid */}
         <div ref={ref} style={{ position: "relative" }}>
           <LayoutGroup>
-            <motion.div 
+            <motion.div
               layout
               style={{
                 display: "grid",
@@ -426,10 +426,10 @@ export default function Projects() {
             >
               <AnimatePresence mode="popLayout">
                 {displayedProjects.map((project: any) => (
-                  <ProjectCard 
-                    key={project.id} 
-                    project={project} 
-                    inView={inView} 
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    inView={inView}
                   />
                 ))}
               </AnimatePresence>

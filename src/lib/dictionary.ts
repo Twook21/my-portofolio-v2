@@ -362,7 +362,7 @@ export const dictionary = {
         { name: ".NET Blazor", level: 85 },
       ],
       backend: [
-        { name: ".NET Core (C#)", level: 72 },
+        { name: "ASP .NET Core (C#)", level: 72 },
         { name: "FastAPI", level: 68 },
         { name: "PostgreSQL", level: 70 },
         { name: "Oracle SQL", level: 65 },
@@ -555,8 +555,9 @@ export const dictionary = {
       { id: 5, title: "Microsoft METC Session", category: "Training", description: "Diving deep into Microsoft Fabric and Azure AI alongside selected participants." },
       { id: 6, title: "Dicoding Developer Conference", category: "Conference", description: "Exploring the future of technology, cloud architecture, and AI integration at Indonesia's largest developer event." },
       { id: 7, title: "JIDA Graduation", category: "Achievement", description: "Grateful to be among the final 50 participants and earning the BNSP Junior Web Programmer certification." },
-      { id: 8, title: "Clean Code Philosophy", category: "Mindset", description: "Writing code for humans, not just machines." },
+      { id: 8, title: "Gema Foundation Gathering", category: "Gathering", description: "Educate to elevate" },
       { id: 9, title: "Me at DDC 2026", category: "Personal", description: "A personal milestone attending Indonesia's largest developer conference." },
+      { id: 10, title: "IT One Kalbe Gathering", category: "Team", description: "Unifying technology and talent across the Kalbe ecosystem." },
     ],
     teamProjects: [
       {
@@ -629,7 +630,7 @@ export const dictionary = {
       }
     ],
     ui: {
-      viewWork: "View My Work →",
+      viewWork: "View My Work >",
       getInTouch: "Get in Touch",
       scroll: "SCROLL",
       experience: "Experience",
@@ -678,7 +679,7 @@ export const dictionary = {
       projTitle1: "Things I've designed,",
       projTitle2: "built, and shipped.",
       projPrivate: "Private Repo",
-      projDemo: "Live Demo ↗",
+      projDemo: "Live Demo ",
       skillsTitle1: "The craft behind",
       skillsTitle2: "the product.",
       skillsCat1: "Frontend",
@@ -690,7 +691,7 @@ export const dictionary = {
       contactDesc1: "whether you're scaling a team, looking for a relentless problem solver, or just want to talk clean code, my inbox is open.",
       contactCopy: "Copy",
       contactCopied: "✓ Copied!",
-      contactSend: "Send Email ↗",
+      contactSend: "Send Email ",
       certTitle1: "Credentials & ",
       certTitle2: "Recognition",
       certSoon: "Soon",
@@ -709,6 +710,39 @@ export const dictionary = {
       notFoundTitle: "Lost in Space?",
       notFoundDesc: "The page you're looking for has drifted away or never existed in this universe.",
       backHome: "Back to Base",
+    },
+    anotherMe: {
+      label: "THE OTHER SIDE",
+      title1: "Beyond the",
+      title2: "Code.",
+      description: "When I'm not architecting software, I'm exploring the intersections of 3D art, spatial design, and visual communication.",
+      backButton: "Back to Portfolio",
+      categories: {
+        threeD: {
+          title: "3D Modeling & Rendering",
+          description: "Transforming concepts into immersive environments using SketchUp, Blender, and V-Ray for photorealistic results.",
+          tools: ["SketchUp", "Blender", "V-Ray"],
+          results: [
+            { title: "Architectural Visualization", desc: "High-fidelity interior rendering with V-Ray.", image: "/3d-designs/resto.png", size: "large" },
+            { title: "Industrial Design", desc: "Technical 3D modeling for industrial structures.", image: "/3d-designs/pertamina.png", size: "tall" },
+            { title: "Creative Modeling", desc: "Detailed environment modeling using Blender.", image: "/3d-designs/krusty-crab.png", size: "tall" },
+            { title: "Exterior Concepts", desc: "Modern exterior architectural rendering.", image: "/3d-designs/gardena.png", size: "small" },
+            { title: "Interior Scene", desc: "Minimalist interior design and lighting.", image: "/3d-designs/minimalist.png", size: "wide" },
+            { title: "Character Modeling", desc: "Stylized character design in 3D space.", image: "/3d-designs/doreamon.png", size: "small" },
+            { title: "Retail Space Design", desc: "Commercial store layout and visualization.", image: "/3d-designs/store.png", size: "tall" }
+          ]
+        },
+        design: {
+          title: "Graphic Design & Branding",
+          description: "Crafting visual identities and digital assets through Adobe Photoshop, Canva, and CorelDraw.",
+          tools: ["Photoshop", "Canva", "CorelDraw"],
+          results: [
+            { title: "Brand Identity", desc: "Professional logo and visual branding.", image: "/graphics/eco.png", size: "tall" },
+            { title: "Social Media Design", desc: "Engaging content for digital platforms.", image: "/graphics/mr-beast.png", size: "small" },
+            { title: "Poster Art", desc: "Creative digital poster compositions.", image: "/graphics/bts-mr.png", size: "tall" }
+          ]
+        }
+      }
     }
   },
   id: {
@@ -1073,7 +1107,7 @@ export const dictionary = {
         { name: ".NET Blazor", level: 85 },
       ],
       backend: [
-        { name: ".NET Core (C#)", level: 72 },
+        { name: "ASP .NET Core (C#)", level: 72 },
         { name: "FastAPI", level: 68 },
         { name: "PostgreSQL", level: 70 },
         { name: "Oracle SQL", level: 65 },
@@ -1254,14 +1288,15 @@ export const dictionary = {
     ],
     moments: [
       { id: 1, title: "Senja Jakarta", category: "Life", description: "Energi Jakarta yang bersemangat saat matahari terbenam." },
-      { id: 2, title: "Filosofi Clean Code", category: "Engineering", description: "Menulis kode untuk manusia, bukan sekadar mesin." },
-      { id: 3, title: "Kampus PENS Surabaya", category: "Education", description: "Tempat di mana fondasi rekayasa saya dibangun." },
+      { id: 8, title: "Gema Foundation Gathering", category: "Gathering", description: "Educate to elevate" },
+      { id: 2, title: "Kampus PENS Surabaya", category: "Education", description: "Tempat di mana fondasi rekayasa saya dibangun." },
       { id: 4, title: "Perayaan HUT SCI", category: "Team", description: "Momen penuh makna dan kebahagiaan merayakan hari jadi SCI bersama seluruh tim." },
       { id: 5, title: "Microsoft METC Session", category: "Training", description: "Mendalami Microsoft Fabric dan Azure AI bersama para peserta terpilih." },
-      { id: 6, title: "BDD Full-Stack Track", category: "Conference", description: "Eksplorasi web modern, Serverless di AWS, dan Laravel di era AI." },
+      { id: 3, title: "BDD Full-Stack Track", category: "Conference", description: "Eksplorasi web modern, Serverless di AWS, dan Laravel di era AI." },
       { id: 7, title: "Kelulusan JIDA", category: "Achievement", description: "Bersyukur menjadi bagian dari 50 peserta terbaik dan meraih sertifikasi BNSP Junior Web Programmer." },
-      { id: 8, title: "Dicoding Developer Conference", category: "Event", description: "Menelusuri masa depan teknologi, arsitektur cloud, dan integrasi AI di konferensi developer terbesar di Indonesia." },
+      { id: 6, title: "Dicoding Developer Conference", category: "Event", description: "Menelusuri masa depan teknologi, arsitektur cloud, dan integrasi AI di konferensi developer terbesar di Indonesia." },
       { id: 9, title: "Saya di DDC 2026", category: "Personal", description: "Momen berharga menghadiri konferensi pengembang terbesar di Indonesia." },
+      { id: 10, title: "IT One Kalbe Gathering", category: "Team", description: "Menyatukan teknologi dan talenta di seluruh ekosistem Kalbe." },
     ],
     teamProjects: [
       {
@@ -1334,7 +1369,7 @@ export const dictionary = {
       }
     ],
     ui: {
-      viewWork: "Lihat Karya Saya →",
+      viewWork: "Lihat Karya Saya >",
       getInTouch: "Hubungi Saya",
       scroll: "GULIR",
       experience: "Pengalaman",
@@ -1383,7 +1418,7 @@ export const dictionary = {
       projTitle1: "Hal yang saya desain,",
       projTitle2: "bangun, dan rilis.",
       projPrivate: "Private Repo",
-      projDemo: "Live Demo ↗",
+      projDemo: "Live Demo ",
       skillsTitle1: "The craft behind",
       skillsTitle2: "the product.",
       skillsCat1: "Frontend",
@@ -1395,7 +1430,7 @@ export const dictionary = {
       contactDesc1: "Apakah Anda sedang mencari pemecah masalah yang gigih, atau sekadar ingin berdiskusi seputar clean code, kotak masuk saya selalu terbuka.",
       contactCopy: "Salin",
       contactCopied: "✓ Tersalin!",
-      contactSend: "Kirim Email ↗",
+      contactSend: "Kirim Email ",
       certTitle1: "Kredensial & ",
       certTitle2: "Recognition",
       certSoon: "Segera",
@@ -1403,7 +1438,7 @@ export const dictionary = {
       showMore: "Lihat Lebih Banyak",
       showLess: "Lihat Lebih Sedikit",
       collaborations: "Kolaborasi Tim",
-      collabTitle1: "Building in sync,",
+      collabTitle1: "Membangun keselarasan,",
       collabTitle2: "bersama tim hebat.",
       roleLabel: "Peran",
       teamLabel: "Ukuran tim",
@@ -1414,6 +1449,39 @@ export const dictionary = {
       notFoundTitle: "Tersesat di Luar Angkasa?",
       notFoundDesc: "Halaman yang Anda cari telah hanyut atau tidak pernah ada di alam semesta ini.",
       backHome: "Kembali ke Beranda",
+    },
+    anotherMe: {
+      label: "SISI LAIN",
+      title1: "Melampaui",
+      title2: "Kode.",
+      description: "Saat saya tidak sedang merancang perangkat lunak, saya mengeksplorasi titik temu antara seni 3D, desain spasial, dan komunikasi visual.",
+      backButton: "Kembali ke Portofolio",
+      categories: {
+        threeD: {
+          title: "Pemodelan & Render 3D",
+          description: "Mengubah konsep menjadi lingkungan imersif menggunakan SketchUp, Blender, dan V-Ray untuk hasil fotorealistik.",
+          tools: ["SketchUp", "Blender", "V-Ray"],
+          results: [
+            { title: "Visualisasi Arsitektur", desc: "Render interior berkualitas tinggi dengan V-Ray.", image: "/3d-designs/resto.png", size: "large" },
+            { title: "Desain Industri", desc: "Pemodelan 3D teknis untuk struktur industri.", image: "/3d-designs/pertamina.png", size: "tall" },
+            { title: "Pemodelan Kreatif", desc: "Pemodelan lingkungan mendetail menggunakan Blender.", image: "/3d-designs/krusty-crab.png", size: "tall" },
+            { title: "Konsep Eksterior", desc: "Render arsitektur eksterior modern.", image: "/3d-designs/gardena.png", size: "small" },
+            { title: "Interior Scene", desc: "Desain interior minimalis dan pencahayaan.", image: "/3d-designs/minimalist.png", size: "wide" },
+            { title: "Pemodelan Karakter", desc: "Desain karakter bergaya dalam ruang 3D.", image: "/3d-designs/doreamon.png", size: "small" },
+            { title: "Desain Ruang Ritel", desc: "Tata letak dan visualisasi toko komersial.", image: "/3d-designs/store.png", size: "tall" }
+          ]
+        },
+        design: {
+          title: "Desain Grafis & Branding",
+          description: "Membangun identitas visual dan aset digital melalui Adobe Photoshop, Canva, dan CorelDraw.",
+          tools: ["Photoshop", "Canva", "CorelDraw"],
+          results: [
+            { title: "Identitas Brand", desc: "Logo profesional dan branding visual.", image: "/graphics/eco.png", size: "tall" },
+            { title: "Desain Media Sosial", desc: "Konten menarik untuk platform digital.", image: "/graphics/mr-beast.png", size: "small" },
+            { title: "Seni Poster", desc: "Komposisi poster digital yang kreatif.", image: "/graphics/bts-mr.png", size: "tall" }
+          ]
+        }
+      }
     }
   }
 };
