@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Akmal Bintang Budiawan — Software Engineer",
     description:
-      "Building clean, purposeful software — from Jakarta to the world. Frontend-focused Software Engineer specialized in Next.js & .NET ecosystems.",
-    url: "https://akmalbintang.vercel.app",
+      "Building clean, purposeful software. Frontend-focused Software Engineer specialized in Next.js & .NET ecosystems.",
+    url: "https://akmal-dev.vercel.app",
     siteName: "Akmal Bintang Budiawan Portfolio",
     images: [
       {
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Akmal Bintang Budiawan — Software Engineer",
     description:
-      "Frontend-focused Software Engineer specialized in Next.js & .NET ecosystems. Building toward world-class engineering.",
+      "Software Engineer specialized in Next.js & .NET ecosystems.",
     images: ["/og-image.png"],
     creator: "@tw0ok_",
   },
