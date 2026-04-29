@@ -5,13 +5,13 @@ import ThemeProvider from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageContext";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://akmalbintang.vercel.app"),
+  metadataBase: new URL("https://akmal-dev.vercel.app"),
   title: {
     default: "Akmal Bintang Budiawan — Software Engineer",
     template: "%s | Akmal Bintang Budiawan",
   },
   description:
-    "Frontend-focused Software Engineer building toward world-class engineering. Specializing in Next.js, .NET, and crafting purposeful digital experiences.",
+    "Software Engineer. Specializing in Next.js, .NET, and crafting purposeful digital experiences.",
   keywords: [
     "Akmal Bintang Budiawan",
     "Software Engineer",
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     "Full-Stack Developer",
     "Next.js",
     "React",
+    "ASP .NET Core",
     "PENS",
     "Portfolio",
     "Jakarta Tech",
