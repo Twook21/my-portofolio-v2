@@ -213,9 +213,9 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: "12px" }}>
           <motion.div variants={itemVariants}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
-              <h3 style={{ fontSize: "22px", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
+              <span style={{ fontSize: "22px", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em", display: "block" }}>
                 {exp.role}
-              </h3>
+              </span>
               {exp.highlight && (
                 <motion.span 
                   initial={{ scale: 0.8, opacity: 0 }}

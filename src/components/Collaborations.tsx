@@ -176,9 +176,9 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
           )}
         </div>
         <div style={{ flex: 1, overflow: "hidden" }}>
-          <h3 style={{ fontSize: "16px", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.01em", marginBottom: "2px" }}>
+          <span style={{ fontSize: "16px", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.01em", marginBottom: "2px", display: "block" }}>
             {collab.name}
-          </h3>
+          </span>
           <p style={{ fontSize: "12px", color: "var(--accent)", fontWeight: 700 }} className="collab-role">
             {collab.role}
           </p>

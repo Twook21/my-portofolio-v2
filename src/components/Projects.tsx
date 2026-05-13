@@ -162,19 +162,20 @@ function ProjectCard({ project, inView }: {
             gap: "8px"
           }}>
             {project.associatedLogo && (
-              <img src={project.associatedLogo} alt="" style={{ width: "16px", height: "16px", objectFit: "contain" }} />
+              <img src={project.associatedLogo} alt={`${project.associatedWith} Logo`} style={{ width: "16px", height: "16px", objectFit: "contain" }} />
             )}
             {project.associatedWith}
           </div>
         )}
 
-        <h3 style={{
+        <span style={{
+          display: "block",
           fontSize: "22px", fontWeight: 800,
           letterSpacing: "-0.02em", color: "var(--text-primary)",
           marginBottom: "6px", lineHeight: 1.2,
         }}>
           {project.name}
-        </h3>
+        </span>
 
         <p style={{
           fontSize: "13px",

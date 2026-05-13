@@ -226,17 +226,18 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
           )}
         </div>
         <div style={{ flex: 1, overflow: "hidden" }}>
-          <h3
+          <span
             style={{
               fontSize: "17px",
               fontWeight: 800,
               color: "var(--text-primary)",
               lineHeight: 1.3,
-              letterSpacing: "-0.01em"
+              letterSpacing: "-0.01em",
+              display: "block"
             }}
           >
             {cert.name}
-          </h3>
+          </span>
           <p style={{ fontSize: "14px", color: "var(--accent)", fontWeight: 700, marginTop: "2px" }} className="cert-issuer">
             {cert.issuer}
           </p>

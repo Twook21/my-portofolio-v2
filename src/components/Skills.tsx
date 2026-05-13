@@ -272,9 +272,9 @@ export default function Skills() {
                   {skill.icon}
                 </div>
                 <div>
-                  <h3 style={{ fontSize: "18px", fontWeight: 800, color: "var(--text-primary)", marginBottom: "10px", letterSpacing: "-0.01em" }}>
+                  <span style={{ display: "block", fontSize: "18px", fontWeight: 800, color: "var(--text-primary)", marginBottom: "10px", letterSpacing: "-0.01em" }}>
                     {skill.title}
-                  </h3>
+                  </span>
                   <p style={{ fontSize: "14px", color: "var(--text-secondary)", lineHeight: 1.6, fontWeight: 500 }}>
                     {skill.description}
                   </p>

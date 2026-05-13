@@ -3,7 +3,7 @@ export const personal = {
   tagline: "Software Engineer",
   subtitle: "Building clean, purposeful software.",
   description:
-    "A Software Developer bridging the gap between robust backend services and fluid, modern user interfaces. I specialize in the Next.js & .NET ecosystems, with a deep focus on quality-driven delivery and scalable architecture.",
+    "A dedicated Software Developer bridging the gap between robust backend services and modern user interfaces. I specialize in the Next.js & .NET ecosystems, with a heavy focus on high-quality delivery and scalable software architecture.",
   location: "Jakarta, Indonesia",
   email: "akmalbintang33@gmail.com",
   github: "https://github.com/Twook21",

@@ -146,16 +146,17 @@ export default function Moments() {
                   >
                     {translation?.category}
                   </span>
-                  <h3
+                  <span
                     style={{
                       fontSize: "15px",
                       fontWeight: 700,
                       color: "#fff",
                       lineHeight: 1.2,
+                      display: "block"
                     }}
                   >
                     {translation?.title}
-                  </h3>
+                  </span>
                   <div 
                     className="bento-desc"
                     style={{ 
