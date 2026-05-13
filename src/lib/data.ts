@@ -573,4 +573,12 @@ export const moments = [
     size: "wide",
     category: "Team",
   },
+  {
+    id: 11,
+    title: "MXperience Community",
+    description: "Connecting with the Logitech MX community.",
+    image: "/moments/mx-logitech.jpeg",
+    size: "wide",
+    category: "Community",
+  },
 ];

@@ -5,33 +5,33 @@ import ThemeProvider from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageContext";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://akmal-dev.vercel.app"),
+  metadataBase: new URL("https://akmalbintang.vercel.app"),
   title: {
-    default: "Akmal Bintang Budiawan — Software Engineer",
+    default: "Akmal Bintang Budiawan — Software Engineer & Full-Stack Developer",
     template: "%s | Akmal Bintang Budiawan",
   },
   description:
-    "Software Engineer. Specializing in Next.js, .NET, and crafting purposeful digital experiences.",
+    "Akmal Bintang Budiawan is a Software Engineer specializing in Next.js, .NET, and crafting purposeful digital experiences. Explore his projects and professional journey.",
   keywords: [
     "Akmal Bintang Budiawan",
-    "Software Engineer",
-    "Frontend Developer",
-    "Full-Stack Developer",
-    "Next.js",
-    "React",
-    "ASP .NET Core",
-    "PENS",
-    "Portfolio",
-    "Jakarta Tech",
+    "Akmal Bintang",
+    "Akmal",
+    "Software Engineer Jakarta",
+    "Full-Stack Developer Indonesia",
+    "Next.js Developer",
+    ".NET Developer",
+    "PENS Surabaya",
+    "Kalbe Group IT",
+    "Web Developer Portfolio",
   ],
   authors: [{ name: "Akmal Bintang Budiawan" }],
   creator: "Akmal Bintang Budiawan",
   openGraph: {
-    title: "Akmal Bintang Budiawan — Software Engineer",
+    title: "Akmal Bintang Budiawan — Software Engineer Portfolio",
     description:
-      "Building clean, purposeful software. Frontend-focused Software Engineer specialized in Next.js & .NET ecosystems.",
-    url: "https://akmal-dev.vercel.app",
-    siteName: "Akmal Bintang Budiawan Portfolio",
+      "Full-Stack Software Engineer specializing in Next.js & .NET ecosystems. Building clean, high-performance, and purposeful software.",
+    url: "https://akmalbintang.vercel.app",
+    siteName: "Akmal Bintang Budiawan",
     images: [
       {
         url: "/og-image.png",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Akmal Bintang Budiawan — Software Engineer",
     description:
-      "Software Engineer specialized in Next.js & .NET ecosystems.",
+      "Full-Stack Software Engineer specialized in Next.js & .NET ecosystems.",
     images: ["/og-image.png"],
     creator: "@tw0ok_",
   },
@@ -70,6 +70,33 @@ import CustomCursor from "@/components/CustomCursor";
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Akmal Bintang Budiawan",
+    alternateName: ["Akmal Bintang", "Akmal"],
+    url: "https://akmalbintang.vercel.app",
+    image: "https://akmalbintang.vercel.app/og-image.png",
+    jobTitle: "Software Engineer",
+    knowsAbout: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      ".NET",
+      "C#",
+      "Software Engineering",
+      "Web Development",
+    ],
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "Electronic Engineering Polytechnic Institute of Surabaya (PENS)",
+    },
+    sameAs: [
+      "https://github.com/Twook21",
+      "https://linkedin.com/in/akmal-bintang-budiawan",
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -82,6 +109,10 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap"
           rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body>

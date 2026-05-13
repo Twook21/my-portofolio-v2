@@ -109,7 +109,7 @@ export default function Moments() {
                 {/* Image */}
                 <img
                   src={moment.image}
-                  alt={translation?.title}
+                  alt={`${translation?.title} - Akmal Bintang Budiawan`}
                   style={{
                     width: "100%",
                     height: "100%",

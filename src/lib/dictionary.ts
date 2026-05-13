@@ -558,6 +558,7 @@ export const dictionary = {
       { id: 8, title: "Gema Foundation Gathering", category: "Gathering", description: "Educate to elevate" },
       { id: 9, title: "Me at DDC 2026", category: "Personal", description: "A personal milestone attending Indonesia's largest developer conference." },
       { id: 10, title: "IT One Kalbe Gathering", category: "Team", description: "Unifying technology and talent across the Kalbe ecosystem." },
+      { id: 11, title: "MXperience Community", category: "Community", description: "Connecting with the Logitech MX community." },
     ],
     teamProjects: [
       {
@@ -1297,6 +1298,7 @@ export const dictionary = {
       { id: 6, title: "Dicoding Developer Conference", category: "Event", description: "Menelusuri masa depan teknologi, arsitektur cloud, dan integrasi AI di konferensi developer terbesar di Indonesia." },
       { id: 9, title: "Saya di DDC 2026", category: "Personal", description: "Momen berharga menghadiri konferensi pengembang terbesar di Indonesia." },
       { id: 10, title: "IT One Kalbe Gathering", category: "Team", description: "Menyatukan teknologi dan talenta di seluruh ekosistem Kalbe." },
+      { id: 11, title: "MXperience Community", category: "Komunitas", description: "Berbagi pengalaman bersama komunitas Logitech MX." },
     ],
     teamProjects: [
       {

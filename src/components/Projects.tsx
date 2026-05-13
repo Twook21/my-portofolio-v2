@@ -89,7 +89,7 @@ function ProjectCard({ project, inView }: {
       }}>
         <img
           src={project.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop"}
-          alt={project.name}
+          alt={`${project.name} - Project by Akmal Bintang Budiawan`}
           style={{
             width: "100%",
             height: "100%",

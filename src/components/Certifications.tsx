@@ -215,7 +215,7 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
           {cert.logo ? (
             <img
               src={cert.logo}
-              alt={cert.issuer}
+              alt={`${cert.issuer} Certification - Akmal Bintang Budiawan`}
               onError={(e) => {
                 (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + cert.issuer + "&background=random";
               }}

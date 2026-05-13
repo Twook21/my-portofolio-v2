@@ -201,7 +201,7 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
       >
         <img 
           src={exp.logo} 
-          alt={exp.company} 
+          alt={`${exp.company} - Akmal Bintang Budiawan Experience`} 
           onError={(e) => {
             (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + exp.company + "&background=random";
           }}

@@ -168,6 +168,11 @@ export default function Hero() {
           </span>
         </div>
 
+        {/* Hidden SEO H1 */}
+        <h1 style={{ position: "absolute", width: "1px", height: "1px", padding: 0, margin: "-1px", overflow: "hidden", clip: "rect(0,0,0,0)", border: 0 }}>
+          Akmal Bintang Budiawan — Software Engineer & Full-Stack Developer
+        </h1>
+
         {/* Name — staggered word reveal */}
         <div
           style={{
@@ -179,7 +184,7 @@ export default function Hero() {
             marginBottom: "36px",
           }}
         >
-          <h1
+          <span
             style={{
               fontFamily: '"Stack Sans Notch", sans-serif',
               fontSize: "clamp(32px, 8vw, 72px)",
@@ -191,8 +196,8 @@ export default function Hero() {
             }}
           >
             {t.ui.heroGreeting1}
-          </h1>
-          <h1
+          </span>
+          <span
             style={{
               fontFamily: '"Stack Sans Notch", sans-serif',
               fontSize: "clamp(32px, 8vw, 72px)",
@@ -204,8 +209,8 @@ export default function Hero() {
             }}
           >
             {t.ui.heroGreeting2}
-          </h1>
-          <h1
+          </span>
+          <span
             style={{
               fontFamily: '"Stack Sans Notch", sans-serif',
               fontSize: "clamp(32px, 8vw, 72px)",
@@ -220,10 +225,10 @@ export default function Hero() {
             }}
           >
             {t.ui.heroGreeting3}
-          </h1>
+          </span>
           <img
             src="/mals.png"
-            alt="Akmal Emoji"
+            alt="Akmal Bintang Budiawan Portrait Emoji"
             style={{
               width: "clamp(50px, 12vw, 100px)",
               height: "clamp(50px, 12vw, 100px)",
