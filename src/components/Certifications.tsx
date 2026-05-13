@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import FloatingSymbols from "./FloatingSymbols";
 
@@ -213,12 +214,11 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
           className="cert-logo"
         >
           {cert.logo ? (
-            <img
+            <Image
               src={cert.logo}
               alt={`${cert.issuer} Certification - Akmal Bintang Budiawan`}
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + cert.issuer + "&background=random";
-              }}
+              width={56}
+              height={56}
               style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
           ) : (

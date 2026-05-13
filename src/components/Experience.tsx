@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, useScroll, useSpring, AnimatePresence, Variants } from "framer-motion";
 import FloatingSymbols from "./FloatingSymbols";
 
@@ -199,12 +200,11 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
         }}
         className="experience-logo-node"
       >
-        <img 
+        <Image 
           src={exp.logo} 
           alt={`${exp.company} - Akmal Bintang Budiawan Experience`} 
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + exp.company + "&background=random";
-          }}
+          width={56}
+          height={56}
           style={{ width: "100%", height: "100%", objectFit: "contain" }} 
         />
       </motion.div>

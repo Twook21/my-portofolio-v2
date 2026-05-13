@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import FloatingSymbols from "./FloatingSymbols";
 
@@ -87,12 +88,13 @@ function ProjectCard({ project, inView }: {
         overflow: "hidden",
         background: "var(--bg-tertiary)"
       }}>
-        <img
+        <Image
           src={project.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop"}
           alt={`${project.name} - Project by Akmal Bintang Budiawan`}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="project-image-v2"
           style={{
-            width: "100%",
-            height: "100%",
             objectFit: "cover",
             transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
             transform: isHovered ? "scale(1.1)" : "scale(1)",
@@ -162,7 +164,7 @@ function ProjectCard({ project, inView }: {
             gap: "8px"
           }}>
             {project.associatedLogo && (
-              <img src={project.associatedLogo} alt={`${project.associatedWith} Logo`} style={{ width: "16px", height: "16px", objectFit: "contain" }} />
+              <Image src={project.associatedLogo} alt={`${project.associatedWith} Logo`} width={16} height={16} style={{ objectFit: "contain" }} />
             )}
             {project.associatedWith}
           </div>

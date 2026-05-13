@@ -136,7 +136,9 @@ export default function Contact() {
             }}
           >
             <span style={{ fontSize: "15px", color: "var(--text-primary)", fontWeight: 500 }}>
-              {t.personal.email}
+              {t.personal.email.split("@")[0]}
+              <span style={{ display: "none" }}>obfuscation-text</span>
+              @{t.personal.email.split("@")[1]}
             </span>
             <button
               style={{

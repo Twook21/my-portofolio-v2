@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import FloatingSymbols from "./FloatingSymbols";
 
 export default function Hero() {
@@ -226,9 +227,12 @@ export default function Hero() {
           >
             {t.ui.heroGreeting3}
           </span>
-          <img
+          <Image
             src="/mals.png"
             alt="Akmal Bintang Budiawan Portrait Emoji"
+            width={100}
+            height={100}
+            priority
             style={{
               width: "clamp(50px, 12vw, 100px)",
               height: "clamp(50px, 12vw, 100px)",

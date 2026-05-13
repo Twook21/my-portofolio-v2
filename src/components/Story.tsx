@@ -3,6 +3,7 @@
 import { useLanguage } from "@/components/LanguageContext";
 import { personal, milestones } from "@/lib/data";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import FloatingSymbols from "./FloatingSymbols";
 
 function useInView(threshold = 0.15) {
@@ -148,7 +149,7 @@ export default function Story() {
                 sub: null,
               },
               {
-                icon: <img src="/pens.png" alt="PENS Logo - Akmal Bintang Budiawan Education" style={{ width: "28px", height: "28px", objectFit: "contain" }} />, color: "green",
+                icon: <Image src="/pens.png" alt="PENS Logo - Akmal Bintang Budiawan Education" width={28} height={28} style={{ objectFit: "contain" }} />, color: "green",
                 label: t.ui.eduLabel,
                 title: t.ui.eduTitle,
                 sub: t.ui.eduSub,

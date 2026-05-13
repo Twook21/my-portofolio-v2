@@ -3,6 +3,7 @@
 import { useLanguage } from "@/components/LanguageContext";
 import { moments } from "@/lib/data";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import FloatingSymbols from "./FloatingSymbols";
 
 function useInView(threshold = 0.1) {
@@ -107,12 +108,12 @@ export default function Moments() {
                 className="bento-item"
               >
                 {/* Image */}
-                <img
+                <Image
                   src={moment.image}
                   alt={`${translation?.title} - Akmal Bintang Budiawan`}
+                  fill
+                  sizes="(max-width: 600px) 50vw, (max-width: 900px) 33vw, 25vw"
                   style={{
-                    width: "100%",
-                    height: "100%",
                     objectFit: "cover",
                     transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
                   }}

@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import FloatingSymbols from "./FloatingSymbols";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -163,12 +164,11 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
           flexShrink: 0
         }} className="collab-logo">
           {collab.logo ? (
-            <img
+            <Image
               src={collab.logo}
               alt={collab.name}
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + collab.name + "&background=random";
-              }}
+              width={44}
+              height={44}
               style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
           ) : (

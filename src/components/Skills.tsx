@@ -2,6 +2,7 @@
 
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import FloatingSymbols from "./FloatingSymbols";
 
 function useInView(threshold = 0.15) {
@@ -143,9 +144,11 @@ export default function Skills() {
           <div className="marquee-content">
             {[...techLogos, ...techLogos].map((logo, i) => (
               <div key={i} className="marquee-item">
-                <img
+                <Image
                   src={logo.url}
                   alt={logo.name}
+                  width={32}
+                  height={32}
                   style={{
                     height: "32px",
                     width: "auto",
