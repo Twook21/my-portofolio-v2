@@ -62,6 +62,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: "https://akmalbintang.vercel.app",
+    languages: {
+      "en-US": "https://akmalbintang.vercel.app",
+      "id-ID": "https://akmalbintang.vercel.app",
+    },
+  },
 };
 
 import Script from "next/script";
@@ -70,31 +77,53 @@ import CustomCursor from "@/components/CustomCursor";
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const jsonLd = {
+  const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Akmal Bintang Budiawan",
-    alternateName: ["Akmal Bintang", "Akmal"],
+    alternateName: ["Akmal Bintang", "Akmal", "Twook21"],
     url: "https://akmalbintang.vercel.app",
     image: "https://akmalbintang.vercel.app/og-image.png",
     jobTitle: "Software Engineer",
+    description: "Software Engineer specialized in Next.js, .NET, and building scalable enterprise ecosystems.",
     knowsAbout: [
       "Next.js",
       "React",
       "TypeScript",
       ".NET",
       "C#",
+      "Oracle SQL",
+      "PostgreSQL",
       "Software Engineering",
       "Web Development",
+      "UI/UX Design",
     ],
     alumniOf: {
       "@type": "EducationalOrganization",
       name: "Electronic Engineering Polytechnic Institute of Surabaya (PENS)",
     },
+    worksFor: {
+      "@type": "Organization",
+      name: "PT Bifarma Adiluhung (Kalbe Group)",
+    },
     sameAs: [
       "https://github.com/Twook21",
       "https://linkedin.com/in/akmal-bintang-budiawan",
+      "https://www.instagram.com/tw0ok_/",
     ],
+  };
+
+  const navJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      { "@type": "SiteNavigationElement", "position": 1, "name": "Story", "url": "https://akmalbintang.vercel.app/#story" },
+      { "@type": "SiteNavigationElement", "position": 2, "name": "Experience", "url": "https://akmalbintang.vercel.app/#experience" },
+      { "@type": "SiteNavigationElement", "position": 3, "name": "Projects", "url": "https://akmalbintang.vercel.app/#projects" },
+      { "@type": "SiteNavigationElement", "position": 4, "name": "Moments", "url": "https://akmalbintang.vercel.app/#moments" },
+      { "@type": "SiteNavigationElement", "position": 5, "name": "Certifications", "url": "https://akmalbintang.vercel.app/#certifications" },
+      { "@type": "SiteNavigationElement", "position": 6, "name": "Contact", "url": "https://akmalbintang.vercel.app/#contact" }
+    ]
   };
 
   return (
@@ -112,7 +141,11 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(navJsonLd) }}
         />
       </head>
       <body>

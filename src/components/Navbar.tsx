@@ -118,7 +118,7 @@ export default function Navbar() {
             <span style={{ fontSize: "18px", fontWeight: 800, color: "var(--text-primary)", letterSpacing: "-0.02em" }}>
               Akmal{" "}
               <span style={{ color: "var(--text-tertiary)", fontWeight: 500 }}>
-                Bintang
+                Bintang B.
               </span>
             </span>
           </button>
