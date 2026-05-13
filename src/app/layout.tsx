@@ -69,6 +69,9 @@ export const metadata: Metadata = {
       "id-ID": "https://akmalbintang.vercel.app",
     },
   },
+  verification: {
+    google: "fa465e72bfc35bee",
+  },
 };
 
 import Script from "next/script";
