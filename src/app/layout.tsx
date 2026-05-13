@@ -5,13 +5,13 @@ import ThemeProvider from "@/components/ThemeProvider";
 import { LanguageProvider } from "@/components/LanguageContext";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://akmalbintang.vercel.app"),
+  metadataBase: new URL("https://akmal-dev.vercel.app"),
   title: {
-    default: "Akmal Bintang Budiawan — Software Engineer & Full-Stack Developer",
-    template: "%s | Akmal Bintang Budiawan",
+    default: "Akmal Bintang | Software Engineer & Full-Stack",
+    template: "%s | Akmal Bintang",
   },
   description:
-    "Akmal Bintang Budiawan is a Software Engineer specializing in Next.js, .NET, and crafting purposeful digital experiences. Explore his projects and professional journey.",
+    "Akmal Bintang is a Software Engineer specializing in Next.js & .NET. Explore his projects and professional journey.",
   keywords: [
     "Akmal Bintang Budiawan",
     "Akmal Bintang",
@@ -27,17 +27,17 @@ export const metadata: Metadata = {
   authors: [{ name: "Akmal Bintang Budiawan" }],
   creator: "Akmal Bintang Budiawan",
   openGraph: {
-    title: "Akmal Bintang Budiawan — Software Engineer Portfolio",
+    title: "Akmal Bintang | Software Engineer Portfolio",
     description:
-      "Full-Stack Software Engineer specializing in Next.js & .NET ecosystems. Building clean, high-performance, and purposeful software.",
-    url: "https://akmalbintang.vercel.app",
+      "Full-Stack Software Engineer specialized in Next.js & .NET ecosystems. Building clean, high-performance software.",
+    url: "https://akmal-dev.vercel.app",
     siteName: "Akmal Bintang Budiawan",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Akmal Bintang Budiawan — Software Engineer Portfolio",
+        alt: "Akmal Bintang - Software Engineer Portfolio",
       },
     ],
     locale: "en_US",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Akmal Bintang Budiawan — Software Engineer",
+    title: "Akmal Bintang | Software Engineer",
     description:
       "Full-Stack Software Engineer specialized in Next.js & .NET ecosystems.",
     images: ["/og-image.png"],
@@ -63,14 +63,18 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://akmalbintang.vercel.app",
+    canonical: "https://akmal-dev.vercel.app",
     languages: {
-      "en-US": "https://akmalbintang.vercel.app",
-      "id-ID": "https://akmalbintang.vercel.app",
+      "en-US": "/en",
+      "id-ID": "/id",
+      "x-default": "https://akmal-dev.vercel.app",
     },
   },
   verification: {
     google: "fa465e72bfc35bee",
+  },
+  icons: {
+    apple: "/apple-touch-icon.png",
   },
 };
 
@@ -85,8 +89,8 @@ export default function RootLayout({
     "@type": "Person",
     name: "Akmal Bintang Budiawan",
     alternateName: ["Akmal Bintang", "Akmal", "Twook21"],
-    url: "https://akmalbintang.vercel.app",
-    image: "https://akmalbintang.vercel.app/og-image.png",
+    url: "https://akmal-dev.vercel.app",
+    image: "https://akmal-dev.vercel.app/og-image.png",
     jobTitle: "Software Engineer",
     description: "Software Engineer specialized in Next.js, .NET, and building scalable enterprise ecosystems.",
     knowsAbout: [
@@ -120,12 +124,12 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "ItemList",
     "itemListElement": [
-      { "@type": "SiteNavigationElement", "position": 1, "name": "Story", "url": "https://akmalbintang.vercel.app/#story" },
-      { "@type": "SiteNavigationElement", "position": 2, "name": "Experience", "url": "https://akmalbintang.vercel.app/#experience" },
-      { "@type": "SiteNavigationElement", "position": 3, "name": "Projects", "url": "https://akmalbintang.vercel.app/#projects" },
-      { "@type": "SiteNavigationElement", "position": 4, "name": "Moments", "url": "https://akmalbintang.vercel.app/#moments" },
-      { "@type": "SiteNavigationElement", "position": 5, "name": "Certifications", "url": "https://akmalbintang.vercel.app/#certifications" },
-      { "@type": "SiteNavigationElement", "position": 6, "name": "Contact", "url": "https://akmalbintang.vercel.app/#contact" }
+      { "@type": "SiteNavigationElement", "position": 1, "name": "Story", "url": "https://akmal-dev.vercel.app/#story" },
+      { "@type": "SiteNavigationElement", "position": 2, "name": "Experience", "url": "https://akmal-dev.vercel.app/#experience" },
+      { "@type": "SiteNavigationElement", "position": 3, "name": "Projects", "url": "https://akmal-dev.vercel.app/#projects" },
+      { "@type": "SiteNavigationElement", "position": 4, "name": "Moments", "url": "https://akmal-dev.vercel.app/#moments" },
+      { "@type": "SiteNavigationElement", "position": 5, "name": "Certifications", "url": "https://akmal-dev.vercel.app/#certifications" },
+      { "@type": "SiteNavigationElement", "position": 6, "name": "Contact", "url": "https://akmal-dev.vercel.app/#contact" }
     ]
   };
 

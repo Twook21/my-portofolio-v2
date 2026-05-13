@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Akmal Bintang Budiawan — Creative Portfolio",
     description: "Exploring the intersections of 3D art, spatial design, and visual communication.",
-    url: "https://akmalbintang.vercel.app/another",
+    url: "https://akmal-dev.vercel.app/another",
     siteName: "Akmal Bintang Budiawan",
     images: [
       {

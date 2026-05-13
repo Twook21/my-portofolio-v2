@@ -148,7 +148,7 @@ export default function Story() {
                 sub: null,
               },
               {
-                icon: <img src="/pens.png" alt="PENS" style={{ width: "28px", height: "28px", objectFit: "contain" }} />, color: "green",
+                icon: <img src="/pens.png" alt="PENS Logo - Akmal Bintang Budiawan Education" style={{ width: "28px", height: "28px", objectFit: "contain" }} />, color: "green",
                 label: t.ui.eduLabel,
                 title: t.ui.eduTitle,
                 sub: t.ui.eduSub,

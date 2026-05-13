@@ -9,6 +9,7 @@ import Skills from "@/components/Skills";
 import Certifications from "@/components/Certifications";
 import Contact from "@/components/Contact";
 import FloatingCTA from "@/components/FloatingCTA";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       <Certifications />
       <Moments />
       <Contact />
+      <Footer />
       <FloatingCTA />
     </main>
   );

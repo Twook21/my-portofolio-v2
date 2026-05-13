@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://akmalbintang.vercel.app/sitemap.xml",
+    sitemap: "https://akmal-dev.vercel.app/sitemap.xml",
   };
 }
