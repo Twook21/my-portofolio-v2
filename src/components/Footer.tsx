@@ -33,7 +33,7 @@ export default function Footer() {
           {/* Brand */}
           <div style={{ gridColumn: "span 2" }}>
             <h3 style={{ fontSize: "20px", fontWeight: 800, marginBottom: "16px", color: "var(--text-primary)" }}>
-              Akmal Bintang <span style={{ color: "var(--accent)" }}>.</span>
+              Akmal Bintang B<span style={{ color: "var(--accent)" }}>.</span>
             </h3>
             <p style={{ color: "var(--text-secondary)", fontSize: "14px", lineHeight: 1.6, maxWidth: "300px" }}>
               {t.personal.description}

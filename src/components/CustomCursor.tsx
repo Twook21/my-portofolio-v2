@@ -12,8 +12,14 @@ export default function CustomCursor() {
   useEffect(() => {
     setMounted(true);
     const onMouseMove = (e: MouseEvent) => {
-      // Use raw coordinates as we will normalize the zoom on the component itself
-      setMousePos({ x: e.clientX, y: e.clientY });
+      // Get the current zoom level from body to adjust coordinates
+      const zoom = parseFloat(getComputedStyle(document.body).zoom) || 1;
+      
+      // Adjust coordinates based on zoom level to ensure precision
+      setMousePos({ 
+        x: e.clientX / zoom, 
+        y: e.clientY / zoom 
+      });
       setIsHidden(false);
 
       // Check if hovering over interactive elements
