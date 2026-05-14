@@ -163,7 +163,7 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
           fontSize: "20px",
           flexShrink: 0
         }} className="collab-logo">
-          {collab.logo ? (
+          {collab.logo && (collab.logo.startsWith("/") || collab.logo.startsWith("http")) ? (
             <Image
               src={collab.logo}
               alt={collab.name}
@@ -172,7 +172,7 @@ function CollabCard({ collab, idx, inView }: { collab: any; idx: number; inView:
               style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
           ) : (
-            <span style={{ fontSize: "20px" }}>🤝</span>
+            <span style={{ fontSize: "20px" }}>{collab.logo || "🤝"}</span>
           )}
         </div>
         <div style={{ flex: 1, overflow: "hidden" }}>

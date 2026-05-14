@@ -24,6 +24,7 @@ function useInView(threshold = 0.1) {
 export default function Moments() {
   const { t } = useLanguage();
   const { ref, inView } = useInView();
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
     <section
@@ -74,6 +75,7 @@ export default function Moments() {
         >
           {moments.map((moment, idx) => {
             const translation = t.moments.find((m) => m.id === moment.id);
+            const isHovered = hoveredId === moment.id;
             
             // Map size to grid spans
             const spanStyle: React.CSSProperties = {};
@@ -94,16 +96,21 @@ export default function Moments() {
             return (
               <div
                 key={moment.id}
+                onMouseEnter={() => setHoveredId(moment.id)}
+                onMouseLeave={() => setHoveredId(null)}
                 style={{
                   ...spanStyle,
                   position: "relative",
                   borderRadius: "var(--radius-lg)",
                   overflow: "hidden",
                   border: "1px solid var(--border)",
-                  boxShadow: "var(--shadow-sm)",
+                  boxShadow: isHovered ? "var(--shadow-md)" : "var(--shadow-sm)",
                   opacity: inView ? 1 : 0,
-                  transform: inView ? "translateY(0) scale(1)" : "translateY(20px) scale(0.95)",
-                  transition: `all 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${idx * 0.1}s`,
+                  transform: inView 
+                    ? (isHovered ? "translateY(-4px) scale(1.02)" : "translateY(0) scale(1)") 
+                    : "translateY(20px) scale(0.95)",
+                  transition: `all 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${idx * 0.1}s, transform 0.3s ease, box-shadow 0.3s ease`,
+                  cursor: "pointer",
                 }}
                 className="bento-item"
               >
@@ -115,7 +122,10 @@ export default function Moments() {
                   sizes="(max-width: 600px) 50vw, (max-width: 900px) 33vw, 25vw"
                   style={{
                     objectFit: "cover",
-                    transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+                    transition: "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.4s ease",
+                    transform: isHovered ? "scale(1.18) rotate(-3deg)" : "scale(1) rotate(0deg)",
+                    filter: isHovered ? "brightness(1.1) contrast(1.05)" : "brightness(0.9) contrast(1)",
+                    willChange: "transform"
                   }}
                   className="bento-img"
                 />
@@ -128,9 +138,12 @@ export default function Moments() {
                     left: "0",
                     right: "0",
                     padding: "24px 16px 16px",
-                    background: "linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 40%, transparent 100%)",
+                    background: isHovered 
+                      ? "linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%)"
+                      : "linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 40%, transparent 100%)",
                     transform: "translateY(0)",
                     transition: "all 0.4s cubic-bezier(0.22, 1, 0.36, 1)",
+                    zIndex: 2
                   }}
                   className="bento-content-card"
                 >
@@ -161,10 +174,11 @@ export default function Moments() {
                   <div 
                     className="bento-desc"
                     style={{ 
-                      maxHeight: "0", 
-                      opacity: 0, 
+                      maxHeight: isHovered ? "120px" : "0", 
+                      opacity: isHovered ? 1 : 0, 
                       overflow: "hidden", 
-                      transition: "all 0.4s ease" 
+                      transition: "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
+                      marginTop: isHovered ? "10px" : "0"
                     }}
                   >
                     <p
@@ -173,7 +187,6 @@ export default function Moments() {
                         color: "rgba(255,255,255,0.8)",
                         lineHeight: 1.4,
                         fontWeight: 400,
-                        marginTop: "8px",
                       }}
                     >
                       {translation?.description}
@@ -187,21 +200,6 @@ export default function Moments() {
       </div>
 
       <style jsx>{`
-        .bento-item {
-          border: 1px solid var(--border) !important;
-          background: var(--bg-card);
-        }
-        .bento-item:hover .bento-img {
-          transform: scale(1.08) rotate(1deg);
-        }
-        .bento-item:hover .bento-content-card {
-          background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%) !important;
-        }
-        .bento-item:hover .bento-desc {
-          max-height: 120px !important;
-          opacity: 1 !important;
-          margin-top: 10px !important;
-        }
         @media (max-width: 900px) {
           .bento-grid {
             grid-template-columns: repeat(2, 1fr) !important;

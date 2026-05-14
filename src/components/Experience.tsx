@@ -200,13 +200,17 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
         }}
         className="experience-logo-node"
       >
-        <Image 
-          src={exp.logo} 
-          alt={`${exp.company} - Akmal Bintang Budiawan Experience`} 
-          width={56}
-          height={56}
-          style={{ width: "100%", height: "100%", objectFit: "contain" }} 
-        />
+        {exp.logo && (exp.logo.startsWith("/") || exp.logo.startsWith("http")) ? (
+          <Image 
+            src={exp.logo} 
+            alt={`${exp.company} - Akmal Bintang Budiawan Experience`} 
+            width={56}
+            height={56}
+            style={{ width: "100%", height: "100%", objectFit: "contain" }} 
+          />
+        ) : (
+          <span style={{ fontSize: "24px" }}>{exp.logo || "💼"}</span>
+        )}
       </motion.div>
 
       <div style={{ flex: 1 }}>

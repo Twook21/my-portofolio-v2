@@ -3,6 +3,7 @@
 import { useLanguage } from "@/components/LanguageContext";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import FloatingSymbols from "./FloatingSymbols";
 
 function useInView(threshold = 0.15) {
@@ -22,7 +23,12 @@ function useInView(threshold = 0.15) {
 
 function SkillBadge({ name, color }: { name: string; color: string }) {
   return (
-    <div
+    <motion.div
+      layout="position"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       style={{
         padding: "8px 16px",
         background: "var(--bg-tertiary)",
@@ -33,17 +39,18 @@ function SkillBadge({ name, color }: { name: string; color: string }) {
         gap: "8px",
         transition: "all 0.3s cubic-bezier(0.22, 1, 0.36, 1)",
         cursor: "default",
+        willChange: "transform, background-color, border-color"
       }}
       className="skill-badge"
-      onMouseEnter={(e) => {
-        const el = e.currentTarget as HTMLDivElement;
+      onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
+        const el = e.currentTarget;
         el.style.borderColor = color;
         el.style.background = `color-mix(in srgb, ${color} 8%, var(--bg-tertiary))`;
         el.style.transform = "translateY(-2px)";
         el.style.boxShadow = `0 4px 12px color-mix(in srgb, ${color} 15%, transparent)`;
       }}
-      onMouseLeave={(e) => {
-        const el = e.currentTarget as HTMLDivElement;
+      onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
+        const el = e.currentTarget;
         el.style.borderColor = "var(--border)";
         el.style.background = "var(--bg-tertiary)";
         el.style.transform = "translateY(0)";
@@ -52,7 +59,7 @@ function SkillBadge({ name, color }: { name: string; color: string }) {
     >
       <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: color }} />
       <span style={{ fontSize: "13px", fontWeight: 700, color: "var(--text-secondary)" }}>{name}</span>
-    </div>
+    </motion.div>
   );
 }
 
@@ -139,9 +146,10 @@ export default function Skills() {
             border: "1px solid rgba(128, 128, 128, 0.08)",
             borderRadius: "100px",
             padding: "20px 0",
+            willChange: "transform"
           }}
         >
-          <div className="marquee-content">
+          <div className="marquee-content" style={{ willChange: "transform" }}>
             {[...techLogos, ...techLogos].map((logo, i) => (
               <div key={i} className="marquee-item">
                 <Image
@@ -149,17 +157,20 @@ export default function Skills() {
                   alt={logo.name}
                   width={32}
                   height={32}
+                  unoptimized
+                  sizes="32px"
                   style={{
                     height: "32px",
                     width: "auto",
                     filter: "grayscale(1) brightness(1.5)",
-                    transition: "all 0.3s ease"
+                    transition: "all 0.3s ease",
+                    objectFit: "contain"
                   }}
-                  onMouseEnter={(e) => {
+                  onMouseEnter={(e: React.MouseEvent<HTMLImageElement>) => {
                     e.currentTarget.style.filter = "grayscale(0) brightness(1)";
                     e.currentTarget.style.transform = "scale(1.2)";
                   }}
-                  onMouseLeave={(e) => {
+                  onMouseLeave={(e: React.MouseEvent<HTMLImageElement>) => {
                     e.currentTarget.style.filter = "grayscale(1) brightness(1.5)";
                     e.currentTarget.style.transform = "scale(1)";
                   }}

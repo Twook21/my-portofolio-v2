@@ -245,7 +245,6 @@ export default function RootLayout({
           </p>
         </section>
 
-        <Footer />
           </LanguageProvider>
         </ThemeProvider>
       </body>

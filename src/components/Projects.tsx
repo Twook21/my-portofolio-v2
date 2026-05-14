@@ -62,12 +62,12 @@ function ProjectCard({ project, inView }: {
     "operatingSystem": "Web",
     "author": { "@id": "https://akmal-dev.vercel.app/#person" },
     "image": project.image,
-    "url": project.link || "https://akmal-dev.vercel.app"
+    "url": project.demo || "https://akmal-dev.vercel.app"
   };
 
   return (
     <motion.div
-      layout
+      layout="position"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
@@ -90,6 +90,7 @@ function ProjectCard({ project, inView }: {
         flexDirection: "column",
         cursor: "pointer",
         transition: "border-color 0.3s ease, box-shadow 0.3s ease",
+        willChange: "transform, opacity"
       }}
       className="project-card-v2"
     >
@@ -104,19 +105,27 @@ function ProjectCard({ project, inView }: {
         overflow: "hidden",
         background: "var(--bg-tertiary)"
       }}>
-        <Image
-          src={project.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop"}
-          alt={`${project.name} - Project by Akmal Bintang Budiawan`}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="project-image-v2"
-          style={{
-            objectFit: "cover",
-            transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
-            transform: isHovered ? "scale(1.1)" : "scale(1)",
-            filter: isHovered ? "brightness(1.05)" : "brightness(0.9)",
-          }}
-        />
+        <a 
+          href={project.demo || project.github || "#"} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{ display: "block", width: "100%", height: "100%", cursor: project.demo || project.github ? "pointer" : "default" }}
+          onClick={(e) => { if (!project.demo && !project.github) e.preventDefault(); }}
+        >
+          <Image
+            src={project.image || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1000&auto=format&fit=crop"}
+            alt={`${project.name} - Project by Akmal Bintang Budiawan`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="project-image-v2"
+            style={{
+              objectFit: "cover",
+              transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+              transform: isHovered ? "scale(1.1)" : "scale(1)",
+              filter: isHovered ? "brightness(1.05)" : "brightness(0.9)",
+            }}
+          />
+        </a>
 
         {/* Status & Date Badges */}
         <div style={{
@@ -186,14 +195,25 @@ function ProjectCard({ project, inView }: {
           </div>
         )}
 
-        <span style={{
-          display: "block",
-          fontSize: "22px", fontWeight: 800,
-          letterSpacing: "-0.02em", color: "var(--text-primary)",
-          marginBottom: "6px", lineHeight: 1.2,
-        }}>
-          {project.name}
-        </span>
+        <a 
+          href={project.demo || project.github || "#"} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{ textDecoration: "none" }}
+          onClick={(e) => { if (!project.demo && !project.github) e.preventDefault(); }}
+        >
+          <span style={{
+            display: "block",
+            fontSize: "22px", fontWeight: 800,
+            letterSpacing: "-0.02em", color: "var(--text-primary)",
+            marginBottom: "6px", lineHeight: 1.2,
+            transition: "color 0.2s ease"
+          }}
+          className="project-title-link"
+          >
+            {project.name}
+          </span>
+        </a>
 
         <p style={{
           fontSize: "13px",
@@ -286,9 +306,9 @@ function ProjectCard({ project, inView }: {
             </div>
           )}
           
-          {project.link && (
+          {project.demo && (
             <a
-              href={project.link}
+              href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View live demo of ${project.name}`}
@@ -336,6 +356,9 @@ function ProjectCard({ project, inView }: {
         .project-card-v2:hover {
           border-color: var(--accent-soft) !important;
           box-shadow: var(--shadow-lg) !important;
+        }
+        .project-title-link:hover {
+          color: var(--accent) !important;
         }
       `}</style>
     </motion.div>

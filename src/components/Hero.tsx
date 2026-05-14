@@ -9,7 +9,6 @@ export default function Hero() {
   const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
   const [displayText, setDisplayText] = useState("");
-  const [mousePos, setMousePos]   = useState({ x: 50, y: 40 });
   const heroRef = useRef<HTMLDivElement>(null);
 
   const roles = [
@@ -72,10 +71,10 @@ export default function Hero() {
     const move = (e: MouseEvent) => {
       if (!heroRef.current) return;
       const { left, top, width, height } = heroRef.current.getBoundingClientRect();
-      setMousePos({
-        x: ((e.clientX - left) / width) * 100,
-        y: ((e.clientY - top) / height) * 100,
-      });
+      const x = ((e.clientX - left) / width) * 100;
+      const y = ((e.clientY - top) / height) * 100;
+      heroRef.current.style.setProperty('--mouse-x', `${x}%`);
+      heroRef.current.style.setProperty('--mouse-y', `${y}%`);
     };
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
@@ -94,7 +93,9 @@ export default function Hero() {
         position: "relative",
         padding: "100px 20px 120px",
         overflow: "hidden",
-      }}
+        "--mouse-x": "50%",
+        "--mouse-y": "40%"
+      } as React.CSSProperties}
       className="hero-section"
     >
       {/* ── Animated background orbs ── */}
@@ -130,8 +131,8 @@ export default function Hero() {
       <div
         style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          background: `radial-gradient(ellipse 60% 50% at ${mousePos.x}% ${mousePos.y}%, var(--accent-soft) 0%, transparent 65%)`,
-          transition: "background 0.25s ease",
+          background: `radial-gradient(ellipse 60% 50% at var(--mouse-x) var(--mouse-y), var(--accent-soft) 0%, transparent 65%)`,
+          transition: "background 0.15s ease-out",
         }}
         className="mouse-spotlight"
       />
@@ -233,6 +234,7 @@ export default function Hero() {
             width={100}
             height={100}
             priority
+            sizes="(max-width: 768px) 50px, 100px"
             style={{
               width: "clamp(50px, 12vw, 100px)",
               height: "clamp(50px, 12vw, 100px)",
@@ -244,6 +246,7 @@ export default function Hero() {
               cursor: "pointer",
               transition: "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)",
               userSelect: "none",
+              willChange: "transform, opacity"
             }}
             onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.15) rotate(12deg)")}
             onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1) rotate(0deg)")}

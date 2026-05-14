@@ -75,7 +75,6 @@ export default function CustomCursor() {
           backgroundColor: isPointer ? "var(--accent-soft)" : "color-mix(in srgb, var(--accent) 5%, transparent)",
           transition: "transform 0.15s ease-out, background-color 0.3s ease, opacity 0.3s ease",
           opacity: isHidden ? 0 : 0.5,
-          zoom: 1.25, // Neutralize global 0.8 zoom
         }}
       />
 

@@ -213,7 +213,7 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
           }}
           className="cert-logo"
         >
-          {cert.logo ? (
+          {cert.logo && (cert.logo.startsWith("/") || cert.logo.startsWith("http")) ? (
             <Image
               src={cert.logo}
               alt={`${cert.issuer} Certification - Akmal Bintang Budiawan`}
@@ -222,7 +222,7 @@ function CertCard({ cert, idx, inView }: { cert: any; idx: number; inView: boole
               style={{ width: "100%", height: "100%", objectFit: "contain" }}
             />
           ) : (
-            <span style={{ fontSize: "24px" }}>🏅</span>
+            <span style={{ fontSize: "24px" }}>{cert.logo || "🏅"}</span>
           )}
         </div>
         <div style={{ flex: 1, overflow: "hidden" }}>
