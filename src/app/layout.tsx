@@ -6,6 +6,7 @@ import { LanguageProvider } from "@/components/LanguageContext";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import CustomCursor from "@/components/CustomCursor";
+import Footer from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Akmal Bintang",
   },
   description:
-    "Akmal Bintang Budiawan is a Full-Stack Software Engineer specialized in Next.js, React, and .NET ecosystems. Building clean, high-performance, and scalable enterprise-level software solutions.",
+    "Akmal Bintang Budiawan is a Full-Stack Software Engineer specializing in Next.js, React, and .NET. Expert in building clean, high-performance, and scalable enterprise-level software engineering solutions.",
   keywords: [
     "Akmal Bintang Budiawan",
     "Akmal Bintang",
@@ -38,21 +39,29 @@ export const metadata: Metadata = {
     "Software Engineering Portfolio",
     "Enterprise Software Solutions",
     "Web Development Jakarta",
+    "AI Development",
+    "Cloud Architecture",
   ],
+  other: {
+    "dc:creator": "Akmal Bintang Budiawan",
+    "dc:language": "en",
+    "dc:subject": "Software Engineering, Full-Stack Development, Next.js, .NET",
+    "dc:publisher": "Akmal Bintang Budiawan",
+  },
   authors: [{ name: "Akmal Bintang Budiawan" }],
   creator: "Akmal Bintang Budiawan",
   openGraph: {
-    title: "Akmal Bintang | Software Engineer Portfolio",
+    title: "Akmal Bintang | Software Engineer Portfolio & Expertise",
     description:
-      "Explore the portfolio of Akmal Bintang Budiawan, a Software Engineer specializing in Next.js & .NET. Building clean, purposeful, and high-performance software.",
+      "Explore the software engineering portfolio of Akmal Bintang Budiawan. Specialized in Next.js, .NET, and scalable enterprise systems.",
     url: "https://akmal-dev.vercel.app",
-    siteName: "Akmal Bintang Budiawan",
+    siteName: "Akmal Bintang Budiawan Portfolio",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Akmal Bintang - Software Engineer Portfolio",
+        alt: "Akmal Bintang - Software Engineer Portfolio Showcase",
       },
     ],
     locale: "en_US",
@@ -60,9 +69,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Akmal Bintang | Software Engineer",
+    title: "Akmal Bintang | Software Engineer & Full-Stack Developer",
     description:
-      "Full-Stack Software Engineer specialized in Next.js & .NET ecosystems. Delivering high-impact software solutions.",
+      "Full-Stack Software Engineer specialized in Next.js & .NET ecosystems. Building high-impact enterprise software.",
     images: ["/og-image.png"],
     creator: "@tw0ok_",
   },
@@ -99,12 +108,13 @@ export default function RootLayout({
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://akmal-dev.vercel.app/#person",
     name: "Akmal Bintang Budiawan",
     alternateName: ["Akmal Bintang", "Akmal", "Twook21"],
     url: "https://akmal-dev.vercel.app",
     image: "https://akmal-dev.vercel.app/og-image.png",
     jobTitle: "Software Engineer",
-    description: "Software Engineer specialized in Next.js, React, and .NET, building scalable enterprise ecosystems and high-performance web applications.",
+    description: "Full-Stack Software Engineer specialized in Next.js, React, and .NET Core, building scalable enterprise ecosystems and high-performance web applications.",
     knowsAbout: [
       "Next.js",
       "React",
@@ -116,20 +126,36 @@ export default function RootLayout({
       "Software Architecture",
       "Web Development",
       "UI/UX Design",
+      "Enterprise Architecture",
+      "Clean Code",
+      "Unit Testing",
     ],
     alumniOf: {
       "@type": "EducationalOrganization",
       name: "Electronic Engineering Polytechnic Institute of Surabaya (PENS)",
+      url: "https://www.pens.ac.id/",
     },
     worksFor: {
       "@type": "Organization",
       name: "PT Bifarma Adiluhung (Kalbe Group)",
+      url: "https://www.kalbe.co.id/",
     },
     sameAs: [
       "https://github.com/Twook21",
       "https://linkedin.com/in/akmal-bintang-budiawan",
       "https://www.instagram.com/tw0ok_/",
     ],
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://akmal-dev.vercel.app/#website",
+    url: "https://akmal-dev.vercel.app",
+    name: "Akmal Bintang Portfolio",
+    description: "Professional software engineering portfolio of Akmal Bintang Budiawan",
+    publisher: { "@id": "https://akmal-dev.vercel.app/#person" },
+    inLanguage: "en-US",
   };
 
   const navJsonLd = {
@@ -150,12 +176,12 @@ export default function RootLayout({
       <head>
         {/* Google Analytics */}
         <Script
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src={`https://www.googletagmanager.com/gtag/js?id=G-VWPXYXNWK8`}
         />
         <Script
           id="google-analytics"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
@@ -170,6 +196,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <script
           type="application/ld+json"
@@ -195,7 +225,27 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             <CustomCursor />
-            {children}
+            <main>{children}</main>
+        
+        {/* AI Agent Discovery & Context Section (Visually Hidden) */}
+        <section 
+          id="ai-context" 
+          aria-hidden="true" 
+          style={{ display: "none", visibility: "hidden" }}
+        >
+          <h2>Professional Profile of Akmal Bintang Budiawan</h2>
+          <p>
+            Akmal Bintang Budiawan is a Full-Stack Software Engineer with expertise in Next.js, React, TypeScript, and .NET Core. 
+            He specializes in building scalable enterprise software engineering solutions and high-performance web applications.
+            Key skills include: Frontend development (React, Next.js, Tailwind), Backend development (.NET Core, C#, FastAPI, PostgreSQL), 
+            and DevOps (Docker, GitHub Actions).
+            Education: Associate's degree in Informatics and Computer Engineering from Electronic Engineering Polytechnic Institute of Surabaya (PENS).
+            Current Role: Software Engineer at PT Bifarma Adiluhung (Kalbe Group).
+            Location: Jakarta, Indonesia.
+          </p>
+        </section>
+
+        <Footer />
           </LanguageProvider>
         </ThemeProvider>
       </body>

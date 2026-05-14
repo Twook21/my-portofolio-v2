@@ -189,34 +189,72 @@ export default function Contact() {
                 <span>{link.icon}</span> {link.label}
               </a>
             ))}
-
-            <a
-              href={`mailto:${t.personal.email}`}
+            <button
+              onClick={handleCopy}
+              aria-label={`Copy email address: ${t.personal.email}`}
               style={{
-                padding: "12px 28px",
-                background: "var(--accent)",
-                borderRadius: "100px",
-                fontSize: "14px", fontWeight: 700, color: "var(--accent-contrast)",
-                transition: "all 0.3s cubic-bezier(0.34,1.56,0.64,1)",
-                boxShadow: "var(--shadow-accent)",
-                display: "flex", alignItems: "center", gap: "8px",
+                background: "var(--bg-tertiary)",
+                border: "1px solid var(--border)",
+                borderRadius: "10px",
+                padding: "8px 16px",
+                fontSize: "12px",
+                fontWeight: 800,
+                color: "var(--text-primary)",
+                cursor: "pointer",
+                transition: "all 0.2s ease",
+                display: "flex",
+                alignItems: "center",
+                gap: "6px"
               }}
               onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background = "var(--accent-hover)";
-                el.style.transform = "translateY(-3px) scale(1.04)";
-                el.style.boxShadow = "0 12px 40px var(--accent-glow)";
+                e.currentTarget.style.borderColor = "var(--accent)";
+                e.currentTarget.style.background = "var(--accent-soft)";
               }}
               onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background = "var(--accent)";
-                el.style.transform = "translateY(0) scale(1)";
-                el.style.boxShadow = "var(--shadow-accent)";
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.background = "var(--bg-tertiary)";
               }}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
+              {copied ? t.ui.contactCopied : (
+                <>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  {t.ui.contactCopy}
+                </>
+              )}
+            </button>
+            <a
+              href={`mailto:${t.personal.email}`}
+              aria-label={`Send an email to ${t.personal.email}`}
+              style={{
+                background: "var(--accent)",
+                border: "none",
+                borderRadius: "10px",
+                padding: "8px 20px",
+                fontSize: "12px",
+                fontWeight: 800,
+                color: "white",
+                textDecoration: "none",
+                transition: "all 0.2s ease",
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                boxShadow: "0 4px 15px var(--accent-glow)"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.filter = "brightness(1.1)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.filter = "brightness(1)";
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
               {t.ui.contactSend}
             </a>

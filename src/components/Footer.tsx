@@ -92,10 +92,6 @@ export default function Footer() {
           <p style={{ fontSize: "12px", color: "var(--text-tertiary)" }}>
             &copy; {currentYear} Akmal Bintang Budiawan. {t.ui.rights}
           </p>
-          <div style={{ display: "flex", gap: "24px" }}>
-            <span style={{ fontSize: "12px", color: "var(--text-tertiary)" }}>Designed with ❤️</span>
-            <span style={{ fontSize: "12px", color: "var(--text-tertiary)" }}>Built with Next.js</span>
-          </div>
         </div>
       </div>
     </footer>

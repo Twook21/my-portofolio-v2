@@ -53,6 +53,18 @@ function ProjectCard({ project, inView }: {
   const { ref, handleMouseMove, handleMouseLeave } = use3DTilt();
   const [isHovered, setIsHovered] = useState(false);
 
+  const projectJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": project.name,
+    "description": project.description,
+    "applicationCategory": "WebApplication",
+    "operatingSystem": "Web",
+    "author": { "@id": "https://akmal-dev.vercel.app/#person" },
+    "image": project.image,
+    "url": project.link || "https://akmal-dev.vercel.app"
+  };
+
   return (
     <motion.div
       layout
@@ -81,6 +93,10 @@ function ProjectCard({ project, inView }: {
       }}
       className="project-card-v2"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectJsonLd) }}
+      />
       {/* Image Section */}
       <div style={{
         position: "relative",
@@ -227,70 +243,80 @@ function ProjectCard({ project, inView }: {
               +{project.tags.length - 4} more
             </span>
           )}
-        </div>
-
-        {/* Action Buttons */}
+        </div>        {/* Action Buttons */}
         <div style={{ display: "flex", gap: "10px" }}>
           {project.github ? (
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="proj-btn github"
+              aria-label={`View GitHub repository for ${project.name}`}
               style={{
-                flex: 1,
-                padding: "10px",
-                background: "var(--bg-tertiary)",
-                border: "1px solid var(--border)",
-                borderRadius: "12px",
-                fontSize: "13px",
-                fontWeight: 700,
-                color: "var(--text-primary)",
-                textAlign: "center",
-                textDecoration: "none",
-                transition: "all 0.3s ease"
+                width: "44px", height: "44px", borderRadius: "12px",
+                background: "var(--bg-tertiary)", border: "1px solid var(--border)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: "var(--text-secondary)", transition: "all 0.2s ease"
+              }}
+              onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.currentTarget.style.borderColor = "var(--accent)";
+                e.currentTarget.style.color = "var(--accent)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+              }}
+              onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.currentTarget.style.borderColor = "var(--border)";
+                e.currentTarget.style.color = "var(--text-secondary)";
+                e.currentTarget.style.transform = "translateY(0)";
               }}
             >
-              GitHub
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
             </a>
           ) : (
             <div style={{
-              flex: 1,
-              padding: "10px",
-              background: "var(--bg-secondary)",
-              border: "1px solid var(--border)",
-              borderRadius: "12px",
-              fontSize: "12px",
-              fontWeight: 600,
-              color: "var(--text-tertiary)",
-              textAlign: "center",
-              opacity: 0.6
-            }}>
-              {t.ui.projPrivate}
+              width: "44px", height: "44px", borderRadius: "12px",
+              background: "var(--bg-secondary)", border: "1px solid var(--border)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              color: "var(--text-tertiary)", opacity: 0.6
+            }} title="Private Repo">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
             </div>
           )}
-
-          {project.demo && (
+          
+          {project.link && (
             <a
-              href={project.demo}
+              href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="proj-btn demo"
+              aria-label={`View live demo of ${project.name}`}
               style={{
-                flex: 1,
-                padding: "10px",
-                background: "var(--accent)",
-                borderRadius: "12px",
-                fontSize: "13px",
-                fontWeight: 700,
-                color: "var(--accent-contrast)",
-                textAlign: "center",
-                textDecoration: "none",
-                transition: "all 0.3s ease",
+                flex: 1, height: "44px", borderRadius: "12px",
+                background: "var(--accent)", border: "none",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                gap: "8px", color: "white", fontSize: "14px", fontWeight: 700,
+                textDecoration: "none", transition: "all 0.2s ease",
                 boxShadow: "0 4px 12px var(--accent-glow)"
               }}
+              onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.filter = "brightness(1.1)";
+                e.currentTarget.style.boxShadow = "0 8px 20px var(--accent-glow)";
+              }}
+              onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.filter = "brightness(1)";
+                e.currentTarget.style.boxShadow = "0 4px 12px var(--accent-glow)";
+              }}
             >
-              Live Demo
+              {t.ui.projDemo}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
             </a>
           )}
         </div>
