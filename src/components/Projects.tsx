@@ -533,7 +533,7 @@ export default function Projects() {
           to { background-position: 200% center; }
         }
         @media (max-width: 768px) {
-          .projects-section { padding: 80px 16px !important; }
+          .projects-section { padding: 80px 28px !important; }
           .projects-grid-bento { grid-template-columns: 1fr !important; }
         }
       `}</style>

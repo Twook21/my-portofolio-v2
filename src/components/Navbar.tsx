@@ -368,6 +368,11 @@ export default function Navbar() {
             display: flex !important; 
             justify-content: space-between !important;
             grid-template-columns: none !important;
+            height: 64px !important;
+          }
+          .mobile-menu-container {
+            top: 64px !important;
+            height: calc(100vh - 64px) !important;
           }
         }
         @media (max-width: 480px) {

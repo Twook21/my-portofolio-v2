@@ -293,7 +293,7 @@ export default function Story() {
 
       <style jsx>{`
         @media (max-width: 768px) {
-          .story-section { padding: 80px 16px !important; }
+          .story-section { padding: 80px 28px !important; }
           .story-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
         }
       `}</style>

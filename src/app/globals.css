@@ -76,6 +76,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 body {
@@ -87,10 +88,11 @@ body {
   transition: background-color 0.35s ease, color 0.35s ease;
   -webkit-tap-highlight-color: transparent;
   zoom: 0.75;
+  height: 100%;
 }
 
 @media (max-width: 768px) {
-  body { zoom: 0.75; } /* Uniform zoom level as requested */
+  body { zoom: 1; } /* Disabled zoom-out on mobile as requested */
 }
 
 ::selection {

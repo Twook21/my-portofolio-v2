@@ -334,7 +334,7 @@ export default function Skills() {
           to { transform: translateX(-50%); }
         }
         @media (max-width: 768px) {
-          .skills-section { padding: 80px 16px !important; }
+          .skills-section { padding: 80px 28px !important; }
           .marquee-content { gap: 40px; animation-duration: 35s; }
         }
         @media (max-width: 640px) {

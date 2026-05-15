@@ -247,7 +247,7 @@ export default function Contact() {
 
       <style jsx>{`
         @media (max-width: 768px) {
-          .contact-section { padding: 80px 16px 40px !important; }
+          .contact-section { padding: 80px 28px 40px !important; }
           .footer-inner { flex-direction: column !important; text-align: center !important; gap: 12px !important; }
         }
         @media (max-width: 480px) {

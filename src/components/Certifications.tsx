@@ -140,7 +140,7 @@ export default function Certifications() {
           to { background-position: 200% center; }
         }
         @media (max-width: 768px) {
-          #certifications { padding: 80px 16px !important; }
+          #certifications { padding: 80px 28px !important; }
         }
         @media (max-width: 640px) {
           #certifications > div:nth-child(3) { grid-template-columns: 1fr !important; }

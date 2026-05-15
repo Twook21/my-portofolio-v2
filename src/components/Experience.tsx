@@ -328,7 +328,7 @@ function TimelineItem({ exp, idx, isLast }: { exp: any; idx: number; isLast: boo
 
       <style jsx>{`
         @media (max-width: 768px) {
-          .experience-section { padding: 80px 16px !important; }
+          .experience-section { padding: 80px 28px !important; }
           .timeline-container { padding-left: 44px !important; }
           .timeline-container > div:first-child, 
           .timeline-container > div:nth-child(2) { left: 16px !important; }

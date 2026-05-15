@@ -219,7 +219,7 @@ export default function Moments() {
             letter-spacing: -0.01em !important;
           }
           .moments-section {
-            padding: 60px 16px !important;
+            padding: 60px 28px !important;
           }
         }
       `}</style>

@@ -93,7 +93,7 @@ export default function Collaborations() {
           to { background-position: 200% center; }
         }
         @media (max-width: 768px) {
-          .collaborations-section { padding: 80px 16px !important; }
+          .collaborations-section { padding: 80px 28px !important; }
         }
         @media (max-width: 640px) {
           .collaborations-grid { grid-template-columns: 1fr !important; }

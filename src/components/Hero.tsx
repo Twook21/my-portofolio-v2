@@ -91,7 +91,7 @@ export default function Hero() {
         alignItems: "center",
         justifyContent: "center",
         position: "relative",
-        padding: "100px 20px 120px",
+        padding: "140px 20px 100px",
         overflow: "hidden",
         "--mouse-x": "50%",
         "--mouse-y": "40%"
@@ -157,6 +157,7 @@ export default function Hero() {
             opacity: visible ? 1 : 0,
             animation: visible ? "badgePop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.1s both" : "none",
           }}
+          className="hero-status"
         >
           <span
             style={{
@@ -185,6 +186,7 @@ export default function Hero() {
             flexWrap: "wrap",
             marginBottom: "36px",
           }}
+          className="hero-name-container"
         >
           <span
             style={{
@@ -269,7 +271,7 @@ export default function Hero() {
             justifyContent: "center",
             gap: "2px",
           }}
-          className="shimmer-text"
+          className="shimmer-text hero-role"
         >
           {displayText}
           <span className="typewriter-cursor">|</span>
@@ -288,6 +290,7 @@ export default function Hero() {
             opacity: visible ? 1 : 0,
             animation: visible ? "fadeInUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.5s both" : "none",
           }}
+          className="hero-description"
         >
           {t.personal.description}
         </p>
@@ -371,6 +374,7 @@ export default function Hero() {
             animation: visible ? "fadeIn 1.2s ease 1s both" : "none",
             padding: "0 20px",
           }}
+          className="hero-philosophy"
         >
           ✦ {t.personal.philosophy}
         </p>
@@ -382,7 +386,7 @@ export default function Hero() {
       {/* Scroll indicator */}
       <div
         style={{
-          position: "absolute", bottom: "36px", left: "50%",
+          position: "absolute", bottom: "24px", left: "50%",
           transform: "translateX(-50%)",
           display: "flex", flexDirection: "column", alignItems: "center", gap: "8px",
           opacity: visible ? 0.5 : 0,
@@ -410,7 +414,18 @@ export default function Hero() {
           color: var(--accent);
         }
         @media (max-width: 768px) {
-          .hero-section { padding: 80px 16px 100px !important; }
+          .hero-section { 
+            height: 100svh !important;
+            padding: 72px 28px env(safe-area-inset-bottom, 20px) !important; 
+            overflow: hidden !important;
+          }
+          .hero-status { margin-bottom: 12px !important; }
+          .hero-name-container { margin-bottom: 16px !important; gap: 8px !important; }
+          .hero-role { margin-bottom: 12px !important; }
+          .hero-description { margin-bottom: 24px !important; font-size: 14px !important; }
+          .hero-philosophy { margin-top: 24px !important; font-size: 10px !important; }
+          .hero-ctas { gap: 8px !important; }
+          .hero-ctas a { padding: 12px 20px !important; min-width: 140px !important; font-size: 14px !important; }
           .hero-orb-1, .hero-orb-2, .hero-orb-3 { opacity: 0.6; }
           .mouse-spotlight { display: none; }
           .decorative-element { display: none; }
