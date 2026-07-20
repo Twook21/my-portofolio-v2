@@ -113,7 +113,7 @@ export default function Hero() {
         style={{
           width: "max(260px, 35vw)", height: "max(260px, 35vw)",
           top: "20%", right: "-8%",
-          background: "radial-gradient(circle, var(--purple-soft) 0%, transparent 70%)",
+          background: "radial-gradient(circle, var(--accent-soft) 0%, transparent 70%)",
           animation: "orb2 22s ease-in-out infinite",
         }}
       />

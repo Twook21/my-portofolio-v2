@@ -430,7 +430,7 @@ export const dictionary = {
         title: "Architecting SmartAttendance",
         description: "Engineered an automated presence tracking system for an external institution as my final-year capstone project. Focused on streamlining real-world operational workflows and ensuring high-fidelity data integrity.",
         tag: "Capstone Engineering",
-        color: "purple",
+        color: "accent",
       },
       {
         date: "2025 — Present",
@@ -458,7 +458,7 @@ export const dictionary = {
         title: "Laravel Training at Gema Foundation",
         description: "Transitioned from static interfaces to server-side logic. Completed an intensive program where I built my very first database-driven web application.",
         tag: "Entering the Dynamic Web",
-        color: "purple",
+        color: "accent",
       },
       {
         date: "2023",
@@ -1170,7 +1170,7 @@ export const dictionary = {
         title: "Merancang SmartAttendance",
         description: "Membangun sistem pelacakan kehadiran berbasis AI yang tangguh untuk institusi eksternal sebagai proyek tugas akhir (Capstone).",
         tag: "Rekayasa Capstone",
-        color: "purple",
+        color: "accent",
       },
       {
         date: "2025 — Sekarang",
@@ -1198,7 +1198,7 @@ export const dictionary = {
         title: "Pelatihan Laravel di Yayasan Gema",
         description: "Beralih dari antarmuka statis ke logika server-side. Membangun aplikasi web berbasis database pertama saya secara intensif.",
         tag: "Memasuki Web Dinamis",
-        color: "purple",
+        color: "accent",
       },
       {
         date: "2023",

@@ -71,7 +71,7 @@ export default function Contact() {
         style={{
           width: "300px", height: "300px",
           top: "10%", left: "5%",
-          background: "radial-gradient(circle, var(--purple-soft) 0%, transparent 70%)",
+          background: "radial-gradient(circle, var(--accent-soft) 0%, transparent 70%)",
           animation: "orb2 15s ease-in-out infinite 2s",
           pointerEvents: "none",
         }}

@@ -23,11 +23,11 @@ function useInView(threshold = 0.15) {
 
 const colorMap: Record<string, string> = {
   accent: "var(--accent)", green: "var(--green)",
-  purple: "var(--purple)", orange: "var(--orange)",
+  orange: "var(--orange)",
 };
 const colorSoftMap: Record<string, string> = {
   accent: "var(--accent-soft)", green: "var(--green-soft)",
-  purple: "var(--purple-soft)", orange: "var(--orange-soft)",
+  orange: "var(--orange-soft)",
 };
 
 export default function Story() {
@@ -113,7 +113,7 @@ export default function Story() {
               <div
                 style={{
                   position: "absolute", top: 0, left: 0, right: 0, height: "3px",
-                  background: "linear-gradient(90deg, var(--accent), var(--purple), var(--green))",
+                  background: "linear-gradient(90deg, var(--accent), var(--green), var(--orange))",
                   backgroundSize: "200% auto",
                   animation: "shimmer 4s linear infinite",
                 }}

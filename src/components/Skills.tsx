@@ -83,7 +83,7 @@ export default function Skills() {
     { label: t.ui.skillsCat1, data: t.skills.frontend, color: "var(--accent)" },
     { label: t.ui.skillsCat2, data: t.skills.backend, color: "var(--green)" },
     { label: t.ui.skillsCat3, data: t.skills.devops, color: "var(--orange)" },
-    { label: t.ui.skillsCat4, data: t.skills.testing, color: "var(--purple)" },
+    { label: t.ui.skillsCat4, data: t.skills.testing, color: "var(--orange)" },
   ];
 
   const techLogos = [
