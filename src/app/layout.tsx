@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
+import SmoothScrolling from "@/components/SmoothScrolling";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -225,26 +226,27 @@ export default function RootLayout({
         <ThemeProvider>
           <LanguageProvider>
             <CustomCursor />
-            <main>{children}</main>
-        
-        {/* AI Agent Discovery & Context Section (Visually Hidden) */}
-        <section 
-          id="ai-context" 
-          aria-hidden="true" 
-          style={{ display: "none", visibility: "hidden" }}
-        >
-          <h2>Professional Profile of Akmal Bintang Budiawan</h2>
-          <p>
-            Akmal Bintang Budiawan is a Full-Stack Software Engineer with expertise in Next.js, React, TypeScript, and .NET Core. 
-            He specializes in building scalable enterprise software engineering solutions and high-performance web applications.
-            Key skills include: Frontend development (React, Next.js, Tailwind), Backend development (.NET Core, C#, FastAPI, PostgreSQL), 
-            and DevOps (Docker, GitHub Actions).
-            Education: Associate's degree in Informatics and Computer Engineering from Electronic Engineering Polytechnic Institute of Surabaya (PENS).
-            Current Role: Software Engineer at PT Bifarma Adiluhung (Kalbe Group).
-            Location: Jakarta, Indonesia.
-          </p>
-        </section>
-
+            <SmoothScrolling>
+              <main>{children}</main>
+          
+          {/* AI Agent Discovery & Context Section (Visually Hidden) */}
+          <section 
+            id="ai-context" 
+            aria-hidden="true" 
+            style={{ display: "none", visibility: "hidden" }}
+          >
+            <h2>Professional Profile of Akmal Bintang Budiawan</h2>
+            <p>
+              Akmal Bintang Budiawan is a Full-Stack Software Engineer with expertise in Next.js, React, TypeScript, and .NET Core. 
+              He specializes in building scalable enterprise software engineering solutions and high-performance web applications.
+              Key skills include: Frontend development (React, Next.js, Tailwind), Backend development (.NET Core, C#, FastAPI, PostgreSQL), 
+              and DevOps (Docker, GitHub Actions).
+              Education: Associate's degree in Informatics and Computer Engineering from Electronic Engineering Polytechnic Institute of Surabaya (PENS).
+              Current Role: Software Engineer at PT Bifarma Adiluhung (Kalbe Group).
+              Location: Jakarta, Indonesia.
+            </p>
+          </section>
+            </SmoothScrolling>
           </LanguageProvider>
         </ThemeProvider>
       </body>
